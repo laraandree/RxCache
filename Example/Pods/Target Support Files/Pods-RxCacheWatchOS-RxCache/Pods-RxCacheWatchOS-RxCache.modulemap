@@ -1,0 +1,6 @@
+framework module RxCache {
+  umbrella header "Pods-RxCacheWatchOS-RxCache-umbrella.h"
+
+  export *
+  module * { export * }
+}

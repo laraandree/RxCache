@@ -1,0 +1,21 @@
+PODS:
+  - Nimble (3.1.0)
+  - RxCache (0.1.0):
+    - RxSwift (~> 2.0)
+  - RxSwift (2.2.0)
+
+DEPENDENCIES:
+  - Nimble (~> 3.1.0)
+  - RxCache (from `../`)
+  - RxSwift (~> 2.0)
+
+EXTERNAL SOURCES:
+  RxCache:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Nimble: 79d40f4d69d47314229bbabacaa02b8838c779b9
+  RxCache: c29db4150044ed761102a559e9f1ed5e2f247af7
+  RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
+
+COCOAPODS: 0.39.0

@@ -1,0 +1,6 @@
+framework module Pods_RxCacheMacTests {
+  umbrella header "Pods-RxCacheMacTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
