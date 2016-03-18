@@ -1,0 +1,7 @@
+/**
+ Docs
+ */
+
+class MockGlossClass {
+
+}
