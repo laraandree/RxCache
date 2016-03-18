@@ -1,4 +1,4 @@
-// RxObject.swift
+// GlossCacheable.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -24,8 +24,9 @@
 /**
 Required to be implemented for those model which will be cached by RxCache
 */
-public protocol RxObject {
-    func toJSON() -> [String:AnyObject]
-    static func toSelf(JSON : [String:AnyObject]) -> AnyObject
-}
+import Foundation
 
+public protocol GlossCacheable {
+    init?(json: JSON)
+    func toJSON() -> JSON?
+}

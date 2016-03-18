@@ -25,7 +25,7 @@ import RxSwift
 
 extension RxCache {
     
-    func cacheArray<T: RxObject>(observable : Observable<[T]>, provider : Provider) -> Observable<Reply<[T]>> {
+    func cacheArray<T>(observable : Observable<[T]>, provider : Provider) -> Observable<Reply<[T]>> {
         return Observable.deferred {
             if let configError : Observable<Reply<[T]>> = self.checkIntegrityConfiguration(provider) {
                 return configError
@@ -36,7 +36,7 @@ extension RxCache {
             return Observable.just(record)
                 .map({ (record) -> Observable<Reply<[T]>> in
                 if let record = record where provider.evict == nil || provider.evict?.evict == false {
-                    return Observable.just(Reply(source: record.source, rxObjects: record.rxObjects));
+                    return Observable.just(Reply(source: record.source, cacheables: record.cacheables));
                 }
                 return self.getDataFromLoader(observable, provider: provider, record: record)
             }).flatMap { (oReply) -> Observable<Reply<[T]>> in
@@ -47,18 +47,18 @@ extension RxCache {
     
     private func getDataFromLoader<T>(observableLoader : Observable<[T]>, provider : Provider, record : Record<T>?) -> Observable<Reply<[T]>> {
         return observableLoader
-            .map { (rxObjects) -> Reply<[T]> in
+            .map { (cacheables) -> Reply<[T]> in
             
                 self.clearKeyIfNeeded(provider)
                 
-                self.twoLayersCache.save(provider.providerKey, dynamicKey: provider.dynamicKey, dynamicKeyGroup: provider.dynamicKeyGroup, rxObjects: rxObjects, lifeCache: provider.lifeCache, maxMBPersistenceCache : self.maxMBPersistenceCache)
-                return Reply(source: Source.Cloud, rxObjects: rxObjects)
+                self.twoLayersCache.save(provider.providerKey, dynamicKey: provider.dynamicKey, dynamicKeyGroup: provider.dynamicKeyGroup, cacheables: cacheables, lifeCache: provider.lifeCache, maxMBPersistenceCache : self.maxMBPersistenceCache)
+                return Reply(source: Source.Cloud, cacheables: cacheables)
             
             }.catchError({ (errorType) -> Observable<Reply<[T]>> in
                 self.clearKeyIfNeeded(provider)
                 
                 if (record != nil && self.useExpiredDataIfLoaderNotAvailable) {
-                    return Observable.just(Reply(source: record!.source, rxObjects: record!.rxObjects))
+                    return Observable.just(Reply(source: record!.source, cacheables: record!.cacheables))
                 }
                 
                 return Observable.error(NSError(domain: Locale.NotDataReturnWhenCallingObservableLoader + " " + provider.providerKey, code: 0, userInfo: nil))

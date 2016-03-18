@@ -64,27 +64,27 @@ public class RxCache {
             .addDisposableTo(DisposeBag())
     }
     
-    public func cacheWithReply<T : RxObject>(observable : Observable<T>,  provider : Provider) -> Observable<Reply<T>> {
+    public func cacheWithReply<T>(observable : Observable<T>,  provider : Provider) -> Observable<Reply<T>> {
         return self.cacheArray(observable.toArray(), provider: provider).flatMap({ (reply) -> Observable<Reply<T>> in
-            return Observable.just(Reply(source: reply.source, rxObjects: reply.rxObjects[0]))
+            return Observable.just(Reply(source: reply.source, cacheables: reply.cacheables[0]))
         })
     }
     
-    public func cacheWithReply<T : RxObject>(observable : Observable<[T]>,  provider : Provider) -> Observable<Reply<[T]>> {
+    public func cacheWithReply<T>(observable : Observable<[T]>,  provider : Provider) -> Observable<Reply<[T]>> {
         return self.cacheArray(observable, provider: provider)
     }
     
-    public func cache<T : RxObject>(observable : Observable<[T]>,  provider : Provider) -> Observable<[T]> {
+    public func cache<T>(observable : Observable<[T]>,  provider : Provider) -> Observable<[T]> {
         return self.cacheArray(observable, provider: provider)
             .flatMap({ (reply) -> Observable<[T]> in
-                return Observable.just(reply.rxObjects)
+                return Observable.just(reply.cacheables)
             })
     }
     
-    public func cache<T : RxObject>(observable : Observable<T>,  provider : Provider) -> Observable<T> {
+    public func cache<T>(observable : Observable<T>,  provider : Provider) -> Observable<T> {
         return self.cacheArray(observable.toArray(), provider: provider)
             .flatMap({ (reply) -> Observable<T> in
-                return Observable.just(reply.rxObjects[0])
+                return Observable.just(reply.cacheables[0])
             })
     }
         

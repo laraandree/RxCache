@@ -1,7 +1,0 @@
-/**
- Docs
- */
-
-class MockOMClass {
-
-}

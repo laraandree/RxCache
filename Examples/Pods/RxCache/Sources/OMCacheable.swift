@@ -1,4 +1,4 @@
-// Reply.swift
+// OMCacheable.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -22,18 +22,14 @@
 // THE SOFTWARE.
 
 /**
-* Wrapper to provide the Source used for retrieving the actual data, plus, the actual data.
-* You can set this object as return type for your methods if you want to know which was the source
-* for an specific data
-* param <T> The actual data to be retrieved encapsulated inside a Provider object
-* see Source
+Required to be implemented for those model which will be cached by RxCache
 */
-public class Reply<T> {
-    public let source : Source
-    public let rxObjects : T
-    
-    init(source : Source, rxObjects : T) {
-        self.source = source
-        self.rxObjects = rxObjects
-    }
+
+import Foundation
+
+public typealias JSON = [String : AnyObject]
+
+public protocol OMCacheable {
+    init?(JSON: JSON)
+    func toJSON() -> JSON
 }

@@ -7,14 +7,13 @@ env:
     - LC_ALL=en_US.UTF-8
     - WORKSPACE_IOS="iOS/RxCache.xcworkspace"
     - WORKSPACE_OSX="OSX/RxCache.xcworkspace"
-    - IOS_FRAMEWORK_SCHEME="iOS"
-    - OSX_FRAMEWORK_SCHEME="OSX"
+    - FRAMEWORK_SCHEME="RxCache"
     - IOS_SDK=iphonesimulator9.2
     - OSX_SDK=macosx10.11
 
   matrix:
-    - DESTINATION="OS=9.2,name=iPhone 6"      SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
-    - DESTINATION="arch=x86_64"               SCHEME="$OSX_FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES"
+    - DESTINATION="OS=9.2,name=iPhone 6"      SCHEME="$FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="arch=x86_64"               SCHEME="$FRAMEWORK_SCHEME"     SDK="$OSX_SDK"     RUN_TESTS="YES"
 
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet

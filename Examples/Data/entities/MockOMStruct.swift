@@ -1,7 +1,0 @@
-/**
- Docs
- */
-
-struct MockOMStruct {
-    
-}

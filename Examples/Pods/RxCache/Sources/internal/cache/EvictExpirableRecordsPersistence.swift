@@ -79,7 +79,7 @@ class EvictExpirableRecordsPersistence {
                     break
                 }
                 
-                if let record : Record<RxObjectPlaceholder> = self.persistence.retrieveRecord(key) where self.isRecordExpirable(record) && record.sizeOnMb != nil  {
+                if let record : Record<CacheablePlaceholder> = self.persistence.retrieveRecord(key) where self.isRecordExpirable(record) && record.sizeOnMb != nil  {
                     self.persistence.evict(key);
                     releasedMBSoFar += record.sizeOnMb
                 }
@@ -91,7 +91,7 @@ class EvictExpirableRecordsPersistence {
         }
     }
     
-    private func isRecordExpirable(record : Record<RxObjectPlaceholder>) -> Bool {
+    private func isRecordExpirable(record : Record<CacheablePlaceholder>) -> Bool {
         return record.lifeTimeInSeconds != 0
     }
     

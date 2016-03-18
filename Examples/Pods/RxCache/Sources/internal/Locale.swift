@@ -27,5 +27,6 @@ struct Locale {
     static let EvictDynamicKeyProvidedButNotProvidedAnyDynamicKey = " EvictDynamicKey was provided but not was provided any DynamicKey"
     static let EvictDynamicKeyGroupProvidedButNotProvidedAnyDynamicKeyGroup = " EvictDynamicKeyGroup was provided but not was provided any Group"
     static let DataCanNotBePersistedBecauseWouldExceedThresholdLimit = "RxCache -> Data can not be persisted because it would exceed the max limit megabytes settled down"
-    static let  RecordCanNotBeEvictedBecauseNoOneIsExpirable = "Records can not be evicted because no one is expirable";
+    static let RecordCanNotBeEvictedBecauseNoOneIsExpirable = "Records can not be evicted because no one is expirable";
+    static let CacheableIsNotEnought = " needs to implements GlossCacheable or OMCacheable";
 }

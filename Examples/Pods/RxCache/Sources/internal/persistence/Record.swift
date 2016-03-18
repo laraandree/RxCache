@@ -23,25 +23,25 @@
 
 import Foundation
 
-class Record<T : RxObject> : NSObject, NSCoding {
+class Record<T> : NSObject, NSCoding {
     var source : Source!
     var timeAtWhichWasPersisted : Double!
     var lifeTimeInSeconds: Double!
     var sizeOnMb : Double!
-    var rxObjects : [T]!
-    private var JSONs = [[String: AnyObject]]()
+    var cacheables : [T]!
+    private var JSONs = [JSON]()
     
-    init(rxObjects : [T], lifeTimeInSeconds: Double) {
+    init(cacheables : [T], lifeTimeInSeconds: Double) {
         self.source = Source.Memory
-        self.rxObjects = rxObjects
+        self.cacheables = cacheables
         self.timeAtWhichWasPersisted = NSDate().timeIntervalSince1970
         self.lifeTimeInSeconds = lifeTimeInSeconds
     }
     
     //for testing purpose only
-    init(source: Source, rxObjects : [T], timeAtWhichWasPersisted: Double, lifeTimeInSeconds: Double) {
+    init(source: Source, cacheables : [T], timeAtWhichWasPersisted: Double, lifeTimeInSeconds: Double) {
         self.source = source
-        self.rxObjects = rxObjects
+        self.cacheables = cacheables
         self.timeAtWhichWasPersisted = timeAtWhichWasPersisted
         self.lifeTimeInSeconds = lifeTimeInSeconds
     }
@@ -51,13 +51,17 @@ class Record<T : RxObject> : NSObject, NSCoding {
         timeAtWhichWasPersisted = aDecoder.decodeObjectForKey("timeAtWhichWasPersisted") as! Double
         lifeTimeInSeconds = aDecoder.decodeObjectForKey("lifeTimeInSeconds") as! Double
         JSONs = aDecoder.decodeObjectForKey("JSONs") as! [[String: AnyObject]]
-        rxObjects = [T]()
+        cacheables = [T]()
         
         for JSON in JSONs {
-            let anyObject : AnyObject = T.toSelf(JSON)
-            
-            if let rxObject = anyObject as? T {
-                rxObjects.append(rxObject)
+            if let gloss = T.self as? GlossCacheable.Type {
+                let instance = gloss.init(json:JSON)
+                cacheables.append(instance as! T)
+            } else if let mapper = T.self as? OMCacheable.Type {
+                let instance = mapper.init(JSON:JSON)
+                cacheables.append(instance as! T)
+            } else {
+                fatalError((String(T.self) + Locale.CacheableIsNotEnought))
             }
         }
         
@@ -69,8 +73,14 @@ class Record<T : RxObject> : NSObject, NSCoding {
         aCoder.encodeObject(timeAtWhichWasPersisted, forKey: "timeAtWhichWasPersisted")
         aCoder.encodeObject(lifeTimeInSeconds, forKey: "lifeTimeInSeconds")
         
-        for rxObject in rxObjects {
-            JSONs.append(rxObject.toJSON())
+        for cacheable in cacheables {
+            if let gloss = cacheable as? GlossCacheable {
+                JSONs.append(gloss.toJSON()!)
+            } else if let mapper = cacheable as? OMCacheable {
+                JSONs.append(mapper.toJSON())
+            } else {
+                fatalError((String(T.self) + Locale.CacheableIsNotEnought))
+            }
         }
         
         aCoder.encodeObject(JSONs, forKey: "JSONs")

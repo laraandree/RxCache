@@ -1,4 +1,4 @@
-// EvictExpiredRecordsPersistenceTask.swift
+// SaveRecord.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -23,38 +23,32 @@
 
 import RxSwift
 
-class EvictExpiredRecordsPersistence {
-    private let hasRecordExpired: HasRecordExpired
+class SaveRecord : Action {
+    let memory : Memory
+    let evictExpirableRecordsPersistence : EvictExpirableRecordsPersistence
     private let persistence : Persistence
-    
-    init (persistence : Persistence) {
-        self.hasRecordExpired = HasRecordExpired()
+
+    init(memory : Memory, persistence : Persistence) {
+        self.memory = memory
+        self.evictExpirableRecordsPersistence = EvictExpirableRecordsPersistence(persistence: persistence)
         self.persistence = persistence
     }
     
-    func startEvictingExpiredRecords() -> Observable<String> {        
-        return Observable.create { subscriber in
-            
-            let allKeys = self.persistence.allKeys()
-            allKeys.forEach({ (key) -> () in                
-                if let record : Record<RxObjectPlaceholder> = self.persistence.retrieveRecord(key) where self.hasRecordExpired.hasRecordExpired(record) {
-                    self.persistence.evict(key)
-                    subscriber.onNext(key)
-                }
-            })
-    
-            subscriber.onCompleted()
-            return NopDisposable.instance
+    func save<T>(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, cacheables: [T], lifeCache: LifeCache?, maxMBPersistenceCache: Int) {
+        let composedKey = composeKey(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup);
+        
+        let lifeTimeInSeconds = lifeCache != nil ? lifeCache!.getLifeTimeInSeconds() : 0
+        let record : Record<T> = Record(cacheables: cacheables, lifeTimeInSeconds: lifeTimeInSeconds)
+        memory.put(composedKey, record: record)
+        
+        if let storedMB = persistence.storedMB() where storedMB >= maxMBPersistenceCache {
+            print(Locale.DataCanNotBePersistedBecauseWouldExceedThresholdLimit)
+        } else {
+            persistence.saveRecord(composedKey, record: record)
         }
-    }
-}
-
-class RxObjectPlaceholder : RxObject {
-    func toJSON() -> [String : AnyObject] {
-        return [String : AnyObject]()
+        
+        evictExpirableRecordsPersistence.maxMgPersistenceCache = maxMBPersistenceCache
+        evictExpirableRecordsPersistence.startTaskIfNeeded()
     }
     
-    static func toSelf(JSON: [String : AnyObject]) -> AnyObject {
-        return RxObjectPlaceholder()
-    }
 }

@@ -9,7 +9,7 @@ PODS:
     - RxSwift (~> 2.0)
   - ObjectMapper (1.1.5)
   - Result (1.0.2)
-  - RxCache (0.1.0):
+  - RxCache (0.1.1):
     - RxSwift (~> 2.0)
   - RxSwift (2.2.0)
 
@@ -17,7 +17,7 @@ DEPENDENCIES:
   - Gloss (~> 0.7)
   - Moya/RxSwift
   - ObjectMapper (~> 1.1)
-  - RxCache (~> 0.1.0)
+  - RxCache (~> 0.1.1)
   - RxSwift (~> 2.0)
 
 SPEC CHECKSUMS:
@@ -26,7 +26,7 @@ SPEC CHECKSUMS:
   Moya: a202c1d62c950e23437fd4ef5557395f488fdca6
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
-  RxCache: 91bb4e298f8f997f3eb0e9e98202471ebefa01d8
+  RxCache: 25740713c7f06d45cfe1acf7cfdf396405b035a7
   RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
 
 COCOAPODS: 0.39.0

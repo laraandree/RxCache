@@ -1,7 +1,8 @@
-[![CI Status](http://img.shields.io/travis/Victor/RxCache.svg?style=flat)](https://travis-ci.org/Victor/RxCache)
 [![Version](https://img.shields.io/cocoapods/v/RxCache.svg?style=flat)](http://cocoapods.org/pods/RxCache)
 [![License](https://img.shields.io/cocoapods/l/RxCache.svg?style=flat)](http://cocoapods.org/pods/RxCache)
 [![Platform](https://img.shields.io/cocoapods/p/RxCache.svg?style=flat)](http://cocoapods.org/pods/RxCache)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/VictorAlbertos/RxSCache.svg?branch=master)](https://travis-ci.org/VictorAlbertos/RxSCache)
 
 RxCache
 ========
@@ -32,7 +33,13 @@ RxCache is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'RxCache', '~> 0.1.0'
+pod 'RxCache', '~> 0.1.1'
+```
+
+RxCache also is available using [Carthage](https://github.com/Carthage/Carthage). To install it add the following dependency to your `Cartfile`:
+
+```
+github "VictorAlbertos/RxSCache" ~> 0.1.1
 ```
 
 Usage
@@ -40,52 +47,7 @@ Usage
 
 Prepare yor data model
 ----------------------
-The data model which will be use for RxCache requires to conform with RxObject protocol, as follows:
-
-```swift
-class Mock : RxObject {
-    var aString : String?
-    
-    init(aString: String?) {
-        self.aString = aString
-    }
-    
-    func toJSON() -> [String : AnyObject] {
-        return ["aString": aString!]
-    }
-        
-    static func toSelf(JSON: [String : AnyObject]) -> AnyObject {
-        let mock = Mock(aString: "")
-        mock.aString = JSON["aString"] as? String
-        return mock
-    }
-}
-```
-
-But for the sake of your code, it is highly recommended to use [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper) or some other library which supports converting your model to and from JSON.
-
-This way you can take advantage of ObjectMapper to achieve that your model conforms with RxObject protocol almost automatically, because anyway you need to map your models to convert them from JSON to objects when hitting endpoints, right?  
-
-```swift
-class Mock : Mappable, RxObject {
-    var aString : String?
-    
-    init(aString: String?) {
-        self.aString = aString
-    }
-    
-    required init?(_ map: Map) {}
-    
-    func mapping(map: Map) {
-        aString <- map["aString"]
-    }
-
-    static func toSelf(JSON: [String : AnyObject]) -> AnyObject {
-        return Mapper<Mock>().map(JSON)!
-    }
-}
-```
-
+The data model which will be used for RxCache requires to conform with [GlossCacheable](https://github.com/VictorAlbertos/RxSCache/blob/master/Sources/GlossCacheable.swift) or [OMCacheable](https://github.com/VictorAlbertos/RxSCache/blob/master/Sources/OMCacheable.swift) protocol.
 
 Create the enum providers 
 -------------------------
@@ -148,19 +110,19 @@ enum CacheProviders : Provider {
 
 RxCache provides a set of classes to indicate how the Provider needs to handle the cached data:
 
-* [LifeCache](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/LifeCache.java) sets the amount of time before the data would be evicted. If LifeCache is not supplied, the data will be never evicted unless it is required explicitly using [EvictProvider](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/EvictProvider.java), [EvictDynamicKey](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/EvictDynamicKey.java) or [EvictDynamicKeyGroup](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/EvictDynamicKeyGroup.java).
-* [EvictProvider](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/EvictProvider.java) allows to explicitly evict all the data associated with the provider. 
-* [EvictDynamicKey](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/EvictDynamicKey.java) allows to explicitly evict the data of an specific [DynamicKey](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/DynamicKey.java).
-* [EvictDynamicKeyGroup](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/EvictDynamicKeyGroup.java) allows to explicitly evict the data of an specific [DynamicKeyGroup](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/DynamicKeyGroup.java).
-* [DynamicKey](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/DynamicKey.java) is a wrapper around the key object for those providers which need to handle multiple records, so they need to provide multiple keys, such us endpoints with pagination, ordering or filtering requirements. To evict the data associated with one particular key use EvictDynamicKey.  
-* [DynamicKeyGroup](https://github.com/VictorAlbertos/RxCache/blob/master/rx_cache/src/main/java/io/rx_cache/DynamicKeyGroup.java) is a wrapper around the key and the group for those providers which need to handle multiple records grouped, so they need to provide multiple keys organized in groups, such us endpoints with filtering AND pagination requirements. To evict the data associated with the key of one particular group, use EvictDynamicKeyGroup. 
+* [LifeCache](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/LifeCache.swift) sets the amount of time before the data would be evicted. If LifeCache is not supplied, the data will be never evicted unless it is required explicitly using [EvictProvider](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/EvictProvider.swift), [EvictDynamicKey](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/EvictDynamicKey.swift) or [EvictDynamicKeyGroup](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/EvictDynamicKeyGroup.swift).
+* [EvictProvider](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/EvictProvider.swift) allows to explicitly evict all the data associated with the provider. 
+* [EvictDynamicKey](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/EvictDynamicKey.swift) allows to explicitly evict the data of an specific [DynamicKey](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/DynamicKey.swift).
+* [EvictDynamicKeyGroup](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/EvictDynamicKeyGroup.swift) allows to explicitly evict the data of an specific [DynamicKeyGroup](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/DynamicKeyGroup.swift).
+* [DynamicKey](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/DynamicKey.swift) is a wrapper around the key object for those providers which need to handle multiple records, so they need to provide multiple keys, such us endpoints with pagination, ordering or filtering requirements. To evict the data associated with one particular key use EvictDynamicKey.  
+* [DynamicKeyGroup](https://github.com/VictorAlbertos/RxSCache/blob/master/Pod/Classes/DynamicKeyGroup.swift) is a wrapper around the key and the group for those providers which need to handle multiple records grouped, so they need to provide multiple keys organized in groups, such us endpoints with filtering AND pagination requirements. To evict the data associated with the key of one particular group, use EvictDynamicKeyGroup. 
 
 
 Using CacheProviders enum
 -------------------------
-Now you can use your enum providers calling RxCache.Providers.cache static method.
+Now you can use your enum providers calling RxCache.Providers.cache() static method.
 
-It's a really good practice to organize your data providers in a set of Repository classes where RxCache and Moya work together. Yes, RxCache is the perfect match for [Moya](https://github.com/Moya/Moya) to create a repository of auto-managed-caching data pointing to endpoints. 
+It's a really good practice to organize your data providers in a set of Repository classes where RxCache and Moya work together. Indeed, RxCache is the perfect match for [Moya](https://github.com/Moya/Moya) to create a repository of auto-managed-caching data pointing to endpoints. 
 
 This would be the MockRepository:
 
@@ -304,9 +266,9 @@ As you may already notice, the whole point of using DynamicKey or DynamicKeyGrou
 
 The enum provider example declare type which their associated value accepts EvictProvider in order to be able to concrete more specifics types of EvictProvider at runtime.
 
-But I have done that for demonstration purposes, you always should narrow the evicting classes to the type which you really need -indeed, you should not expose the EvictClass as an associated value, instead require a Bool and hide the implementation detail in your enum provider. 
+But I have done that for demonstration purposes, you always should narrow the evicting classes to the type which you really need -indeed, you should not expose the Evict classes as an associated value, instead require a Bool and hide the implementation detail in your enum provider. 
 
-For the last example, Mock List Paginated with filters, I would narrow the scope to EvictDynamicKey in production code, because this way I would be able to paginate the filtered mocks and evict them per its filter, triggered by a pull to refresh for example.
+For the last example, Mock List Paginated with filters, I would narrow the scope to EvictDynamicKey in production code, because this way I would be able to paginate the filtered mocks and evict them per its filter, triggered by a pull to refresh for instance.
 
 
 Configure general behaviour
