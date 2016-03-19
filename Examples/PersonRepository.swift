@@ -37,12 +37,12 @@ class PersonRespository {
     
     func addPerson(person: Person) -> Observable<Person> {
         let persons = rxCache.cache(getPersonsFromAPI(), provider: CacheProviders.PersonsEvictProvider(evict: false))
-        return persons.map { persons -> Observable<[Person]> in
+        return persons.flatMap { persons -> Observable<[Person]> in
             var addingPersonsArr = persons
             addingPersonsArr.append(person)
             return self.rxCache.cache(Observable.just(addingPersonsArr), provider: CacheProviders.PersonsEvictProvider(evict: true))
-        }.flatMap { persons -> Observable<Person> in
-            return Observable.just(person)
+            }.map { persons -> Person in
+            return person
         }
     }
     
