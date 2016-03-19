@@ -62,6 +62,12 @@ struct Person: Glossy, GlossCacheable {
         guard let name: String = "name" <~~ json else { return nil }
         self.name = name
     }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            "name" ~~> self.name]
+        )
+    }
 }
 ```
 
