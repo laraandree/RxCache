@@ -1,4 +1,4 @@
-// ViewController.swift
+// Person.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -21,23 +21,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import RxSwift
+import Gloss
+import RxCache
 
-class ViewController: UIViewController {
+
+struct Person: Glossy, GlossCacheable, CustomStringConvertible {
+    let name : String
+    let favouriteIntNumber: Int?
     
-    private let personRepository = PersonRespository()
-    private let disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadPersons()
+    init?(json: JSON) {
+        guard let name: String = "name" <~~ json else { return nil }
+        self.name = name
+        self.favouriteIntNumber = "favouriteIntNumber" <~~ json
     }
     
-    private func loadPersons() {
-        personRepository.getPersons().subscribeNext { persons in
-            _ = persons.map { print($0) }
-        }.addDisposableTo(disposeBag)
+    func toJSON() -> JSON? {
+        return jsonify([
+            "name" ~~> self.name,
+            "favouriteIntNumber" ~~> self.favouriteIntNumber
+            ])
     }
-
+    
+    var description: String {
+        let favNumber = (favouriteIntNumber != nil) ? "my fav number is \(favouriteIntNumber ?? 0)" : "i don't have fav number"
+        return "I'm \(name) and \(favNumber)"
+    }
 }
-

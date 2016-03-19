@@ -1,4 +1,4 @@
-// ViewController.swift
+// PersonRepository.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -21,23 +21,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import RxCache
 import RxSwift
 
-class ViewController: UIViewController {
+class PersonRespository {
+    private let rxCache: RxCache
     
-    private let personRepository = PersonRespository()
-    private let disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadPersons()
+    init() {
+        rxCache = RxCache.Providers
     }
     
-    private func loadPersons() {
-        personRepository.getPersons().subscribeNext { persons in
-            _ = persons.map { print($0) }
-        }.addDisposableTo(disposeBag)
+    func getPersons() -> Observable<[Person]> {
+        let provider: Provider = CacheProviders.GlossStruct
+        return rxCache.cache(getPersonsFromAPI(), provider: provider)
+    }
+    
+    private func getPersonsFromAPI() -> Observable<[Person]> {
+        let victorJSON = ["name":"Víctor", "favouriteIntNumber":28]
+        let ivanJSON = ["name":"Iván"]
+        if let victor = Person(json: victorJSON), ivan = Person(json: ivanJSON) {
+            return Observable.just([victor, ivan])
+        }
+        return Observable.error(NSError(domain: "", code: -1, userInfo: nil))
     }
 
 }
-

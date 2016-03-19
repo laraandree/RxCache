@@ -1,4 +1,4 @@
-// ViewController.swift
+// CacheProviders.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -21,23 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import RxSwift
+import RxCache
 
-class ViewController: UIViewController {
-    
-    private let personRepository = PersonRespository()
-    private let disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadPersons()
-    }
-    
-    private func loadPersons() {
-        personRepository.getPersons().subscribeNext { persons in
-            _ = persons.map { print($0) }
-        }.addDisposableTo(disposeBag)
-    }
+enum CacheProviders: Provider {
+    case GlossStruct
 
+    var lifeCache: LifeCache? { return nil}
+    var dynamicKey: DynamicKey? { return nil }
+    var dynamicKeyGroup: DynamicKeyGroup? { return nil }
+    var evict: EvictProvider? { return nil }
 }
-
