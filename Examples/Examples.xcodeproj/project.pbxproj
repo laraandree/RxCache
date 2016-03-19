@@ -10,6 +10,12 @@
 		1F640EE55699B754CC471663 /* Pods_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68B853B6C054BA24AB2F4A5E /* Pods_OSX.framework */; };
 		3F129E071C9C7CA500F2AEA5 /* PersonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E061C9C7CA500F2AEA5 /* PersonRepository.swift */; };
 		3F129E091C9C882800F2AEA5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E081C9C882800F2AEA5 /* Person.swift */; };
+		3F129E0B1C9D371400F2AEA5 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E0A1C9D371400F2AEA5 /* Dog.swift */; };
+		3F129E0D1C9D388300F2AEA5 /* DogRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E0C1C9D388300F2AEA5 /* DogRepository.swift */; };
+		3F129E0E1C9D45F600F2AEA5 /* PersonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E061C9C7CA500F2AEA5 /* PersonRepository.swift */; };
+		3F129E0F1C9D45FB00F2AEA5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E081C9C882800F2AEA5 /* Person.swift */; };
+		3F129E101C9D45FE00F2AEA5 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E0A1C9D371400F2AEA5 /* Dog.swift */; };
+		3F129E111C9D460000F2AEA5 /* DogRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F129E0C1C9D388300F2AEA5 /* DogRepository.swift */; };
 		57A199CB1C9B096F00EF3D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A199CA1C9B096F00EF3D51 /* AppDelegate.swift */; };
 		57A199CD1C9B096F00EF3D51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A199CC1C9B096F00EF3D51 /* ViewController.swift */; };
 		57A199D01C9B096F00EF3D51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57A199CE1C9B096F00EF3D51 /* Main.storyboard */; };
@@ -39,6 +45,8 @@
 		2C1F04CAD42FC0DBDB75A315 /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 		3F129E061C9C7CA500F2AEA5 /* PersonRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonRepository.swift; sourceTree = "<group>"; };
 		3F129E081C9C882800F2AEA5 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3F129E0A1C9D371400F2AEA5 /* Dog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		3F129E0C1C9D388300F2AEA5 /* DogRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogRepository.swift; sourceTree = "<group>"; };
 		57A199C71C9B096F00EF3D51 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A199CA1C9B096F00EF3D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57A199CC1C9B096F00EF3D51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +139,8 @@
 				57A199E91C9B0B7000EF3D51 /* CacheProviders.swift */,
 				3F129E061C9C7CA500F2AEA5 /* PersonRepository.swift */,
 				3F129E081C9C882800F2AEA5 /* Person.swift */,
+				3F129E0A1C9D371400F2AEA5 /* Dog.swift */,
+				3F129E0C1C9D388300F2AEA5 /* DogRepository.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -322,8 +332,10 @@
 			files = (
 				57A199EA1C9B0B7000EF3D51 /* CacheProviders.swift in Sources */,
 				3F129E071C9C7CA500F2AEA5 /* PersonRepository.swift in Sources */,
+				3F129E0B1C9D371400F2AEA5 /* Dog.swift in Sources */,
 				57A199CD1C9B096F00EF3D51 /* ViewController.swift in Sources */,
 				57A199CB1C9B096F00EF3D51 /* AppDelegate.swift in Sources */,
+				3F129E0D1C9D388300F2AEA5 /* DogRepository.swift in Sources */,
 				3F129E091C9C882800F2AEA5 /* Person.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +344,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F129E0E1C9D45F600F2AEA5 /* PersonRepository.swift in Sources */,
 				57A199E11C9B099300EF3D51 /* main.swift in Sources */,
+				3F129E0F1C9D45FB00F2AEA5 /* Person.swift in Sources */,
+				3F129E101C9D45FE00F2AEA5 /* Dog.swift in Sources */,
+				3F129E111C9D460000F2AEA5 /* DogRepository.swift in Sources */,
 				57A199FC1C9B0D7300EF3D51 /* CacheProviders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -541,7 +557,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

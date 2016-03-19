@@ -25,19 +25,42 @@ import RxSwift
 
 class ViewController: UIViewController {
     
+    
     private let personRepository = PersonRespository()
+    private let dogRepository = DogRespository()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPersons()
+        loadDogs()
     }
     
     private func loadPersons() {
-        personRepository.getPersons().subscribeNext { persons in
+        personRepository.getPersonsEvict(false).subscribeNext { persons in
             _ = persons.map { print($0) }
         }.addDisposableTo(disposeBag)
     }
+    
+    private func loadDogs() {
+        dogRepository.getDogs().subscribeNext { dogs in
+            _ = dogs.map { print($0) }
+            }.addDisposableTo(disposeBag)
+    }
+    
+    @IBAction func loadFreshPersons(sender: UIButton) {
+        personRepository.getPersonsEvict(false).subscribeNext { persons in
+            _ = persons.map { print($0) }
+            }.addDisposableTo(disposeBag)
+    }
 
+    @IBAction func addPerson(sender: UIButton) {
+        let randomPersonJSON = ["name":"John", "favouriteIntNumber":17]
+        if let person = Person(json: randomPersonJSON) {
+            personRepository.addPerson(person).subscribeNext { person in
+                print("Added \(person.name)")
+            }.addDisposableTo(disposeBag)
+        }
+    }
 }
 

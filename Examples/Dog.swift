@@ -1,4 +1,4 @@
-// CacheProviders.swift
+// Dog.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -21,20 +21,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import Gloss
 import RxCache
 
-enum CacheProviders: Provider {
-    case PersonsEvictProvider(evict : Bool)
-    case Dogs
-    var lifeCache: LifeCache? { return nil}
-    var dynamicKey: DynamicKey? { return nil }
-    var dynamicKeyGroup: DynamicKeyGroup? { return nil }
-    var evict: EvictProvider? {
-        switch self {
-        case let PersonsEvictProvider(evict):
-            return EvictProvider(evict: evict)
-        default:
-            return nil
-        }
+struct Dog: Glossy, GlossCacheable, CustomStringConvertible {
+    let name: String
+    
+    init?(json: JSON) {
+        guard let name: String = "name" <~~ json else { return nil }
+        self.name = name
     }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            "name" ~~> self.name]
+        )
+    }
+    
+    var description: String {
+        return name ?? "No-named dog"
+    }
+    
 }

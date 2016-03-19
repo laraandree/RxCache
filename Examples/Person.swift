@@ -38,8 +38,8 @@ struct Person: Glossy, GlossCacheable, CustomStringConvertible {
     func toJSON() -> JSON? {
         return jsonify([
             "name" ~~> self.name,
-            "favouriteIntNumber" ~~> self.favouriteIntNumber
-            ])
+            "favouriteIntNumber" ~~> self.favouriteIntNumber]
+        )
     }
     
     var description: String {
