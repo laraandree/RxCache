@@ -51,7 +51,7 @@ The data model which will be used for RxCache requires to conform with [GlossCac
 
 **Using [Gloss] (https://github.com/hkellaway/Gloss)**
 
-```
+```swift
 import Gloss
 import RxCache
 
@@ -72,7 +72,7 @@ struct Person: Glossy, GlossCacheable {
 ```
 
 **Using [ObjectMapper] (https://github.com/Hearst-DD/ObjectMapper)**
-```
+```swift
 import ObjectMapper
 import RxCache
 
