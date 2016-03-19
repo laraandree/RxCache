@@ -1,4 +1,4 @@
-// PersonRepository.swift
+// DogRepository.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -24,35 +24,24 @@
 import RxCache
 import RxSwift
 
-class PersonRespository {
+class DogRespository {
     private let rxCache: RxCache
     
     init() {
         rxCache = RxCache.Providers
     }
     
-    func getPersonsEvict(evict: Bool) -> Observable<[Person]> {
-        return rxCache.cache(getPersonsFromAPI(), provider: CacheProviders.PersonsEvictProvider(evict: evict))
+    func getDogs() -> Observable<[Dog]> {
+        let provider = CacheProviders.Dogs
+        return rxCache.cache(getDogsFromAPI(), provider: provider)
     }
     
-    func addPerson(person: Person) -> Observable<Person> {
-        let persons = rxCache.cache(getPersonsFromAPI(), provider: CacheProviders.PersonsEvictProvider(evict: false))
-        return persons.map { persons -> Observable<[Person]> in
-            var addingPersonsArr = persons
-            addingPersonsArr.append(person)
-            return self.rxCache.cache(Observable.just(addingPersonsArr), provider: CacheProviders.PersonsEvictProvider(evict: true))
-        }.flatMap { persons -> Observable<Person> in
-            return Observable.just(person)
-        }
-    }
-    
-    private func getPersonsFromAPI() -> Observable<[Person]> {
-        let victorJSON = ["name":"Víctor", "favouriteIntNumber":28]
-        let ivanJSON = ["name":"Iván"]
-        if let victor = Person(json: victorJSON), ivan = Person(json: ivanJSON) {
-            return Observable.just([victor, ivan])
+    private func getDogsFromAPI() -> Observable<[Dog]> {
+        let lassieJSON = ["name":"Lassie"]
+        if let lassie = Dog(json: lassieJSON) {
+            return Observable.just([lassie])
         }
         return Observable.error(NSError(domain: "", code: -1, userInfo: nil))
     }
-
+    
 }

@@ -10,3 +10,4 @@ import Foundation
 
 print("Hello, World!")
 
+private let personRepository = PersonRespository()
