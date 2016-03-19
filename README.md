@@ -49,6 +49,44 @@ Prepare yor data model
 ----------------------
 The data model which will be used for RxCache requires to conform with [GlossCacheable](https://github.com/VictorAlbertos/RxSCache/blob/master/Sources/GlossCacheable.swift) or [OMCacheable](https://github.com/VictorAlbertos/RxSCache/blob/master/Sources/OMCacheable.swift) protocol.
 
+**Using [Gloss] (https://github.com/hkellaway/Gloss)**
+
+```
+import Gloss
+import RxCache
+
+struct Person: Glossy, GlossCacheable {
+    let name: String
+    
+    init?(json: JSON) {
+        guard let name: String = "name" <~~ json else { return nil }
+        self.name = name
+    }
+}
+```
+
+**Using [ObjectMapper] (https://github.com/Hearst-DD/ObjectMapper)**
+```
+import ObjectMapper
+import RxCache
+
+class Person: Mappable, OMCacheable {
+    var name: String?
+    
+    required init?(JSON: [String : AnyObject]) {
+        mapping(Map(mappingType: .FromJSON, JSONDictionary: JSON))
+    }
+    
+    func mapping(map: Map) {
+        name    <- map["name"]
+    }
+    
+    required init?(_ map: Map) { }
+}
+```
+
+If you would like to add another mapping library that converts to and from JSON ask for it or [make a PR](https://github.com/VictorAlbertos/RxSCache/pulls)  :-)
+
 Create the enum providers 
 -------------------------
 After your model conforms with RxObject protocol, you can now create an enum which conforms with the Provider protocol with as much values as needed to create the caching providers:
