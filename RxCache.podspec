@@ -13,9 +13,9 @@ Pod::Spec.new do |s|
 
   s.homepage         = "https://github.com/VictorAlbertos/RxSCache"
   s.license          = 'MIT'
-  s.author           = { "Victor Albertos" => "me@victoralbertos.com" }
-  s.source           = { :git => "https://github.com/VictorAlbertos/RxSCache.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://github.com/VictorAlbertos'
+  s.author           = { "Victor Albertos" => "me@victoralbertos.com" } 
+  s.source           = { :git => "https://github.com/FuckBoilerplate/RxCache.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://github.com/FuckBoilerplate'
 
   s.watchos.deployment_target = '2.0'
   s.ios.deployment_target = '8.0'
