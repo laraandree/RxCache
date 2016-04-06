@@ -3,7 +3,7 @@ use_frameworks!
 
 def shared_pods
     pod 'RxSwift', '~> 2.0'
-    pod 'RxCache', '~> 0.1.1'
+    pod 'RxCache', '~> 0.1.2'
     pod 'ObjectMapper', '~> 1.1'
     pod 'Gloss', '~> 0.7'
     pod 'Moya/RxSwift'
