@@ -30,6 +30,7 @@ public enum RxProvidersMock : Provider {
     case GetMocksResponseOneSecond()
     case GetMocksEvictCache(evict : Bool)
     case GetMocksPaginate(page : Int)
+    case GetMocksPaginateNotExpirable(page : Int)
     case GetMocksPaginateEvictAll(page : Int, evictAll: Bool)
     case GetMocksPaginateEvictByPage(page : Int, evictByPage: Bool)
     case GetMocksFilteredPaginateEvict(filter: String, page : String, evict: EvictProvider)
@@ -50,6 +51,8 @@ public enum RxProvidersMock : Provider {
     public var dynamicKey: DynamicKey? {
         switch self {
         case let GetMocksPaginate(page):
+            return DynamicKey(dynamicKey: String(page))
+        case let GetMocksPaginateNotExpirable(page):
             return DynamicKey(dynamicKey: String(page))
         case let GetMocksPaginateEvictAll(page, _):
             return DynamicKey(dynamicKey: String(page))
@@ -85,6 +88,15 @@ public enum RxProvidersMock : Provider {
             return evict
         default:
             return nil
+        }
+    }
+    
+    public func expirable() -> Bool {
+        switch self {
+        case GetMocksPaginateNotExpirable(_):
+            return false
+        default:
+            return true
         }
     }
 

@@ -69,10 +69,11 @@ class SaveRecordTest : XCTestCase {
         
         //24 megabytes of memory
         for i in 1...records {
-            saveRecordUT.save(String(i), dynamicKey: nil, dynamicKeyGroup: nil, cacheables: createMocks(records), lifeCache: nil, maxMBPersistenceCache: maxMB)
+            saveRecordUT.save(String(i), dynamicKey: nil, dynamicKeyGroup: nil, cacheables: createMocks(records), lifeCache: nil, maxMBPersistenceCache: maxMB, isExpirable: true)
         }
         
-        expect(self.persistence.storedMB()).to(beCloseTo(maxMB, within: 1))        
+        let expected = Int(Double(maxMB) * 0.85)
+        expect(self.persistence.storedMB()).toEventually(beCloseTo(expected, within: 2), timeout: 5)
         expect(self.saveRecordUT.memory.keys().count).to(equal(records))
     }
     

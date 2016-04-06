@@ -8,10 +8,10 @@
 
 Pod::Spec.new do |s|
   s.name             = "RxCache"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "Reactive caching library for Swift"
 
-  s.homepage         = "https://github.com/VictorAlbertos/RxSCache"
+  s.homepage         = "https://github.com/FuckBoilerplate/RxCache"
   s.license          = 'MIT'
   s.author           = { "Victor Albertos" => "me@victoralbertos.com" } 
   s.source           = { :git => "https://github.com/FuckBoilerplate/RxCache.git", :tag => s.version.to_s }

@@ -1,18 +1,18 @@
 PODS:
   - Gloss (0.7.1)
-  - Nimble (3.1.0)
+  - Nimble (4.0.0)
   - ObjectMapper (1.1.5)
   - RxSwift (2.2.0)
 
 DEPENDENCIES:
   - Gloss (~> 0.7)
-  - Nimble (~> 3.1.0)
+  - Nimble (~> 4.0.0)
   - ObjectMapper (~> 1.1)
   - RxSwift (~> 2.0)
 
 SPEC CHECKSUMS:
   Gloss: e674d7aa06a7e292a591d0d39a759b826daf503e
-  Nimble: 79d40f4d69d47314229bbabacaa02b8838c779b9
+  Nimble: 72bcc3e2f02242e6bfaaf8d9412ca7bfe3d8b417
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
 

@@ -52,7 +52,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
 
     func testWhenSaveAndObjectNotExpiredAndMemoryNotDestroyedRetrieveItFromMemory() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         let record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil,useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)!
         
@@ -61,7 +61,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndRecordHasNotExpiredAndMemoryDestroyedRetrieveItFromDisk() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         twoLayersCache.mockMemoryDestroyed()
         
         let record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)!
@@ -71,7 +71,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndRecordHasExpiredGetNull() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         NSThread.sleepForTimeInterval(WaitTime)
         
@@ -81,8 +81,8 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndDynamicKeyRecordHasExpiredOnlyGetNullForDynamicKey() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
 
         NSThread.sleepForTimeInterval(WaitTime)
         
@@ -97,10 +97,10 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndDynamicKeyGroupRecordHasExpiredOnlyGetNullForDynamicKeyGroup() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey2Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey2Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey2Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey2Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         NSThread.sleepForTimeInterval(WaitTime)
         
@@ -121,7 +121,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndRecordHasNotExpiredDateDoNotGetNull() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         twoLayersCache.mockMemoryDestroyed()
 
         NSThread.sleepForTimeInterval(WaitTime)
@@ -138,8 +138,8 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndEvictGetNull() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey2, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey2, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
 
         twoLayersCache.evictProviderKey(ProviderKey1)
         
@@ -153,13 +153,13 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndEvictAllGetNull() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
-        twoLayersCache.save(ProviderKey2, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey2, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         twoLayersCache.evictAll()
         
@@ -186,10 +186,10 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndNotEvictDynamicKeysGetAll() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         var record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: nil)!
         expect(record.cacheables[0].aString).to(equal(MockValue))
@@ -205,16 +205,16 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveDynamicKeyAndReSaveDynamicKeyGetLastValue() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: [Mock(aString: "new_value")], lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: [Mock(aString: "new_value")], lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         let record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: nil)!
         expect(record.cacheables[0].aString).to(equal("new_value"))
     }
     
     func testWhenSaveAndEvictDynamicKeysGetAllNull() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
     
         var record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: nil)!
         expect(record.cacheables[0].aString).to(equal(MockValue))
@@ -232,9 +232,9 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndEvictOneDynamicKeyGetOthers() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey2, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
 
         twoLayersCache.evictDynamicKey(ProviderKey1, dynamicKey: DynamicKey1)
         
@@ -249,8 +249,8 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenSaveAndEvictOneDynamicKeyGroupGetOthers() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
         twoLayersCache.evictDynamicKeyGroup(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group1)
         
@@ -262,7 +262,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenExpirationDateHasBeenModifiedThenReflectThisChange() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         NSThread.sleepForTimeInterval(WaitTime)
 
         var record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCacheOneSecond)!
@@ -271,7 +271,7 @@ class TwoLayersCacheTest: XCTestCase {
         var recordNil : Record<Mock>? = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
         expect(recordNil).to(beNil())
         
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         NSThread.sleepForTimeInterval(WaitTime)
 
         record = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCacheOneSecond)!
@@ -280,7 +280,7 @@ class TwoLayersCacheTest: XCTestCase {
         recordNil = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
         expect(recordNil).to(beNil())
         
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         NSThread.sleepForTimeInterval(WaitTime)
 
         record = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: nil)!
@@ -288,7 +288,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenExpiredDateAndNotuseExpiredDataIfLoaderNotAvailableThenGetNull() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         NSThread.sleepForTimeInterval(WaitTime)
         
         let recordNil : Record<Mock>? = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
@@ -296,7 +296,7 @@ class TwoLayersCacheTest: XCTestCase {
     }
     
     func testWhenExpiredDateButuseExpiredDataIfLoaderNotAvailableThenGetMock() {
-        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+        twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         NSThread.sleepForTimeInterval(WaitTime)
         
         let record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: true, lifeCache: lifeCache)!

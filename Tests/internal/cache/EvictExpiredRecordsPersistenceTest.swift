@@ -58,10 +58,10 @@ class EvictExpiredRecordsPersistenceTest : XCTestCase {
         for index in 1...recordsCount/2 {
             let keyExpired = String(index) + "_expired"
 
-            twoLayersCache.save(keyExpired, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: data(keyExpired), lifeCache: oneSecond, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+            twoLayersCache.save(keyExpired, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: data(keyExpired), lifeCache: oneSecond, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
             
             let keyLive = String(index) + "_live"
-            twoLayersCache.save(keyLive, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: data(keyLive), lifeCache: thirtySecond, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache)
+            twoLayersCache.save(keyLive, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: data(keyLive), lifeCache: thirtySecond, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         }
         
         NSThread.sleepForTimeInterval(moreThanOneSecond)
@@ -72,7 +72,7 @@ class EvictExpiredRecordsPersistenceTest : XCTestCase {
         var error = false
         evictExpiredRecordsPersistenceUT.startEvictingExpiredRecords()
             .subscribe(onNext: { (_) -> Void in
-                valueCount++
+                valueCount += 1
                 }, onError: { (_) -> Void in
                     error = true
                 }, onCompleted: { () -> Void in
@@ -109,7 +109,7 @@ class EvictExpiredRecordsPersistenceTest : XCTestCase {
         var error = false
         evictExpiredRecordsPersistenceUT.startEvictingExpiredRecords()
             .subscribe(onNext: { (_) -> Void in
-                valueCount++
+                valueCount += 1
                 }, onError: { (_) -> Void in
                     error = true
                 }, onCompleted: { () -> Void in

@@ -68,7 +68,7 @@ class ProvidersRxCacheEvictExpirableRecordsTest : XCTestCase {
             NSThread.sleepForTimeInterval(0.05)
             
             var finish = false
-            providers.cache(createObservableMocks(), provider: RxProvidersMock.GetMocksPaginate(page: i)).subscribeNext { mocks in
+            providers.cache(createObservableMocks(), provider: RxProvidersMock.GetMocksPaginateNotExpirable(page: i)).subscribeNext { mocks in
                 finish = true
                 }.addDisposableTo(DisposeBag())
             

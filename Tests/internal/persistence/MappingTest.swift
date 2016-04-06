@@ -45,7 +45,7 @@ class MappingTest: XCTestCase {
         let value = "MockGlossStruct"
         
         let mock  = MockGlossStruct(aString: value)
-        let saveRecord : Record<MockGlossStruct> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32)
+        let saveRecord : Record<MockGlossStruct> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32, isExpirable: true)
         
         let success = diskUT.saveRecord(key, record: saveRecord)
         expect(success).to(equal(true))
@@ -62,7 +62,7 @@ class MappingTest: XCTestCase {
         let value = "MockGlossClass"
         
         let mock  = MockGlossClass(aString: value)
-        let saveRecord : Record<MockGlossClass> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32)
+        let saveRecord : Record<MockGlossClass> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32, isExpirable: true)
         
         let success = diskUT.saveRecord(key, record: saveRecord)
         expect(success).to(equal(true))
@@ -79,7 +79,7 @@ class MappingTest: XCTestCase {
         let value = "MockOMStruct"
         
         let mock  = MockOMStruct(aString: value)
-        let saveRecord : Record<MockOMStruct> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32)
+        let saveRecord : Record<MockOMStruct> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32, isExpirable: true)
         
         let success = diskUT.saveRecord(key, record: saveRecord)
         expect(success).to(equal(true))
@@ -97,7 +97,7 @@ class MappingTest: XCTestCase {
         let value = "MockOMClass"
         
         let mock  = MockOMClass(aString: value)
-        let saveRecord : Record<MockOMClass> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32)
+        let saveRecord : Record<MockOMClass> = Record(cacheables: [mock], lifeTimeInSeconds: 2.32, isExpirable: true)
         
         let success = diskUT.saveRecord(key, record: saveRecord)
         expect(success).to(equal(true))

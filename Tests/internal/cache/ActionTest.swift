@@ -94,7 +94,7 @@ class Actiontest : XCTestCase {
     
     
     func mock(value : String) -> Record<Mock> {
-        return Record<Mock>(cacheables: [Mock(aString: value)], lifeTimeInSeconds: 0)
+        return Record<Mock>(cacheables: [Mock(aString: value)], lifeTimeInSeconds: 0, isExpirable: true)
     }
     
 }
@@ -119,7 +119,7 @@ class MemoryMock : Memory {
             }
         }
         
-        return Record<T>(cacheables: [data as! T], lifeTimeInSeconds: 0)
+        return Record<T>(cacheables: [data as! T], lifeTimeInSeconds: 0, isExpirable: true)
     }
     
     func put<T>(key: String, record: Record<T>) {
