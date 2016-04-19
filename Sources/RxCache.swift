@@ -45,13 +45,16 @@ public class RxCache {
 
     let twoLayersCache : TwoLayersCache
     let evictExpiredRecordsPersistence: EvictExpiredRecordsPersistence
-
+    let getDeepCopy: GetDeepCopy
+    
     private init() {
         useExpiredDataIfLoaderNotAvailable = false
         maxMBPersistenceCache = 300
         
         let persistence = Disk()
-
+        
+        getDeepCopy = GetDeepCopy()
+        
         twoLayersCache = TwoLayersCache(persistence: persistence)
         
         evictExpiredRecordsPersistence = EvictExpiredRecordsPersistence(persistence: persistence)

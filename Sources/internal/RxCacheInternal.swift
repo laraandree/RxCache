@@ -1,4 +1,4 @@
-// ProvidersExtensions.swift
+ // ProvidersExtensions.swift
 // RxCache
 //
 // Copyright (c) 2016 Victor Albertos https://github.com/VictorAlbertos
@@ -40,7 +40,10 @@ extension RxCache {
                 }
                 return self.getDataFromLoader(observable, provider: provider, record: record)
             }).flatMap { (oReply) -> Observable<Reply<[T]>> in
-                return oReply
+                return oReply.map({ (reply) -> Reply<[T]> in
+                    let cacheablesDeepCopy = self.getDeepCopy.getDeepCopy(reply.cacheables)
+                    return Reply(source: reply.source, cacheables: cacheablesDeepCopy)
+                })
             }
         }
     }
@@ -81,7 +84,6 @@ extension RxCache {
         
         return nil
     }
-    
     
     private func clearKeyIfNeeded(provider : Provider) {
         let providerKey = provider.providerKey

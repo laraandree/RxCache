@@ -253,6 +253,42 @@ class ProvidersRxCacheTest : XCTestCase {
         providers.twoLayersCache.evictAll()
     }
     
+    func test7WhenAskForADeepCopyWithClassGetOne() {
+        let getDeepCopy = GetDeepCopy()
+        let mocks = createMocks(3)
+        let mocksDeepCopy = getDeepCopy.getDeepCopy(mocks)
+        mocks.first?.aString = "modifiedAString"
+        expect(mocks.first?.aString).notTo(equal(mocksDeepCopy.first?.aString))
+    }
+    
+    func test8WhenAskCacheFromMemoryGetsADeepCopyOfReply() {
+        providers.twoLayersCache.evictAll()
+        
+        providers.useExpiredDataIfLoaderNotAvailable = false
+        
+        let providerOneSecond = RxProvidersMock.GetMocksResponseOneSecond()
+        
+        let modifiedAString = "ModifiedAString"
+        
+        var success = false
+        providers.cacheWithReply(createObservableMocks(Size), provider: providerOneSecond)
+            .map { (reply) -> Reply<[Mock]> in
+                // Modify reply object
+                reply.cacheables.first!.aString = modifiedAString
+                return reply
+        }.flatMap { reply in
+            // Get reply from memory cache
+            return self.providers.cacheWithReply(RxCache.errorObservable([Mock].self), provider: providerOneSecond)
+        }.subscribeNext({ (reply) -> Void in
+            success = true
+            expect(reply.cacheables.first!.aString).notTo(equal(modifiedAString))
+        }).addDisposableTo(DisposeBag())
+        
+        expect(success).toEventually(equal(true))
+        
+        providers.twoLayersCache.evictAll()
+    }
+    
     private func createObservableMocks(size : Int) -> Observable<[Mock]> {
         return Observable.just(createMocks(size))
     }
@@ -267,4 +303,5 @@ class ProvidersRxCacheTest : XCTestCase {
         
         return mocks
     }
+    
 }

@@ -57,6 +57,7 @@
 		577304A71C9C42F4008349BE /* ProvidersRxCacheTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577304931C9C42F4008349BE /* ProvidersRxCacheTest.swift */; };
 		57C80C821C9C4EA200C5E62F /* GlossCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C80C811C9C4EA200C5E62F /* GlossCacheable.swift */; };
 		57C80C841C9C572400C5E62F /* OMCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C80C831C9C572400C5E62F /* OMCacheable.swift */; };
+		A2D9DAEA1CC1950000D939E9 /* GetDeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D9DAE91CC1950000D939E9 /* GetDeepCopy.swift */; };
 		B725FE896464706B9B92B693 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F18879E918B0314C2E93E3 /* Pods_RxCache.framework */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,7 @@
 		577304941C9C42F4008349BE /* RxCache_Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RxCache_Tests-Bridging-Header.h"; path = "../../Tests/RxCache_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		57C80C811C9C4EA200C5E62F /* GlossCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlossCacheable.swift; path = ../../Sources/GlossCacheable.swift; sourceTree = "<group>"; };
 		57C80C831C9C572400C5E62F /* OMCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OMCacheable.swift; path = ../../Sources/OMCacheable.swift; sourceTree = "<group>"; };
+		A2D9DAE91CC1950000D939E9 /* GetDeepCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDeepCopy.swift; sourceTree = "<group>"; };
 		C45EEDEDF9A4F3A5D92A2E2A /* Pods_RxCacheTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCacheTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F18879E918B0314C2E93E3 /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3ECD2F48EA98CEB1F76435 /* Pods-RxCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				577304531C9C42C6008349BE /* RetrieveRecord.swift */,
 				577304541C9C42C6008349BE /* SaveRecord.swift */,
 				577304551C9C42C6008349BE /* TwoLayersCache.swift */,
+				A2D9DAE91CC1950000D939E9 /* GetDeepCopy.swift */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				577304711C9C42C6008349BE /* Locale.swift in Sources */,
 				577304781C9C42C6008349BE /* LifeCache.swift in Sources */,
 				577304661C9C42C6008349BE /* EvictDynamicKey.swift in Sources */,
+				A2D9DAEA1CC1950000D939E9 /* GetDeepCopy.swift in Sources */,
 				5773046D1C9C42C6008349BE /* HasRecordExpired.swift in Sources */,
 				577304641C9C42C6008349BE /* DynamicKey.swift in Sources */,
 				577304691C9C42C6008349BE /* Action.swift in Sources */,
