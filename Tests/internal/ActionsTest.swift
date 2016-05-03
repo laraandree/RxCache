@@ -197,7 +197,7 @@ class ActionsTest: XCTestCase {
             .toObservable()
             .subscribeNext { mocks in
                 success = true
-                expect(mocks.count).to(equal(10))
+                expect(mocks.count).to(equal(9))
                 expect(mocks[3].aString).to(equal("4"))
         }
         
@@ -336,18 +336,18 @@ class ActionsTest: XCTestCase {
     }
     
     // MARK: - Private methods
-    private func cache() -> Observable<[Mock]> {
-        let provider = RxProvidersMock.GetMocksEvictCache(evict: false)
+    private func clearCache() -> Observable<[Mock]> {
+        let provider = RxProvidersMock.GetMocksEvictCache(evict: true)
         return providers.cache(Observable.just([Mock]()), provider: provider)
     }
     
     private func checkInitialState() {
         var success = false
         
-        cache().subscribeNext { mocks in
+        clearCache().subscribeNext { mocks in
             success = true
             expect(mocks.count).to(equal(0))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -361,7 +361,7 @@ class ActionsTest: XCTestCase {
             mocks.append(Mock(aString: "\(i)"))
         }
         
-        actions.addAll({ (position, count) in position == count }, candidates: mocks)
+        actions.addAll({ (position, count) in count == 0 } , candidates: mocks)
             .toObservable()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (mocks: [Mock]) in
