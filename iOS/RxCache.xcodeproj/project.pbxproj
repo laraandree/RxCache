@@ -57,7 +57,10 @@
 		577304A71C9C42F4008349BE /* ProvidersRxCacheTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577304931C9C42F4008349BE /* ProvidersRxCacheTest.swift */; };
 		57C80C821C9C4EA200C5E62F /* GlossCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C80C811C9C4EA200C5E62F /* GlossCacheable.swift */; };
 		57C80C841C9C572400C5E62F /* OMCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C80C831C9C572400C5E62F /* OMCacheable.swift */; };
+		A28777D91CD8061600F9DA6B /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28777D81CD8061600F9DA6B /* Actions.swift */; };
+		A28777DB1CD8062100F9DA6B /* PlaceholderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28777DA1CD8062100F9DA6B /* PlaceholderProvider.swift */; };
 		A2D9DAEA1CC1950000D939E9 /* GetDeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D9DAE91CC1950000D939E9 /* GetDeepCopy.swift */; };
+		A2DDF64A1CD8DD9A008F506B /* ActionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DDF6491CD8DD9A008F506B /* ActionsTest.swift */; };
 		B725FE896464706B9B92B693 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F18879E918B0314C2E93E3 /* Pods_RxCache.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,7 +129,10 @@
 		577304941C9C42F4008349BE /* RxCache_Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RxCache_Tests-Bridging-Header.h"; path = "../../Tests/RxCache_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		57C80C811C9C4EA200C5E62F /* GlossCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlossCacheable.swift; path = ../../Sources/GlossCacheable.swift; sourceTree = "<group>"; };
 		57C80C831C9C572400C5E62F /* OMCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OMCacheable.swift; path = ../../Sources/OMCacheable.swift; sourceTree = "<group>"; };
+		A28777D81CD8061600F9DA6B /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		A28777DA1CD8062100F9DA6B /* PlaceholderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderProvider.swift; sourceTree = "<group>"; };
 		A2D9DAE91CC1950000D939E9 /* GetDeepCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDeepCopy.swift; sourceTree = "<group>"; };
+		A2DDF6491CD8DD9A008F506B /* ActionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsTest.swift; sourceTree = "<group>"; };
 		C45EEDEDF9A4F3A5D92A2E2A /* Pods_RxCacheTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCacheTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F18879E918B0314C2E93E3 /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3ECD2F48EA98CEB1F76435 /* Pods-RxCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 				577304311C9C424F008349BE /* Info.plist */,
 				57C80C811C9C4EA200C5E62F /* GlossCacheable.swift */,
 				57C80C831C9C572400C5E62F /* OMCacheable.swift */,
+				A28777D81CD8061600F9DA6B /* Actions.swift */,
 			);
 			path = RxCache;
 			sourceTree = "<group>";
@@ -226,6 +233,7 @@
 		5773044C1C9C42C6008349BE /* internal */ = {
 			isa = PBXGroup;
 			children = (
+				A28777DA1CD8062100F9DA6B /* PlaceholderProvider.swift */,
 				5773044D1C9C42C6008349BE /* cache */,
 				577304561C9C42C6008349BE /* Locale.swift */,
 				577304571C9C42C6008349BE /* Memory.swift */,
@@ -283,6 +291,7 @@
 				577304841C9C42F4008349BE /* cache */,
 				5773048A1C9C42F4008349BE /* persistence */,
 				5773048D1C9C42F4008349BE /* ProvidersTest.swift */,
+				A2DDF6491CD8DD9A008F506B /* ActionsTest.swift */,
 			);
 			name = internal;
 			path = ../../Tests/internal;
@@ -519,6 +528,7 @@
 				577304731C9C42C6008349BE /* MemoryNsCache.swift in Sources */,
 				577304681C9C42C6008349BE /* EvictProvider.swift in Sources */,
 				577304741C9C42C6008349BE /* Disk.swift in Sources */,
+				A28777DB1CD8062100F9DA6B /* PlaceholderProvider.swift in Sources */,
 				5773046F1C9C42C6008349BE /* SaveRecord.swift in Sources */,
 				5773047B1C9C42C6008349BE /* RxCache.swift in Sources */,
 				577304771C9C42C6008349BE /* RxCacheInternal.swift in Sources */,
@@ -533,6 +543,7 @@
 				577304641C9C42C6008349BE /* DynamicKey.swift in Sources */,
 				577304691C9C42C6008349BE /* Action.swift in Sources */,
 				577304651C9C42C6008349BE /* DynamicKeyGroup.swift in Sources */,
+				A28777D91CD8061600F9DA6B /* Actions.swift in Sources */,
 				5773047A1C9C42C6008349BE /* Reply.swift in Sources */,
 				577304791C9C42C6008349BE /* Provider.swift in Sources */,
 				577304671C9C42C6008349BE /* EvictDynamicKeyGroup.swift in Sources */,
@@ -559,6 +570,7 @@
 				577304A11C9C42F4008349BE /* ProvidersTest.swift in Sources */,
 				577304A51C9C42F4008349BE /* ProvidersRxCacheEvictExpirableRecordsTest.swift in Sources */,
 				5773049E1C9C42F4008349BE /* TwoLayersCacheTest.swift in Sources */,
+				A2DDF64A1CD8DD9A008F506B /* ActionsTest.swift in Sources */,
 				5773049B1C9C42F4008349BE /* EvictExpirableRecordsPersistenceTest.swift in Sources */,
 				577304981C9C42F4008349BE /* MockOMStruct.swift in Sources */,
 				577304951C9C42F4008349BE /* Mock.swift in Sources */,

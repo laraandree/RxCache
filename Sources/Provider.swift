@@ -22,9 +22,9 @@
 // THE SOFTWARE.
 
 /**
- Allows to configure how the data should be cached. 
- This protocol must be implemented using the enumeration pattern.
- */
+Allows to configure how the data should be cached.
+This protocol must be implemented using the enumeration pattern.
+*/
 public protocol Provider {
     var lifeCache : LifeCache? {get}
     
@@ -34,6 +34,8 @@ public protocol Provider {
     var evict : EvictProvider? {get}
     
     func expirable() -> Bool
+    
+    var providerKey: String {get}
 }
 
 public extension Provider {
@@ -43,7 +45,7 @@ public extension Provider {
     }
 }
 
-internal extension Provider {
+public extension Provider {
     
     var providerKey: String {
         return nameStripingInitArguments()
@@ -56,7 +58,7 @@ internal extension Provider {
         }
         return target
     }
-
+    
 }
 
 
