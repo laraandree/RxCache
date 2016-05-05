@@ -44,7 +44,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(1))
                 expect(mocks.first!.aString).to(equal("1"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -60,7 +60,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(11))
                 expect(mocks.last!.aString).to(equal("11"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -76,7 +76,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(11))
                 expect(mocks[5].aString).to(equal("6_added"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -93,7 +93,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(9))
                 expect(mocks.first!.aString).to(equal("1"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -108,7 +108,7 @@ class ActionsTest: XCTestCase {
             .toObservable()
             .subscribeNext { mocks in
                 expect(mocks.count).to(equal(10))
-        }
+        }.addDisposableTo(DisposeBag())
         
         // Evict
         actions.evictFirst { count in count > 9 }
@@ -117,7 +117,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(9))
                 expect(mocks.first!.aString).to(equal("1"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -133,7 +133,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(9))
                 expect(mocks.last!.aString).to(equal("8"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -148,7 +148,7 @@ class ActionsTest: XCTestCase {
             .toObservable()
             .subscribeNext { mocks in
                 expect(mocks.count).to(equal(10))
-        }
+        }.addDisposableTo(DisposeBag())
         
         // Evict
         actions.evictLast { count in count > 9 }
@@ -157,7 +157,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(9))
                 expect(mocks.last!.aString).to(equal("8"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -173,7 +173,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(9))
                 expect(mocks[3].aString).to(equal("4"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -190,7 +190,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(10))
                 expect(mocks[3].aString).to(equal("3"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         // Evict
         actions.evict { (position, count, element) in count > 9 && element.aString == "3" }
@@ -199,7 +199,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(9))
                 expect(mocks[3].aString).to(equal("4"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -217,7 +217,7 @@ class ActionsTest: XCTestCase {
                 expect(mocks.count).to(equal(8))
                 expect(mocks[2].aString).to(equal("4"))
                 expect(mocks[3].aString).to(equal("5"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -232,7 +232,7 @@ class ActionsTest: XCTestCase {
             .subscribeNext { mocks in
                 success = true
                 expect(mocks.count).to(equal(0))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -250,7 +250,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(10))
                 expect(mocks[5].aString).to(equal("5_updated"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -268,7 +268,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(10))
                 expect(mocks[5].aString).to(equal("5"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         // Evict
         actions.update({ (position, count, element) in count > 9 && element.aString == "5" }
@@ -278,7 +278,7 @@ class ActionsTest: XCTestCase {
                 success = true
                 expect(mocks.count).to(equal(10))
                 expect(mocks[5].aString).to(equal("5_updated"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -298,7 +298,7 @@ class ActionsTest: XCTestCase {
                 expect(mocks.count).to(equal(10))
                 expect(mocks[5].aString).to(equal("5_or_6_updated"))
                 expect(mocks[6].aString).to(equal("5_or_6_updated"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -318,7 +318,7 @@ class ActionsTest: XCTestCase {
                 expect(mocks.count).to(equal(10))
                 expect(mocks[5].aString).to(equal("5"))
                 expect(mocks[6].aString).to(equal("6"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         // Evict
         actions.updateIterable({ (position, count, element)  in
@@ -330,7 +330,7 @@ class ActionsTest: XCTestCase {
                 expect(mocks.count).to(equal(10))
                 expect(mocks[5].aString).to(equal("5_or_6_updated"))
                 expect(mocks[6].aString).to(equal("5_or_6_updated"))
-        }
+        }.addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue())
     }
@@ -367,7 +367,7 @@ class ActionsTest: XCTestCase {
             .subscribe(onNext: { (mocks: [Mock]) in
                 success = true
                 expect(mocks.count).to(equal(count))
-            })
+            }).addDisposableTo(DisposeBag())
         
         expect(success).toEventually(beTrue(), timeout: 20, pollInterval: 1, description: nil)
     }

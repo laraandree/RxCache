@@ -30,13 +30,13 @@ RxCache is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'RxCache', '~> 0.1.3'
+pod 'RxCache', '~> 0.1.4'
 ```
 
 RxCache also is available using [Carthage](https://github.com/Carthage/Carthage). To install it add the following dependency to your `Cartfile`:
 
 ```
-github "VictorAlbertos/RxSCache" ~> 0.1.3
+github "FuckBoilerplate/RxCache" ~> 0.1.4
 ```
 
 ## Usage
