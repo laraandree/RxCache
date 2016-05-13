@@ -37,6 +37,8 @@ public class Actions<T> {
         return Actions<T>(cache: oCache, evict: evictBlock)
     }
     
+    // MARK: - Actions
+    
     // MARK: - Add
     /**
     *
@@ -67,6 +69,24 @@ public class Actions<T> {
     }
     
     /**
+     * Add the objects at the first position of the cache.
+     * @param elements the objects to add to the cache.
+     * @return itself
+     */
+    func addAllFirst(elements: [T]) -> Actions<T> {
+        return addAll({ (position, count) in position == 0 }, candidates: elements)
+    }
+    
+    /**
+     * Add the objects at the last position of the cache.
+     * @param elements the objects to add to the cache.
+     * @return itself
+     */
+    func addAllLast(elements: [T]) -> Actions<T> {
+        return addAll({ (position, count) in position == count }, candidates: elements)
+    }
+    
+    /**
      * Func2 will be called for every iteration until its condition returns true.
      * When true, the elements are added to the cache at the position of the current iteration.
      * @param func2 exposes the position of the current iteration and the count of elements in the cache.
@@ -87,8 +107,6 @@ public class Actions<T> {
         return self
     }
     
-    // MARK: - Actions
-    
     // MARK: - Evict
     /**
     * Evict object at the first position of the cache
@@ -99,11 +117,29 @@ public class Actions<T> {
     }
     
     /**
-     * Evict object at the last position of the cache.
-     * @return itself
-     */
+    * Evict as much objects as requested by n param starting from the first position.
+    * @param n the amount of elements to evict.
+    * @return itself
+    */
+    func evictFirstN(n: Int) -> Actions<T> {
+        return evictFirstN({ count in true }, n: n)
+    }
+    
+    /**
+    * Evict object at the last position of the cache.
+    * @return itself
+    */
     func evictLast() -> Actions<T> {
         return evict { (position, count, element) in position == count - 1 }
+    }
+    
+    /**
+    * Evict as much objects as requested by n param starting from the last position.
+    * @param n the amount of elements to evict.
+    * @return itself
+    */
+    func evictLastN(n: Int) -> Actions<T> {
+        return evictLastN({ count in true }, n: n)
     }
     
     /**
@@ -116,6 +152,16 @@ public class Actions<T> {
     }
     
     /**
+     * Evict as much objects as requested by n param starting from the first position.
+     * @param func1Count exposes the count of elements in the cache.
+     * @param n the amount of elements to evict.
+     * @return itself
+     */
+    func evictFirstN(func1Count: Func1Count, n: Int) -> Actions<T> {
+        return evictIterable { (position, count, element) in position < n && func1Count(count: count) }
+    }
+    
+    /**
      * Evict object at the last position of the cache.
      * @param func1Count exposes the count of elements in the cache.
      * @return itself
@@ -124,6 +170,17 @@ public class Actions<T> {
         return evict { (position, count, element) in position == count - 1 && func1Count(count: count) }
     }
     
+    /**
+    * Evict as much objects as requested by n param starting from the last position.
+    * @param func1Count exposes the count of elements in the cache.
+    * @param n the amount of elements to evict.
+    * @return itself
+    */
+    func evictLastN(func1Count: Func1Count, n: Int) -> Actions<T> {
+        return evictIterable({ (position, count, element) in count - position <= n && func1Count(count: count)
+        })
+    }
+     
     /**
      * Func1Element will be called for every iteration until its condition returns true.
      * When true, the element of the current iteration is evicted from the cache.
@@ -155,12 +212,35 @@ public class Actions<T> {
     }
     
     /**
-    * Evict all elements from the cache
+     * Evict all elements from the cache
+     * @return itself
+     */
+    func evictAll() -> Actions<T> {
+        return evictIterable { (position, count, element) in true }
+    }
+    
+    /**
+    * Evict elements from the cache starting from the first position until its count is equal to the value specified in n param.
+    * @param n the amount of elements to keep from evict.
     * @return itself
     */
-    func evictAll() -> Actions<T> {
-        let func3 = { (position: Int, count: Int, element: T) in true }
-        return evictIterable(func3)
+    func evictAllKeepingFirstN(n: Int) -> Actions<T> {
+        return evictIterable { (position, count, element) in
+            let positionToStartEvicting = count - (count - n)
+            return position >= positionToStartEvicting
+        }
+    }
+    
+    /**
+    * Evict elements from the cache starting from the last position until its count is equal to the value specified in n param.
+    * @param n the amount of elements to keep from evict.
+    * @return itself
+    */
+    func evictAllKeepingLastN(n: Int) -> Actions<T> {
+        return evictIterable { (position, count, element) in
+            let elementsToEvict = count - n
+            return position < elementsToEvict
+        }
     }
     
     /**
