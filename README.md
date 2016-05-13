@@ -201,6 +201,11 @@ class MockRepository {
 
 ## Use cases
 
+* Using classic API RxCache for read actions with little write needs.
+* Using actionable API RxCache, exclusive for write actions.
+
+
+## Classic API RxCache:
 Following use cases illustrate some common scenarios which will help to understand the usage of `DynamicKey` and `DynamicKeyGroup` classes along with evicting scopes. 
 
 ### Enum providers example
@@ -311,6 +316,46 @@ But I have done that for demonstration purposes, you always should narrow the ev
 
 For the last example, List Paginated with filters, I would narrow the scope to `EvictDynamicKey` in production code, because this way I would be able to paginate the filtered mocks and evict them per its filter, triggered by a pull to refresh for instance.
 
+## Actionable API RxCache:
+
+This actionable api offers an easy way to perform write operations using providers. Although write operations could be achieved using the classic api too, it's much complex and error-prone. Indeed, the Actions class it's a wrapper around the classic api which play with evicting scopes and lists.
+
+Some actions examples:
+```swift
+let provider = RxProvidersMock.GetMocksEvictCache(evict: false)
+        Actions<Mock>.with(provider)
+            .addFirst(Mock())
+            .addLast(Mock())
+            // Add a new mock at 5th position
+            .add({ (position, count) -> Bool in position == 5 }, candidate: Mock())
+        
+            .evictFirst()
+            //Evict first element if the cache has already 300 records
+            .evictFirst { (count) -> Bool in count > 300 }
+            .evictLast()
+            //Evict last element if the cache has already 300 records
+            .evictLast { (count) -> Bool in count > 300 }
+            //Evict all inactive elements
+            .evictIterable { (position, count, mock) -> Bool in mock.active == false }
+            .evictAll()
+            
+            //Update the mock with id 5
+            .update({ mock -> Bool in mock.id == 5 },
+                replace: { mock in
+                    mock.active = true
+                    return mock
+            })
+            
+            //Update all inactive mocks
+            .update({ mock -> Bool in mock.active == false },
+                replace: { mock in
+                    mock.active = true
+                    return mock
+            })
+            .toObservable()
+            .subscribe()
+```
+Every one of the previous actions will be execute only after the composed observable receives a subscription. This way, the underliyng provider cache will be modified its elements without effort at all.
 
 ## Configure general behaviour
 
