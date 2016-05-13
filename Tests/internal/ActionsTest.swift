@@ -29,12 +29,12 @@ class ActionsTest: XCTestCase {
     }
     
     // MARK: Add
-    func test1AddAll() {
+    func testAddAll() {
         checkInitialState()
         addAll(10)
     }
     
-    func test2AddFirst() {
+    func testAddFirst() {
         var success = false
         checkInitialState()
         
@@ -49,7 +49,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test3AddLast() {
+    func testAddLast() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -65,7 +65,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test4Add() {
+    func testAdd() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -82,7 +82,7 @@ class ActionsTest: XCTestCase {
     }
     
     // MARK: Evict
-    func test4EvictFirst() {
+    func testEvictFirst() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -98,7 +98,23 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test5EvictFirstExposingCount() {
+    func testEvictFirstN() {
+        var success = false
+        checkInitialState()
+        addAll(10)
+        
+        actions.evictFirstN(4)
+            .toObservable()
+            .subscribeNext { mocks in
+                success = true
+                expect(mocks.count).to(equal(6))
+                expect(mocks.first!.aString).to(equal("4"))
+        }
+        
+        expect(success).toEventually(beTrue())
+    }
+    
+    func testEvictFirstExposingCount() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -121,8 +137,33 @@ class ActionsTest: XCTestCase {
         
         expect(success).toEventually(beTrue())
     }
+    
+    func testEvictFirstNExposingCount() {
+        var success = false
+        checkInitialState()
+        addAll(10)
+        
+        // Do not evict
+        actions.evictFirstN({ count in count > 10 }, n: 5)
+            .toObservable()
+            .subscribeNext { mocks in
+                expect(mocks.count).to(equal(10))
+        }
+        
+        // Evict
+        actions.evictFirstN({ count in count > 9 }, n: 5)
+            .toObservable()
+            .subscribeNext { mocks in
+                success = true
+                expect(mocks.count).to(equal(5))
+                expect(mocks[0].aString).to(equal("5"))
+                expect(mocks[1].aString).to(equal("6"))
+        }
+        
+        expect(success).toEventually(beTrue())
+    }
 
-    func test6EvictLast() {
+    func testEvictLast() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -138,7 +179,24 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test7EvictLastExposingCount() {
+    func testEvictLastN() {
+        var success = false
+        checkInitialState()
+        addAll(10)
+        
+        actions.evictLastN(4)
+            .toObservable()
+            .subscribeNext { mocks in
+                success = true
+                expect(mocks.count).to(equal(6))
+                expect(mocks.first!.aString).to(equal("0"))
+                expect(mocks.last!.aString).to(equal("5"))
+        }
+        
+        expect(success).toEventually(beTrue())
+    }
+    
+    func testEvictLastExposingCount() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -162,7 +220,32 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test8EvictExposingElementCurrentIteration() {
+    func testEvictLastNExposingCount() {
+        var success = false
+        checkInitialState()
+        addAll(10)
+        
+        // Do not evict
+        actions.evictLastN({ count in count > 10 }, n: 5)
+            .toObservable()
+            .subscribeNext { mocks in
+                expect(mocks.count).to(equal(10))
+        }
+        
+        // Evict
+        actions.evictLastN({ count in count > 9 }, n: 5)
+            .toObservable()
+            .subscribeNext { mocks in
+                success = true
+                expect(mocks.count).to(equal(5))
+                expect(mocks.first!.aString).to(equal("0"))
+                expect(mocks.last!.aString).to(equal("4"))
+        }
+        
+        expect(success).toEventually(beTrue())
+    }
+    
+    func testEvictExposingElementCurrentIteration() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -178,7 +261,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test9EvictExposingCountAndPositionAndElementCurrentIteration() {
+    func testEvictExposingCountAndPositionAndElementCurrentIteration() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -204,7 +287,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test10EvictIterable() {
+    func testEvictIterable() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -222,7 +305,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test11EvictAll() {
+    func testEvictAll() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -237,8 +320,44 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
+    func testEvictAllKeepingFirstN() {
+        var success = false
+        checkInitialState()
+        addAll(10)
+        
+        actions.evictAllKeepingFirstN(3)
+            .toObservable()
+            .subscribeNext { mocks in
+                success = true
+                expect(mocks.count).to(equal(3))
+                expect(mocks[0].aString).to(equal("0"))
+                expect(mocks[1].aString).to(equal("1"))
+                expect(mocks[2].aString).to(equal("2"))
+        }
+        
+        expect(success).toEventually(beTrue())
+    }
+    
+    func testEvictAllKeepingLastN() {
+        var success = false
+        checkInitialState()
+        addAll(10)
+        
+        actions.evictAllKeepingLastN(7)
+            .toObservable()
+            .subscribeNext { mocks in
+                success = true
+                expect(mocks.count).to(equal(7))
+                expect(mocks[0].aString).to(equal("3"))
+                expect(mocks[1].aString).to(equal("4"))
+                expect(mocks[2].aString).to(equal("5"))
+        }
+        
+        expect(success).toEventually(beTrue())
+    }
+    
     // MARK: Update
-    func test12UpdateExposingElementCurrentIteration() {
+    func testUpdateExposingElementCurrentIteration() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -255,7 +374,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test13UpdateExposingCountAndPositionAndElementCurrentIteration() {
+    func testUpdateExposingCountAndPositionAndElementCurrentIteration() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -283,7 +402,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test14UpdateIterableExposingElementCurrentIteration() {
+    func testUpdateIterableExposingElementCurrentIteration() {
         var success = false
         checkInitialState()
         addAll(10)
@@ -303,7 +422,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    func test15UpdateIterableExposingCountAndPositionAndElementCurrentIteration() {
+    func testUpdateIterableExposingCountAndPositionAndElementCurrentIteration() {
         var success = false
         checkInitialState()
         addAll(10)
