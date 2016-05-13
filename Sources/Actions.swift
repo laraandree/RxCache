@@ -46,7 +46,7 @@ public class Actions<T> {
     * @param candidate the element to add
     * @return the instance itself to keep chain
     */
-    func add(func2: Func2, candidate: T) -> Actions<T> {
+    public func add(func2: Func2, candidate: T) -> Actions<T> {
         return addAll(func2, candidates: [candidate])
     }
     
@@ -55,7 +55,7 @@ public class Actions<T> {
      * @param element the object to add to the cache.
      * @return itself
      */
-    func addFirst(candidate: T) -> Actions<T> {
+    public func addFirst(candidate: T) -> Actions<T> {
         return addAll({ (position, count)in position == 0 }, candidates: [candidate])
     }
     
@@ -64,7 +64,7 @@ public class Actions<T> {
      * @param element the object to add to the cache.
      * @return itself
      */
-    func addLast(candidate: T) -> Actions<T> {
+    public func addLast(candidate: T) -> Actions<T> {
         return addAll({ (position, count)in position == count }, candidates: [candidate])
     }
     
@@ -73,7 +73,7 @@ public class Actions<T> {
      * @param elements the objects to add to the cache.
      * @return itself
      */
-    func addAllFirst(elements: [T]) -> Actions<T> {
+    public func addAllFirst(elements: [T]) -> Actions<T> {
         return addAll({ (position, count) in position == 0 }, candidates: elements)
     }
     
@@ -82,7 +82,7 @@ public class Actions<T> {
      * @param elements the objects to add to the cache.
      * @return itself
      */
-    func addAllLast(elements: [T]) -> Actions<T> {
+    public func addAllLast(elements: [T]) -> Actions<T> {
         return addAll({ (position, count) in position == count }, candidates: elements)
     }
     
@@ -93,7 +93,7 @@ public class Actions<T> {
      * @param elements the objects to add to the cache.
      * @return itself
      */
-    func addAll(func2: Func2, candidates: [T]) -> Actions<T> {
+    public func addAll(func2: Func2, candidates: [T]) -> Actions<T> {
         cache = cache.map { (var elements) in
             let count = elements.count
             for var position = 0; position <= count; position++ {
@@ -112,7 +112,7 @@ public class Actions<T> {
     * Evict object at the first position of the cache
     * @return itself
     */
-    func evictFirst() -> Actions<T> {
+    public func evictFirst() -> Actions<T> {
         return evict { (position, count, element) in position == 0 }
     }
     
@@ -121,7 +121,7 @@ public class Actions<T> {
     * @param n the amount of elements to evict.
     * @return itself
     */
-    func evictFirstN(n: Int) -> Actions<T> {
+    public func evictFirstN(n: Int) -> Actions<T> {
         return evictFirstN({ count in true }, n: n)
     }
     
@@ -129,7 +129,7 @@ public class Actions<T> {
     * Evict object at the last position of the cache.
     * @return itself
     */
-    func evictLast() -> Actions<T> {
+    public func evictLast() -> Actions<T> {
         return evict { (position, count, element) in position == count - 1 }
     }
     
@@ -138,7 +138,7 @@ public class Actions<T> {
     * @param n the amount of elements to evict.
     * @return itself
     */
-    func evictLastN(n: Int) -> Actions<T> {
+    public func evictLastN(n: Int) -> Actions<T> {
         return evictLastN({ count in true }, n: n)
     }
     
@@ -147,7 +147,7 @@ public class Actions<T> {
      * @param func1Count exposes the count of elements in the cache.
      * @return itself
      */
-    func evictFirst(func1Count: Func1Count) -> Actions<T> {
+    public func evictFirst(func1Count: Func1Count) -> Actions<T> {
         return evict { (position, count, element) in position == 0 && func1Count(count: count) }
     }
     
@@ -157,7 +157,7 @@ public class Actions<T> {
      * @param n the amount of elements to evict.
      * @return itself
      */
-    func evictFirstN(func1Count: Func1Count, n: Int) -> Actions<T> {
+    public func evictFirstN(func1Count: Func1Count, n: Int) -> Actions<T> {
         return evictIterable { (position, count, element) in position < n && func1Count(count: count) }
     }
     
@@ -166,7 +166,7 @@ public class Actions<T> {
      * @param func1Count exposes the count of elements in the cache.
      * @return itself
      */
-    func evictLast(func1Count: Func1Count) -> Actions<T> {
+    public func evictLast(func1Count: Func1Count) -> Actions<T> {
         return evict { (position, count, element) in position == count - 1 && func1Count(count: count) }
     }
     
@@ -176,7 +176,7 @@ public class Actions<T> {
     * @param n the amount of elements to evict.
     * @return itself
     */
-    func evictLastN(func1Count: Func1Count, n: Int) -> Actions<T> {
+    public func evictLastN(func1Count: Func1Count, n: Int) -> Actions<T> {
         return evictIterable({ (position, count, element) in count - position <= n && func1Count(count: count)
         })
     }
@@ -187,7 +187,7 @@ public class Actions<T> {
      * @param func1Element exposes the element of the current iteration.
      * @return itself
      */
-    func evict(func1Element: Func1Element) -> Actions<T> {
+    public func evict(func1Element: Func1Element) -> Actions<T> {
         return evict { (position, count, element) in func1Element(element: element) }
     }
     
@@ -197,7 +197,7 @@ public class Actions<T> {
      * @param func3 exposes the position of the current iteration, the count of elements in the cache and the element of the current iteration.
      * @return itself
      */
-    func evict(func3: Func3) -> Actions<T> {
+    public func evict(func3: Func3) -> Actions<T> {
         cache = cache.map { (var elements) in
             let count = elements.count
             for position in 0..<count {
@@ -215,7 +215,7 @@ public class Actions<T> {
      * Evict all elements from the cache
      * @return itself
      */
-    func evictAll() -> Actions<T> {
+    public func evictAll() -> Actions<T> {
         return evictIterable { (position, count, element) in true }
     }
     
@@ -224,7 +224,7 @@ public class Actions<T> {
     * @param n the amount of elements to keep from evict.
     * @return itself
     */
-    func evictAllKeepingFirstN(n: Int) -> Actions<T> {
+    public func evictAllKeepingFirstN(n: Int) -> Actions<T> {
         return evictIterable { (position, count, element) in
             let positionToStartEvicting = count - (count - n)
             return position >= positionToStartEvicting
@@ -236,7 +236,7 @@ public class Actions<T> {
     * @param n the amount of elements to keep from evict.
     * @return itself
     */
-    func evictAllKeepingLastN(n: Int) -> Actions<T> {
+    public func evictAllKeepingLastN(n: Int) -> Actions<T> {
         return evictIterable { (position, count, element) in
             let elementsToEvict = count - n
             return position < elementsToEvict
@@ -249,7 +249,7 @@ public class Actions<T> {
      * @param func3 exposes the position of the current iteration, the count of elements in the cache and the element of the current iteration.
      * @return itself
      */
-    func evictIterable(func3: Func3) -> Actions<T> {
+    public func evictIterable(func3: Func3) -> Actions<T> {
         cache = cache.map { (var elements) in
             let count = elements.count
             // Inverse for
@@ -271,7 +271,7 @@ public class Actions<T> {
     * @param replace exposes the original element and expects back the one modified.
     * @return itself
     */
-    func update(func1Element: Func1Element, replace: Replace) -> Actions<T> {
+    public func update(func1Element: Func1Element, replace: Replace) -> Actions<T> {
         return update({ (position, count, element) in func1Element(element: element) }
             , replace: { element in replace(element: element) })
     }
@@ -283,7 +283,7 @@ public class Actions<T> {
      * @param replace exposes the original element and expects back the one modified.
      * @return itself
      */
-    func update(func3: Func3, replace: Replace) -> Actions<T> {
+    public func update(func3: Func3, replace: Replace) -> Actions<T> {
         cache = cache.map { (var elements) in
             let count = elements.count
             for position in 0..<count {
@@ -304,7 +304,7 @@ public class Actions<T> {
      * @param replace exposes the original element and expects back the one modified.
      * @return itself
      */
-    func updateIterable(func1Element: Func1Element, replace: Replace) -> Actions<T> {
+    public func updateIterable(func1Element: Func1Element, replace: Replace) -> Actions<T> {
         return updateIterable({ (position, count, element) in func1Element(element: element)
             }, replace: { element in replace(element: element) })
     }
@@ -316,7 +316,7 @@ public class Actions<T> {
      * @param replace exposes the original element and expects back the one modified.
      * @return itself
      */
-    func updateIterable(func3: Func3, replace: Replace) -> Actions<T> {
+    public func updateIterable(func3: Func3, replace: Replace) -> Actions<T> {
         cache = cache.map { (var elements) in
             let count = elements.count
             for position in 0..<count {
@@ -330,7 +330,7 @@ public class Actions<T> {
     }
     
     // MARK: - To Observable
-    func toObservable() -> Observable<[T]> {
+    public func toObservable() -> Observable<[T]> {
         return cache.flatMap { elements in self.evict(elements: elements) }
     }
 }
