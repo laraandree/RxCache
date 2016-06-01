@@ -90,7 +90,14 @@ public class RxCache {
                 return Observable.just(reply.cacheables[0])
             })
     }
-        
+    
+    public func evictAll() -> Observable<Void> {
+        return Observable.deferred({ () -> Observable<Void> in
+            self.twoLayersCache.evictAll()
+            return Observable.just()
+        })
+    }
+    
     public class func errorObservable<T>(t : T.Type)-> Observable<T> {
         return Observable.error(NSError(domain: "", code: 0, userInfo: nil))
     }
