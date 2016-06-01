@@ -253,6 +253,37 @@ class ProvidersRxCacheTest : XCTestCase {
         providers.twoLayersCache.evictAll()
     }
     
+    func test6WhenEvictAllThenEvictAll() {
+        providers.twoLayersCache.evictAll()
+        
+        providers.useExpiredDataIfLoaderNotAvailable = false
+        
+        let providerOneSecond = RxProvidersMock.GetMocksResponseOneSecond()
+    
+        var success = false
+        
+        // Cache some data
+        providers.cacheWithReply(createObservableMocks(Size), provider: providerOneSecond)
+            .subscribeNext { reply in
+                expect(reply.cacheables.count).to(equal(self.Size))
+            }.addDisposableTo(DisposeBag())
+        
+        // Evict all
+        providers.evictAll()
+            .subscribe()
+            .addDisposableTo(DisposeBag())
+
+        // Retrieve no data
+        providers.cacheWithReply(RxCache.errorObservable([Mock].self), provider: providerOneSecond)
+            .subscribeError { error in
+                success = true
+            }.addDisposableTo(DisposeBag())
+        
+        expect(success).toEventually(equal(true))
+        
+        providers.twoLayersCache.evictAll()
+    }
+    
     func test7WhenAskForADeepCopyWithClassGetOne() {
         let getDeepCopy = GetDeepCopy()
         let mocks = createMocks(3)
