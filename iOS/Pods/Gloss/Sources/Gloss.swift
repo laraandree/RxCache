@@ -79,7 +79,7 @@ public private(set) var GlossDateFormatterISO8601: DateFormatter = {
     dateFormatterISO8601.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 
     // translate to Gregorian calendar if other calendar is selected in system settings
-    var gregorian = Calendar(identifier: .gregorian)
+    var gregorian = Calendar(identifier: Calendar.Identifier.gregorian)
     
     gregorian.timeZone = TimeZone(abbreviation: "GMT")!
     dateFormatterISO8601.calendar = gregorian
@@ -88,28 +88,18 @@ public private(set) var GlossDateFormatterISO8601: DateFormatter = {
 }()
 
 /**
- Default delimiter used for nested key paths.
- 
- - returns: Default key path delimiter.
- */
-public private(set) var GlossKeyPathDelimiter: String = {
-    return "."
-}()
-
-/**
  Transforms an array of JSON optionals to a single optional JSON dictionary.
  
  - parameter array:            Array of JSON to transform.
- - parameter keyPathDelimiter: Delimiter used for nested key paths.
  
  - returns: JSON when successful, nil otherwise.
  */
-public func jsonify(_ array: [JSON?], keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON? {
+public func jsonify(_ array: [JSON?]) -> JSON? {
     var json: JSON = [:]
     
     for j in array {
         if(j != nil) {
-            json.add(j!, delimiter: keyPathDelimiter)
+            json.add(other: j!)
         }
     }
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A824244BFA5DDE8CC0DF6D8 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D56FFAC4BF044ACEFE2392 /* Pods_RxCache.framework */; };
+		372B07913D090870F9C0F664 /* Pods_RxCacheTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290B304100B09351755446B8 /* Pods_RxCacheTests.framework */; };
 		576658081C9C4900001A5867 /* MockOMClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576658071C9C4900001A5867 /* MockOMClass.swift */; };
 		577304301C9C424F008349BE /* RxCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 5773042F1C9C424F008349BE /* RxCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		577304371C9C424F008349BE /* RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5773042C1C9C424F008349BE /* RxCache.framework */; };
@@ -76,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		196012DF3CE95BCA23FDBB6C /* Pods-RxCacheTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCacheTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests.debug.xcconfig"; sourceTree = "<group>"; };
+		290B304100B09351755446B8 /* Pods_RxCacheTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCacheTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		576658071C9C4900001A5867 /* MockOMClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockOMClass.swift; sourceTree = "<group>"; };
 		5773042C1C9C424F008349BE /* RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5773042F1C9C424F008349BE /* RxCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxCache.h; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 		A2CE963E1DA96B85007571CE /* OMCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCacheable.swift; sourceTree = "<group>"; };
 		A2D9DAE91CC1950000D939E9 /* GetDeepCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDeepCopy.swift; sourceTree = "<group>"; };
 		A2DDF6491CD8DD9A008F506B /* ActionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsTest.swift; sourceTree = "<group>"; };
+		E5D56FFAC4BF044ACEFE2392 /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10B2F20AAF61D9EECBEE710 /* Pods-RxCacheTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCacheTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A824244BFA5DDE8CC0DF6D8 /* Pods_RxCache.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +159,7 @@
 			files = (
 				A2C4F0521DA5DAAC00DF6896 /* Gloss.framework in Frameworks */,
 				577304371C9C424F008349BE /* RxCache.framework in Frameworks */,
+				372B07913D090870F9C0F664 /* Pods_RxCacheTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				A2C4F0511DA5DAAC00DF6896 /* Gloss.framework */,
+				E5D56FFAC4BF044ACEFE2392 /* Pods_RxCache.framework */,
+				290B304100B09351755446B8 /* Pods_RxCacheTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
