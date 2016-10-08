@@ -2,10 +2,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 def shared_pods
-    pod 'RxSwift', '>= 3.0.0-beta.1'
-#    pod 'RxCache', '~> 0.1.2'
+    #    pod 'RxCache', '~> 0.1.2'
     pod 'ObjectMapper', '~> 2.0'
-    pod 'Gloss', :git => 'https://github.com/hkellaway/Gloss.git', :branch => 'swift_3.0'
+    pod 'RxSwift', '>= 3.0.0-beta.1'
+    pod 'Gloss', '~> 1.0'
 end
 
 target 'iOS' do

@@ -24,6 +24,37 @@
 		57A199E11C9B099300EF3D51 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A199E01C9B099300EF3D51 /* main.swift */; };
 		57A199EA1C9B0B7000EF3D51 /* Respository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A199E91C9B0B7000EF3D51 /* Respository.swift */; };
 		57A199FC1C9B0D7300EF3D51 /* Respository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A199E91C9B0B7000EF3D51 /* Respository.swift */; };
+		A2CE96681DA96FBC007571CE /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96431DA96FBC007571CE /* Actions.swift */; };
+		A2CE96691DA96FBC007571CE /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96441DA96FBC007571CE /* Cacheable.swift */; };
+		A2CE966A1DA96FBC007571CE /* GlossCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96471DA96FBC007571CE /* GlossCacheable.swift */; };
+		A2CE966B1DA96FBC007571CE /* OMCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96491DA96FBC007571CE /* OMCacheable.swift */; };
+		A2CE966C1DA96FBC007571CE /* DynamicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE964A1DA96FBC007571CE /* DynamicKey.swift */; };
+		A2CE966D1DA96FBC007571CE /* DynamicKeyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE964B1DA96FBC007571CE /* DynamicKeyGroup.swift */; };
+		A2CE966E1DA96FBC007571CE /* EvictDynamicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE964C1DA96FBC007571CE /* EvictDynamicKey.swift */; };
+		A2CE966F1DA96FBC007571CE /* EvictDynamicKeyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE964D1DA96FBC007571CE /* EvictDynamicKeyGroup.swift */; };
+		A2CE96701DA96FBC007571CE /* EvictProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE964E1DA96FBC007571CE /* EvictProvider.swift */; };
+		A2CE96711DA96FBC007571CE /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96511DA96FBC007571CE /* Action.swift */; };
+		A2CE96721DA96FBC007571CE /* EvictExpirableRecordsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96521DA96FBC007571CE /* EvictExpirableRecordsPersistence.swift */; };
+		A2CE96731DA96FBC007571CE /* EvictExpiredRecordsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96531DA96FBC007571CE /* EvictExpiredRecordsPersistence.swift */; };
+		A2CE96741DA96FBC007571CE /* EvictRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96541DA96FBC007571CE /* EvictRecord.swift */; };
+		A2CE96751DA96FBC007571CE /* GetDeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96551DA96FBC007571CE /* GetDeepCopy.swift */; };
+		A2CE96761DA96FBC007571CE /* HasRecordExpired.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96561DA96FBC007571CE /* HasRecordExpired.swift */; };
+		A2CE96771DA96FBC007571CE /* RetrieveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96571DA96FBC007571CE /* RetrieveRecord.swift */; };
+		A2CE96781DA96FBC007571CE /* SaveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96581DA96FBC007571CE /* SaveRecord.swift */; };
+		A2CE96791DA96FBC007571CE /* TwoLayersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96591DA96FBC007571CE /* TwoLayersCache.swift */; };
+		A2CE967A1DA96FBC007571CE /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE965A1DA96FBC007571CE /* Locale.swift */; };
+		A2CE967B1DA96FBC007571CE /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE965B1DA96FBC007571CE /* Memory.swift */; };
+		A2CE967C1DA96FBC007571CE /* MemoryNsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE965C1DA96FBC007571CE /* MemoryNsCache.swift */; };
+		A2CE967D1DA96FBC007571CE /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE965E1DA96FBC007571CE /* Disk.swift */; };
+		A2CE967E1DA96FBC007571CE /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE965F1DA96FBC007571CE /* Persistence.swift */; };
+		A2CE967F1DA96FBC007571CE /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96601DA96FBC007571CE /* Record.swift */; };
+		A2CE96801DA96FBC007571CE /* PlaceholderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96611DA96FBC007571CE /* PlaceholderProvider.swift */; };
+		A2CE96811DA96FBC007571CE /* RxCacheInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96621DA96FBC007571CE /* RxCacheInternal.swift */; };
+		A2CE96821DA96FBC007571CE /* LifeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96631DA96FBC007571CE /* LifeCache.swift */; };
+		A2CE96831DA96FBC007571CE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96641DA96FBC007571CE /* Provider.swift */; };
+		A2CE96841DA96FBC007571CE /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96651DA96FBC007571CE /* Reply.swift */; };
+		A2CE96851DA96FBC007571CE /* RxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96661DA96FBC007571CE /* RxCache.swift */; };
+		A2CE96861DA96FBC007571CE /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CE96671DA96FBC007571CE /* Source.swift */; };
 		EE833506BE24E211FE65B6AF /* Pods_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D6A30B78D29B5CC9C16ACE /* Pods_OSX.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +90,37 @@
 		5A343DDC3BC5F7D64283E754 /* Pods-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSX/Pods-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 		76A3720FD052861BA8602F84 /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		879254ECA463D920DDB0C048 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		A2CE96431DA96FBC007571CE /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		A2CE96441DA96FBC007571CE /* Cacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
+		A2CE96471DA96FBC007571CE /* GlossCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossCacheable.swift; sourceTree = "<group>"; };
+		A2CE96491DA96FBC007571CE /* OMCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCacheable.swift; sourceTree = "<group>"; };
+		A2CE964A1DA96FBC007571CE /* DynamicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicKey.swift; sourceTree = "<group>"; };
+		A2CE964B1DA96FBC007571CE /* DynamicKeyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicKeyGroup.swift; sourceTree = "<group>"; };
+		A2CE964C1DA96FBC007571CE /* EvictDynamicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictDynamicKey.swift; sourceTree = "<group>"; };
+		A2CE964D1DA96FBC007571CE /* EvictDynamicKeyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictDynamicKeyGroup.swift; sourceTree = "<group>"; };
+		A2CE964E1DA96FBC007571CE /* EvictProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictProvider.swift; sourceTree = "<group>"; };
+		A2CE96511DA96FBC007571CE /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A2CE96521DA96FBC007571CE /* EvictExpirableRecordsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictExpirableRecordsPersistence.swift; sourceTree = "<group>"; };
+		A2CE96531DA96FBC007571CE /* EvictExpiredRecordsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictExpiredRecordsPersistence.swift; sourceTree = "<group>"; };
+		A2CE96541DA96FBC007571CE /* EvictRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictRecord.swift; sourceTree = "<group>"; };
+		A2CE96551DA96FBC007571CE /* GetDeepCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDeepCopy.swift; sourceTree = "<group>"; };
+		A2CE96561DA96FBC007571CE /* HasRecordExpired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasRecordExpired.swift; sourceTree = "<group>"; };
+		A2CE96571DA96FBC007571CE /* RetrieveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveRecord.swift; sourceTree = "<group>"; };
+		A2CE96581DA96FBC007571CE /* SaveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveRecord.swift; sourceTree = "<group>"; };
+		A2CE96591DA96FBC007571CE /* TwoLayersCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLayersCache.swift; sourceTree = "<group>"; };
+		A2CE965A1DA96FBC007571CE /* Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
+		A2CE965B1DA96FBC007571CE /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		A2CE965C1DA96FBC007571CE /* MemoryNsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryNsCache.swift; sourceTree = "<group>"; };
+		A2CE965E1DA96FBC007571CE /* Disk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
+		A2CE965F1DA96FBC007571CE /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		A2CE96601DA96FBC007571CE /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A2CE96611DA96FBC007571CE /* PlaceholderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderProvider.swift; sourceTree = "<group>"; };
+		A2CE96621DA96FBC007571CE /* RxCacheInternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCacheInternal.swift; sourceTree = "<group>"; };
+		A2CE96631DA96FBC007571CE /* LifeCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCache.swift; sourceTree = "<group>"; };
+		A2CE96641DA96FBC007571CE /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		A2CE96651DA96FBC007571CE /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		A2CE96661DA96FBC007571CE /* RxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCache.swift; sourceTree = "<group>"; };
+		A2CE96671DA96FBC007571CE /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		B7D6A30B78D29B5CC9C16ACE /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +147,7 @@
 		57A199BC1C9B095C00EF3D51 = {
 			isa = PBXGroup;
 			children = (
+				A2CE96421DA96FBC007571CE /* Sources */,
 				57A199E51C9B099F00EF3D51 /* Data */,
 				57A199C91C9B096F00EF3D51 /* iOS */,
 				57A199DF1C9B099300EF3D51 /* OSX */,
@@ -154,6 +217,93 @@
 				250C684297392448FDF9AC05 /* Pods_iOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2CE96421DA96FBC007571CE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE96431DA96FBC007571CE /* Actions.swift */,
+				A2CE96441DA96FBC007571CE /* Cacheable.swift */,
+				A2CE96451DA96FBC007571CE /* Cacheables */,
+				A2CE964A1DA96FBC007571CE /* DynamicKey.swift */,
+				A2CE964B1DA96FBC007571CE /* DynamicKeyGroup.swift */,
+				A2CE964C1DA96FBC007571CE /* EvictDynamicKey.swift */,
+				A2CE964D1DA96FBC007571CE /* EvictDynamicKeyGroup.swift */,
+				A2CE964E1DA96FBC007571CE /* EvictProvider.swift */,
+				A2CE964F1DA96FBC007571CE /* internal */,
+				A2CE96631DA96FBC007571CE /* LifeCache.swift */,
+				A2CE96641DA96FBC007571CE /* Provider.swift */,
+				A2CE96651DA96FBC007571CE /* Reply.swift */,
+				A2CE96661DA96FBC007571CE /* RxCache.swift */,
+				A2CE96671DA96FBC007571CE /* Source.swift */,
+			);
+			name = Sources;
+			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		A2CE96451DA96FBC007571CE /* Cacheables */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE96461DA96FBC007571CE /* Gloss */,
+				A2CE96481DA96FBC007571CE /* ObjectMapper */,
+			);
+			path = Cacheables;
+			sourceTree = "<group>";
+		};
+		A2CE96461DA96FBC007571CE /* Gloss */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE96471DA96FBC007571CE /* GlossCacheable.swift */,
+			);
+			path = Gloss;
+			sourceTree = "<group>";
+		};
+		A2CE96481DA96FBC007571CE /* ObjectMapper */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE96491DA96FBC007571CE /* OMCacheable.swift */,
+			);
+			path = ObjectMapper;
+			sourceTree = "<group>";
+		};
+		A2CE964F1DA96FBC007571CE /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE96501DA96FBC007571CE /* cache */,
+				A2CE965A1DA96FBC007571CE /* Locale.swift */,
+				A2CE965B1DA96FBC007571CE /* Memory.swift */,
+				A2CE965C1DA96FBC007571CE /* MemoryNsCache.swift */,
+				A2CE965D1DA96FBC007571CE /* persistence */,
+				A2CE96611DA96FBC007571CE /* PlaceholderProvider.swift */,
+				A2CE96621DA96FBC007571CE /* RxCacheInternal.swift */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		A2CE96501DA96FBC007571CE /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE96511DA96FBC007571CE /* Action.swift */,
+				A2CE96521DA96FBC007571CE /* EvictExpirableRecordsPersistence.swift */,
+				A2CE96531DA96FBC007571CE /* EvictExpiredRecordsPersistence.swift */,
+				A2CE96541DA96FBC007571CE /* EvictRecord.swift */,
+				A2CE96551DA96FBC007571CE /* GetDeepCopy.swift */,
+				A2CE96561DA96FBC007571CE /* HasRecordExpired.swift */,
+				A2CE96571DA96FBC007571CE /* RetrieveRecord.swift */,
+				A2CE96581DA96FBC007571CE /* SaveRecord.swift */,
+				A2CE96591DA96FBC007571CE /* TwoLayersCache.swift */,
+			);
+			path = cache;
+			sourceTree = "<group>";
+		};
+		A2CE965D1DA96FBC007571CE /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A2CE965E1DA96FBC007571CE /* Disk.swift */,
+				A2CE965F1DA96FBC007571CE /* Persistence.swift */,
+				A2CE96601DA96FBC007571CE /* Record.swift */,
+			);
+			path = persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,12 +481,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2CE96861DA96FBC007571CE /* Source.swift in Sources */,
+				A2CE96791DA96FBC007571CE /* TwoLayersCache.swift in Sources */,
+				A2CE966B1DA96FBC007571CE /* OMCacheable.swift in Sources */,
+				A2CE96801DA96FBC007571CE /* PlaceholderProvider.swift in Sources */,
 				57A199EA1C9B0B7000EF3D51 /* Respository.swift in Sources */,
+				A2CE96681DA96FBC007571CE /* Actions.swift in Sources */,
+				A2CE96721DA96FBC007571CE /* EvictExpirableRecordsPersistence.swift in Sources */,
 				57A199CD1C9B096F00EF3D51 /* ViewController.swift in Sources */,
+				A2CE96771DA96FBC007571CE /* RetrieveRecord.swift in Sources */,
+				A2CE967A1DA96FBC007571CE /* Locale.swift in Sources */,
+				A2CE96851DA96FBC007571CE /* RxCache.swift in Sources */,
+				A2CE967C1DA96FBC007571CE /* MemoryNsCache.swift in Sources */,
+				A2CE967E1DA96FBC007571CE /* Persistence.swift in Sources */,
+				A2CE96701DA96FBC007571CE /* EvictProvider.swift in Sources */,
+				A2CE967B1DA96FBC007571CE /* Memory.swift in Sources */,
+				A2CE966A1DA96FBC007571CE /* GlossCacheable.swift in Sources */,
+				A2CE966E1DA96FBC007571CE /* EvictDynamicKey.swift in Sources */,
 				5732E54A1C9C6F04005513E0 /* MockOMClass.swift in Sources */,
+				A2CE96731DA96FBC007571CE /* EvictExpiredRecordsPersistence.swift in Sources */,
+				A2CE96741DA96FBC007571CE /* EvictRecord.swift in Sources */,
+				A2CE96841DA96FBC007571CE /* Reply.swift in Sources */,
 				5732E54C1C9C6F04005513E0 /* MockOMStruct.swift in Sources */,
+				A2CE96711DA96FBC007571CE /* Action.swift in Sources */,
+				A2CE967F1DA96FBC007571CE /* Record.swift in Sources */,
+				A2CE967D1DA96FBC007571CE /* Disk.swift in Sources */,
+				A2CE96691DA96FBC007571CE /* Cacheable.swift in Sources */,
+				A2CE96831DA96FBC007571CE /* Provider.swift in Sources */,
+				A2CE966F1DA96FBC007571CE /* EvictDynamicKeyGroup.swift in Sources */,
+				A2CE96821DA96FBC007571CE /* LifeCache.swift in Sources */,
+				A2CE96761DA96FBC007571CE /* HasRecordExpired.swift in Sources */,
+				A2CE96781DA96FBC007571CE /* SaveRecord.swift in Sources */,
 				57A199CB1C9B096F00EF3D51 /* AppDelegate.swift in Sources */,
+				A2CE966C1DA96FBC007571CE /* DynamicKey.swift in Sources */,
+				A2CE96751DA96FBC007571CE /* GetDeepCopy.swift in Sources */,
 				5732E5461C9C6F04005513E0 /* MockGlossClass.swift in Sources */,
+				A2CE96811DA96FBC007571CE /* RxCacheInternal.swift in Sources */,
+				A2CE966D1DA96FBC007571CE /* DynamicKeyGroup.swift in Sources */,
 				5732E5481C9C6F04005513E0 /* MockGlossStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

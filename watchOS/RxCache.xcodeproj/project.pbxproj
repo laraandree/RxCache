@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		5732E53B1C9C6652005513E0 /* RxCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 5732E53A1C9C6652005513E0 /* RxCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD753E167D43CAB3699AB054 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D2D198EE3F82AC6F6C0563A /* Pods_RxCache.framework */; };
+		DCB5FE908CC4656FA9DDC8B5 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CBF25306BEFF33B97852A2 /* Pods_RxCache.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54E20B7D0C9443190B22C615 /* Pods-RxCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.release.xcconfig"; sourceTree = "<group>"; };
 		5732E5371C9C6652005513E0 /* RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5732E53A1C9C6652005513E0 /* RxCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxCache.h; sourceTree = "<group>"; };
 		5732E53C1C9C6652005513E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D2D198EE3F82AC6F6C0563A /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A33092457E48B862AFDDFCFE /* Pods-RxCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.release.xcconfig"; sourceTree = "<group>"; };
-		B9D7B260B2BF202B9FB0C31D /* Pods-RxCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.debug.xcconfig"; sourceTree = "<group>"; };
+		70CBF25306BEFF33B97852A2 /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA3ED355EC667F28E476CBD5 /* Pods-RxCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,19 +25,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD753E167D43CAB3699AB054 /* Pods_RxCache.framework in Frameworks */,
+				DCB5FE908CC4656FA9DDC8B5 /* Pods_RxCache.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D43CF8B2EE13063DA1F82F0 /* Frameworks */ = {
+		462C1B5BA371DFFAA225C0D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5D2D198EE3F82AC6F6C0563A /* Pods_RxCache.framework */,
+				AA3ED355EC667F28E476CBD5 /* Pods-RxCache.debug.xcconfig */,
+				54E20B7D0C9443190B22C615 /* Pods-RxCache.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5732E52D1C9C6652005513E0 = {
@@ -45,8 +46,8 @@
 			children = (
 				5732E5391C9C6652005513E0 /* RxCache */,
 				5732E5381C9C6652005513E0 /* Products */,
-				99B1AEA26A72A2F0C938321E /* Pods */,
-				4D43CF8B2EE13063DA1F82F0 /* Frameworks */,
+				462C1B5BA371DFFAA225C0D0 /* Pods */,
+				61E43EC6AD2232FE15D59268 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,13 +68,12 @@
 			path = RxCache;
 			sourceTree = "<group>";
 		};
-		99B1AEA26A72A2F0C938321E /* Pods */ = {
+		61E43EC6AD2232FE15D59268 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9D7B260B2BF202B9FB0C31D /* Pods-RxCache.debug.xcconfig */,
-				A33092457E48B862AFDDFCFE /* Pods-RxCache.release.xcconfig */,
+				70CBF25306BEFF33B97852A2 /* Pods_RxCache.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,12 +94,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5732E53F1C9C6652005513E0 /* Build configuration list for PBXNativeTarget "RxCache" */;
 			buildPhases = (
-				D5C31F584B32CFB22D03AA7C /* Check Pods Manifest.lock */,
+				7AE08C533C758C1E69209752 /* [CP] Check Pods Manifest.lock */,
 				5732E5321C9C6652005513E0 /* Sources */,
 				5732E5331C9C6652005513E0 /* Frameworks */,
 				5732E5341C9C6652005513E0 /* Headers */,
 				5732E5351C9C6652005513E0 /* Resources */,
-				658C4368415DEE7834A89475 /* Copy Pods Resources */,
+				8502A2099F7586B1EECBB212 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -121,6 +121,7 @@
 				TargetAttributes = {
 					5732E5361C9C6652005513E0 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -152,34 +153,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		658C4368415DEE7834A89475 /* Copy Pods Resources */ = {
+		7AE08C533C758C1E69209752 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8502A2099F7586B1EECBB212 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCache/Pods-RxCache-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D5C31F584B32CFB22D03AA7C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -284,7 +285,7 @@
 		};
 		5732E5401C9C6652005513E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9D7B260B2BF202B9FB0C31D /* Pods-RxCache.debug.xcconfig */;
+			baseConfigurationReference = AA3ED355EC667F28E476CBD5 /* Pods-RxCache.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
@@ -297,12 +298,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.victoralbertos.RxCache;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5732E5411C9C6652005513E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A33092457E48B862AFDDFCFE /* Pods-RxCache.release.xcconfig */;
+			baseConfigurationReference = 54E20B7D0C9443190B22C615 /* Pods-RxCache.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
@@ -315,6 +317,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.victoralbertos.RxCache;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
