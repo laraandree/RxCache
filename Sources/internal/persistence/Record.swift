@@ -31,7 +31,7 @@ class Record<T> : NSObject, NSCoding {
     var cacheables : [T]!
     private var JSONs = [JSON]()
     var isExpirable : Bool
-
+    
     
     init(cacheables : [T], lifeTimeInSeconds: Double, isExpirable: Bool) {
         self.source = Source.Memory
@@ -51,45 +51,40 @@ class Record<T> : NSObject, NSCoding {
     }
     
     @objc required init(coder aDecoder: NSCoder) {
-        source = Source(rawValue: aDecoder.decodeObjectForKey("source") as! String)
-        timeAtWhichWasPersisted = aDecoder.decodeObjectForKey("timeAtWhichWasPersisted") as! Double
-        lifeTimeInSeconds = aDecoder.decodeObjectForKey("lifeTimeInSeconds") as! Double
-        isExpirable = aDecoder.decodeObjectForKey("isExpirable") as! Bool
-
-        JSONs = aDecoder.decodeObjectForKey("JSONs") as! [[String: AnyObject]]
+        source = Source(rawValue: aDecoder.decodeObject(forKey: "source") as! String)
+        timeAtWhichWasPersisted = aDecoder.decodeObject(forKey: "timeAtWhichWasPersisted") as! Double
+        lifeTimeInSeconds = aDecoder.decodeObject(forKey: "lifeTimeInSeconds") as! Double
+        isExpirable = aDecoder.decodeBool(forKey: "isExpirable")
+        
+        JSONs = aDecoder.decodeObject(forKey: "JSONs") as! [[String: AnyObject]]
         cacheables = [T]()
         
         for JSON in JSONs {
-            if let gloss = T.self as? GlossCacheable.Type {
-                let instance = gloss.init(json:JSON)
-                cacheables.append(instance as! T)
-            } else if let mapper = T.self as? OMCacheable.Type {
-                let instance = mapper.init(JSON:JSON)
+            if let cacheable = T.self as? Cacheable.Type {
+                let instance = cacheable.init(json:JSON)
                 cacheables.append(instance as! T)
             } else {
-                fatalError((String(T.self) + Locale.CacheableIsNotEnought))
+                fatalError((String(describing: T.self) + Locale.CacheableIsNotEnought))
             }
         }
         
         JSONs.removeAll()
     }
     
-    @objc func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(source.rawValue, forKey: "source")
-        aCoder.encodeObject(timeAtWhichWasPersisted, forKey: "timeAtWhichWasPersisted")
-        aCoder.encodeObject(lifeTimeInSeconds, forKey: "lifeTimeInSeconds")
-        aCoder.encodeObject(isExpirable, forKey: "isExpirable")
-
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(source.rawValue, forKey: "source")
+        aCoder.encode(timeAtWhichWasPersisted, forKey: "timeAtWhichWasPersisted")
+        aCoder.encode(lifeTimeInSeconds, forKey: "lifeTimeInSeconds")
+        aCoder.encode(isExpirable, forKey: "isExpirable")
+        
         for cacheable in cacheables {
-            if let gloss = cacheable as? GlossCacheable {
-                JSONs.append(gloss.toJSON()!)
-            } else if let mapper = cacheable as? OMCacheable {
-                JSONs.append(mapper.toJSON())
-            } else {
-                fatalError((String(T.self) + Locale.CacheableIsNotEnought))
+            if let cacheable = cacheable as? Cacheable {
+                if let obj = cacheable.toJSON() {
+                    JSONs.append(obj)
+                }
             }
         }
         
-        aCoder.encodeObject(JSONs, forKey: "JSONs")
+        aCoder.encode(JSONs, forKey: "JSONs")
     }
 }

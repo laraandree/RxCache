@@ -22,9 +22,9 @@
 // THE SOFTWARE.
 
 protocol Memory {
-    func getIfPresent<T>(key:String) -> Record<T>?
-    func put<T>(key: String, record: Record<T>)
+    func getIfPresent<T>(_ key:String) -> Record<T>?
+    func put<T>(_ key: String, record: Record<T>)
     func keys() -> [String]
-    func evict(key: String)
+    func evict(_ key: String)
     func evictAll()
 }

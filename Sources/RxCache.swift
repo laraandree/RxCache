@@ -24,30 +24,30 @@
 import RxSwift
 
 
-public class RxCache {
+open class RxCache {
     /**
      The one and only instance of RxCache class
      */
-    public static let Providers = RxCache()
+    open static let Providers = RxCache()
     
     /**
      * If true RxCache will serve Records already expired, instead of evict them and throw an exception
      * If not supplied, false will be the default option
      */
-    public var useExpiredDataIfLoaderNotAvailable : Bool
+    open var useExpiredDataIfLoaderNotAvailable : Bool
     
     
     /**
      * Sets the max memory in megabytes for all stored records on persistence layer
      * If not supplied, 100 megabytes will be the default option
      */
-    public var maxMBPersistenceCache : Int
+    open var maxMBPersistenceCache : Int
 
     let twoLayersCache : TwoLayersCache
     let evictExpiredRecordsPersistence: EvictExpiredRecordsPersistence
     let getDeepCopy: GetDeepCopy
     
-    private init() {
+    fileprivate init() {
         useExpiredDataIfLoaderNotAvailable = false
         maxMBPersistenceCache = 300
         
@@ -67,38 +67,38 @@ public class RxCache {
             .addDisposableTo(DisposeBag())
     }
     
-    public func cacheWithReply<T>(observable : Observable<T>,  provider : Provider) -> Observable<Reply<T>> {
+    open func cacheWithReply<T>(_ observable : Observable<T>,  provider : Provider) -> Observable<Reply<T>> {
         return self.cacheArray(observable.toArray(), provider: provider).flatMap({ (reply) -> Observable<Reply<T>> in
             return Observable.just(Reply(source: reply.source, cacheables: reply.cacheables[0]))
         })
     }
     
-    public func cacheWithReply<T>(observable : Observable<[T]>,  provider : Provider) -> Observable<Reply<[T]>> {
+    open func cacheWithReply<T>(_ observable : Observable<[T]>,  provider : Provider) -> Observable<Reply<[T]>> {
         return self.cacheArray(observable, provider: provider)
     }
     
-    public func cache<T>(observable : Observable<[T]>,  provider : Provider) -> Observable<[T]> {
+    open func cache<T>(_ observable : Observable<[T]>,  provider : Provider) -> Observable<[T]> {
         return self.cacheArray(observable, provider: provider)
             .flatMap({ (reply) -> Observable<[T]> in
                 return Observable.just(reply.cacheables)
             })
     }
     
-    public func cache<T>(observable : Observable<T>,  provider : Provider) -> Observable<T> {
+    open func cache<T>(_ observable : Observable<T>,  provider : Provider) -> Observable<T> {
         return self.cacheArray(observable.toArray(), provider: provider)
             .flatMap({ (reply) -> Observable<T> in
                 return Observable.just(reply.cacheables[0])
             })
     }
     
-    public func evictAll() -> Observable<Void> {
+    open func evictAll() -> Observable<Void> {
         return Observable.deferred({ () -> Observable<Void> in
             self.twoLayersCache.evictAll()
-            return Observable.just()
+            return Observable.empty()
         })
     }
     
-    public class func errorObservable<T>(t : T.Type)-> Observable<T> {
+    open class func errorObservable<T>(_ t : T.Type)-> Observable<T> {
         return Observable.error(NSError(domain: "", code: 0, userInfo: nil))
     }
 }

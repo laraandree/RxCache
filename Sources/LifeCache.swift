@@ -29,7 +29,7 @@ import Foundation
 * using an Evict class
 * see EvictProvider
 */
-public class LifeCache : NSObject {
+open class LifeCache : NSObject {
     let duration : Double
     let timeUnit : TimeUnit
 
@@ -39,10 +39,10 @@ public class LifeCache : NSObject {
     }
     
     public enum TimeUnit : Int {
-        case Seconds = 1
-        case Minutes = 60
-        case Hours = 3600
-        case Days = 86400
+        case seconds = 1
+        case minutes = 60
+        case hours = 3600
+        case days = 86400
     }
     
     internal func getLifeTimeInSeconds() -> Double {

@@ -28,8 +28,8 @@ import RxSwift
 @testable import RxCache
 
 class EvictExpirableRecordsPersistenceTest : XCTestCase {
-    private var evictExpirableRecordsPersistenceUT : EvictExpirableRecordsPersistence!
-    private var persistence : Disk!
+    fileprivate var evictExpirableRecordsPersistenceUT : EvictExpirableRecordsPersistence!
+    fileprivate var persistence : Disk!
 
     override func setUp() {
         super.setUp()
@@ -51,15 +51,13 @@ class EvictExpirableRecordsPersistenceTest : XCTestCase {
         let maxMgPersistenceCache = 10
         evictExpirableRecordsPersistenceUT.maxMgPersistenceCache = maxMgPersistenceCache
         populate(true)
-        
-        expect(self.persistence.allKeys().count).to(beCloseTo(mocksCount(), within: 5))
+        expect(Double(self.persistence.allKeys().count)).to(beCloseTo(mocksCount(), within: 5.0))
         
         evictExpirableRecordsPersistenceUT.startTaskIfNeeded()
         
-        let expectedStoredMB = Int((Double(maxMgPersistenceCache) * EvictExpirableRecordsPersistence.PercentageMemoryStoredToStop))
+        let expectedStoredMB = (Double(maxMgPersistenceCache) * EvictExpirableRecordsPersistence.PercentageMemoryStoredToStop)
         expect(self.persistence.storedMB()).toEventually(beTruthy())
-        
-        expect(self.persistence.storedMB()).toEventually(beCloseTo(expectedStoredMB, within: 2))
+        expect(Double(self.persistence.storedMB()!)).toEventually(beCloseTo(expectedStoredMB, within: 2.0))
     }
     
     func testWhenReachedMemory3ThresholdPerformTask() {
@@ -74,19 +72,19 @@ class EvictExpirableRecordsPersistenceTest : XCTestCase {
         WhenReachedMemoryThresholdPerformTask(7)
     }
     
-    func WhenReachedMemoryThresholdPerformTask(maxMgPersistenceCache: Int) {
+    func WhenReachedMemoryThresholdPerformTask(_ maxMgPersistenceCache: Int) {
         evictExpirableRecordsPersistenceUT.maxMgPersistenceCache = maxMgPersistenceCache
         
         populate(true)        
-        expect(self.persistence.allKeys().count).to(beCloseTo(mocksCount(), within: 5))
+        expect(Double(self.persistence.allKeys().count)).to(beCloseTo(mocksCount(), within: 5))
         
         evictExpirableRecordsPersistenceUT.startTaskIfNeeded()
         expect(self.evictExpirableRecordsPersistenceUT.couldBeExpirableRecords).to(equal(true))
         
-        let expectedStoredMB = Int((Double(maxMgPersistenceCache) * EvictExpirableRecordsPersistence.PercentageMemoryStoredToStop))
+        let expectedStoredMB = (Double(maxMgPersistenceCache) * EvictExpirableRecordsPersistence.PercentageMemoryStoredToStop)
         expect(self.persistence.storedMB()).toEventually(beTruthy(), timeout: 5)
         
-        expect(self.persistence.storedMB()).toEventually(beCloseTo(expectedStoredMB, within: 2), timeout: 2)
+        expect(Double(self.persistence.storedMB()!)).toEventually(beCloseTo(expectedStoredMB, within: 2), timeout: 2)
     }
     
     func testWhenReachedMemoryThresholdButNotExpirableRecordsDoNotEvict() {
@@ -94,7 +92,7 @@ class EvictExpirableRecordsPersistenceTest : XCTestCase {
         
         evictExpirableRecordsPersistenceUT.maxMgPersistenceCache = maxMgPersistenceCache
         populate(false)
-        expect(self.persistence.allKeys().count).to(beCloseTo(mocksCount(), within: 5))
+        expect(Double(self.persistence.allKeys().count)).to(beCloseTo(mocksCount(), within: 5))
         
         evictExpirableRecordsPersistenceUT.startTaskIfNeeded()
         expect(self.evictExpirableRecordsPersistenceUT.couldBeExpirableRecords).toEventually(equal(false))
@@ -104,11 +102,11 @@ class EvictExpirableRecordsPersistenceTest : XCTestCase {
     }
     
     //8 mb
-    private func populate(expirable : Bool) {
-        for index in 1...mocksCount() {
+    fileprivate func populate(_ expirable : Bool) {
+        for index in 1...Int(mocksCount()) {
             var mocks = [Mock]()
             
-            for _ in 1...mocksCount() {
+            for _ in 1...Int(mocksCount()) {
                 let mock = Mock(aString: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC," +
                     "making it over 2000 years old.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, " +
                     "making it over 2000 years old. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, " +
@@ -122,11 +120,11 @@ class EvictExpirableRecordsPersistenceTest : XCTestCase {
     }
     
     
-    private func mocksCount() -> Int {
+    fileprivate func mocksCount() -> Double {
         return 100
     }
     
-    private func sizeMbDataPopulated() -> Int {
+    fileprivate func sizeMbDataPopulated() -> Int {
         return 8
     }
 }

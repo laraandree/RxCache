@@ -30,7 +30,7 @@ protocol Action {
 
 extension Action {
 
-    func composeKey(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) -> String {
+    func composeKey(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) -> String {
         var dynamicKeyValue = ""
         var dynamicKeyGroupValue = ""
         
@@ -46,11 +46,11 @@ extension Action {
         return providerKey + PrefixDynamicKey + dynamicKeyValue + PrefixDynamicKeyGroup + dynamicKeyGroupValue
     }
     
-    func getKeysMatchingProviderKey(providerKey: String) -> [String] {
+    func getKeysMatchingProviderKey(_ providerKey: String) -> [String] {
         var keysMatchingProviderKey = [String]()
         
         memory.keys().forEach { (composedKeyMemory) -> () in
-            let keyPartProviderMemory  = getPartOfTarget(PrefixDynamicKey, composedKeyMemory: composedKeyMemory)
+            let keyPartProviderMemory  = getPartOfTarget(target: PrefixDynamicKey, composedKeyMemory: composedKeyMemory)
             
             if providerKey == keyPartProviderMemory {
                 keysMatchingProviderKey.append(composedKeyMemory)
@@ -60,7 +60,7 @@ extension Action {
         return keysMatchingProviderKey
     }
     
-    func getKeysMatchingDynamicKey(providerKey: String, dynamicKey : DynamicKey?) -> [String] {
+    func getKeysMatchingDynamicKey(_ providerKey: String, dynamicKey : DynamicKey?) -> [String] {
         var dynamicKeyValue = ""
         
         if dynamicKey != nil {
@@ -72,7 +72,7 @@ extension Action {
         let composedProviderKeyAndDynamicKey = providerKey + PrefixDynamicKey + dynamicKeyValue
 
         memory.keys().forEach { (composedKeyMemory) -> () in
-            let keyPartProviderAndDynamicKeyMemory  = getPartOfTarget(PrefixDynamicKeyGroup, composedKeyMemory: composedKeyMemory)
+            let keyPartProviderAndDynamicKeyMemory  = getPartOfTarget(target: PrefixDynamicKeyGroup, composedKeyMemory: composedKeyMemory)
             
             if composedProviderKeyAndDynamicKey == keyPartProviderAndDynamicKeyMemory {
                 keysMatchingDynamicKey.append(composedKeyMemory)
@@ -82,18 +82,18 @@ extension Action {
         return keysMatchingDynamicKey
     }
     
-    func getKeyMatchingDynamicKeyGroup(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) -> String {
+    func getKeyMatchingDynamicKeyGroup(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) -> String {
         return composeKey(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup)
     }
     
     private func getPartOfTarget(target: String, composedKeyMemory: String) -> String? {
-        if let range = composedKeyMemory.rangeOfString(target, options: .BackwardsSearch) {
+        if let range = composedKeyMemory.range(of: target, options: .backwards) {
             
-            let indexPrefixDynamicKey = composedKeyMemory.startIndex.distanceTo(range.startIndex)
+            let indexPrefixDynamicKey = composedKeyMemory.distance(from: composedKeyMemory.startIndex, to: range.lowerBound)
             let endPositionKey = composedKeyMemory.characters.count - indexPrefixDynamicKey
-            let finalIndex = composedKeyMemory.endIndex.advancedBy(-endPositionKey)
+            let finalIndex = composedKeyMemory.index(composedKeyMemory.endIndex, offsetBy: -endPositionKey)
             
-            return composedKeyMemory.substringWithRange(Range<String.Index>(composedKeyMemory.startIndex..<finalIndex))
+            return composedKeyMemory.substring(with: Range<String.Index>(composedKeyMemory.startIndex..<finalIndex))
         } else {
             return nil
         }

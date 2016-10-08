@@ -25,7 +25,7 @@ import RxSwift
 
 extension RxCache {
     
-    func cacheArray<T>(observable : Observable<[T]>, provider : Provider) -> Observable<Reply<[T]>> {
+    func cacheArray<T>(_ observable : Observable<[T]>, provider : Provider) -> Observable<Reply<[T]>> {
         return Observable.deferred {
             if let configError : Observable<Reply<[T]>> = self.checkIntegrityConfiguration(provider) {
                 return configError
@@ -35,20 +35,20 @@ extension RxCache {
             
             return Observable.just(record)
                 .map({ (record) -> Observable<Reply<[T]>> in
-                if let record = record where provider.evict == nil || provider.evict?.evict == false {
+                if let record = record , provider.evict == nil || provider.evict?.evict == false {
                     return Observable.just(Reply(source: record.source, cacheables: record.cacheables));
                 }
                 return self.getDataFromLoader(observable, provider: provider, record: record)
             }).flatMap { (oReply) -> Observable<Reply<[T]>> in
                 return oReply.map({ (reply) -> Reply<[T]> in
-                    let cacheablesDeepCopy = self.getDeepCopy.getDeepCopy(reply.cacheables)
+                    let cacheablesDeepCopy = self.getDeepCopy.getDeepCopy(objects: reply.cacheables)
                     return Reply(source: reply.source, cacheables: cacheablesDeepCopy)
                 })
             }
         }
     }
     
-    private func getDataFromLoader<T>(observableLoader : Observable<[T]>, provider : Provider, record : Record<T>?) -> Observable<Reply<[T]>> {
+    fileprivate func getDataFromLoader<T>(_ observableLoader : Observable<[T]>, provider : Provider, record : Record<T>?) -> Observable<Reply<[T]>> {
         return observableLoader
             .map { (cacheables) -> Reply<[T]> in
             
@@ -69,7 +69,7 @@ extension RxCache {
             })
     }
     
-    private func checkIntegrityConfiguration<T>(provider : Provider) -> Observable<Reply<[T]>>? {
+    fileprivate func checkIntegrityConfiguration<T>(_ provider : Provider) -> Observable<Reply<[T]>>? {
         if let evict = provider.evict {
             if evict is EvictDynamicKeyGroup {
                 if provider.dynamicKeyGroup == nil {
@@ -85,7 +85,7 @@ extension RxCache {
         return nil
     }
     
-    private func clearKeyIfNeeded(provider : Provider) {
+    fileprivate func clearKeyIfNeeded(_ provider : Provider) {
         let providerKey = provider.providerKey
         var dynamicKey = provider.dynamicKey
         let dynamicKeyGroup = provider.dynamicKeyGroup

@@ -32,14 +32,14 @@ class Mock : GlossCacheable {
         self.aString = aString
     }
     
-    required init(json: [String : AnyObject]) {
+    required init(json: [String : Any]) {
         aString = json["aString"] as? String
         mock = Mock(aString: json["mock"] as? String)
     }
     
-    func toJSON() -> [String : AnyObject]? {
+    func toJSON() -> [String : Any]? {
         let mockValue : String = mock?.aString ?? ""
-        return ["aString": aString!, "mock": mockValue, "mocks": ""]
+        return ["aString": aString! as AnyObject, "mock": mockValue as AnyObject, "mocks": "" as AnyObject]
     }
 }
 

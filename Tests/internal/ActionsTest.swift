@@ -13,15 +13,15 @@ import Nimble
 @testable import RxCache
 
 class ActionsTest: XCTestCase {
-    private var providers : RxCache!
-    private var persistence : Disk!
-    private var actions: Actions<Mock>!
+    fileprivate var providers : RxCache!
+    fileprivate var persistence : Disk!
+    fileprivate var actions: Actions<Mock>!
     
     override func setUp() {
         super.setUp()
         persistence = Disk()
         
-        actions = Actions<Mock>.with(RxProvidersMock.GetMocksEvictCache(evict: false))
+        actions = Actions<Mock>.with(RxProvidersMock.getMocksEvictCache(evict: false))
         
         providers = RxCache.Providers
         providers.useExpiredDataIfLoaderNotAvailable = false
@@ -151,7 +151,10 @@ class ActionsTest: XCTestCase {
         }
         
         // Evict
-        actions.evictFirstN({ count in count > 9 }, n: 5)
+        actions.evictFirstN(
+            { count in
+                count > 9
+            }, n: 5)
             .toObservable()
             .subscribeNext { mocks in
                 success = true
@@ -455,12 +458,12 @@ class ActionsTest: XCTestCase {
     }
     
     // MARK: - Private methods
-    private func clearCache() -> Observable<[Mock]> {
-        let provider = RxProvidersMock.GetMocksEvictCache(evict: true)
+    fileprivate func clearCache() -> Observable<[Mock]> {
+        let provider = RxProvidersMock.getMocksEvictCache(evict: true)
         return providers.cache(Observable.just([Mock]()), provider: provider)
     }
     
-    private func checkInitialState() {
+    fileprivate func checkInitialState() {
         var success = false
         
         clearCache().subscribeNext { mocks in
@@ -471,7 +474,7 @@ class ActionsTest: XCTestCase {
         expect(success).toEventually(beTrue())
     }
     
-    private func addAll(count: Int) {
+    fileprivate func addAll(_ count: Int) {
         var success = false
         
         var mocks = [Mock]()

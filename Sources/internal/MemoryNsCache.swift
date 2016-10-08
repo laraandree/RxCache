@@ -24,30 +24,30 @@
 import Foundation
 
 class MemoryNsCache : Memory {
-    private let records : NSCache
-    private var retainedKeys : Set<String>
+    fileprivate let records : NSCache<AnyObject, AnyObject>
+    fileprivate var retainedKeys : Set<String>
 
     init() {
         records = NSCache()
         retainedKeys = Set<String>()
     }
     
-    func getIfPresent<T>(key: String) -> Record<T>? {
+    func getIfPresent<T>(_ key: String) -> Record<T>? {
         retainedKeys.insert(key)
-        return records.objectForKey(key) as? Record<T>
+        return records.object(forKey: key as AnyObject) as? Record<T>
     }
-    func put<T>(key: String, record: Record<T>) {
+    func put<T>(_ key: String, record: Record<T>) {
         retainedKeys.insert(key)
-        records.setObject(record, forKey: key)
+        records.setObject(record, forKey: key as AnyObject)
     }
     
     func keys() -> [String] {
         return Array(retainedKeys)
     }
     
-    func evict(key: String) {
+    func evict(_ key: String) {
         retainedKeys.remove(key)
-        records.removeObjectForKey(key)
+        records.removeObject(forKey: key as AnyObject)
     }
     
     func evictAll() {

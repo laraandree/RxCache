@@ -21,9 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 import Gloss
-import RxCache
+@testable import RxCache
 
 struct MockGlossStruct: Glossy, GlossCacheable {
     let aString : String

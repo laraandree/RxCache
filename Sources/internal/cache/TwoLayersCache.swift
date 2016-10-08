@@ -37,25 +37,25 @@ class TwoLayersCache {
         saveRecord = SaveRecord(memory: memory, persistence: persistence)
     }
 
-    func retrieve<T>(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, useExpiredDataIfLoaderNotAvailable: Bool, lifeCache: LifeCache?) -> Record<T>? {
+    func retrieve<T>(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, useExpiredDataIfLoaderNotAvailable: Bool, lifeCache: LifeCache?) -> Record<T>? {
         retrieveHasBeenCalled = true
         
         return retrieveRecord.retrieve(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup, useExpiredDataIfLoaderNotAvailable: useExpiredDataIfLoaderNotAvailable, lifeCache: lifeCache)
     }
     
-    func save<T>(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, cacheables: [T], lifeCache: LifeCache?, maxMBPersistenceCache: Int, isExpirable: Bool) {
+    func save<T>(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, cacheables: [T], lifeCache: LifeCache?, maxMBPersistenceCache: Int, isExpirable: Bool) {
         saveRecord.save(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup, cacheables: cacheables, lifeCache: lifeCache, maxMBPersistenceCache: maxMBPersistenceCache, isExpirable: isExpirable)
     }
 
-    func evictProviderKey(providerKey : String) {
+    func evictProviderKey(_ providerKey : String) {
         evictRecord.evictRecordsMatchingProviderKey(providerKey)
     }
     
-    func evictDynamicKey(providerKey: String, dynamicKey : DynamicKey?) {
+    func evictDynamicKey(_ providerKey: String, dynamicKey : DynamicKey?) {
         evictRecord.evictRecordsMatchingDynamicKey(providerKey, dynamicKey: dynamicKey)
     }
     
-    func evictDynamicKeyGroup(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) {
+    func evictDynamicKeyGroup(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) {
         evictRecord.evictRecordMatchingDynamicKeyGroup(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup : dynamicKeyGroup)
     }
     

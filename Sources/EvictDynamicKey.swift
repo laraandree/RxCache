@@ -25,7 +25,7 @@
 * For those providers which will need to evict the records of an specific DynamicKey.
 * see DynamicKey
 */
-public class EvictDynamicKey : EvictProvider {
+open class EvictDynamicKey : EvictProvider {
     
     public override init(evict : Bool) {
         super.init(evict: evict)

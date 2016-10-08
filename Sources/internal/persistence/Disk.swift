@@ -27,14 +27,14 @@ class Disk : Persistence {
     let path : String
     
     init() {
-        let fileManager = NSFileManager.defaultManager()
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentsDirectory: AnyObject = paths[0]
-        let dirPath = documentsDirectory.stringByAppendingPathComponent(Locale.RxSDomain)
+        let fileManager = FileManager.default
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let documentsDirectory: AnyObject = paths[0] as AnyObject
+        let dirPath: String = documentsDirectory.appendingPathComponent(Locale.RxSDomain)
         
-        if !fileManager.fileExistsAtPath(dirPath) {
+        if !fileManager.fileExists(atPath: dirPath) {
             do {
-                try fileManager.createDirectoryAtPath(dirPath, withIntermediateDirectories: false, attributes: nil)
+                try fileManager.createDirectory(atPath: dirPath, withIntermediateDirectories: false, attributes: nil)
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -43,23 +43,23 @@ class Disk : Persistence {
         self.path = dirPath + "/"
     }
     
-    func evict(key: String) {
+    func evict(_ key: String) {
         do {
-            try NSFileManager.defaultManager().removeItemAtPath(path+key)
+            try FileManager.default.removeItem(atPath: path+key)
         } catch {
             print("Failed to delete data for key" + key)
         }
     }
     
     func evictAll() {
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         let path = self.path
         do {
-            let contents = try fileManager.contentsOfDirectoryAtPath(path)
+            let contents = try fileManager.contentsOfDirectory(atPath: path)
             for pathComponent in contents {
-                let path = (path as NSString).stringByAppendingPathComponent(pathComponent)
+                let path = (path as NSString).appendingPathComponent(pathComponent)
                 do {
-                    try fileManager.removeItemAtPath(path)
+                    try fileManager.removeItem(atPath: path)
                 } catch {
                     print("Failed to remove path " + path)
                 }
@@ -70,11 +70,11 @@ class Disk : Persistence {
     }
     
     func allKeys() -> [String] {
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         let path = self.path
         
         do {
-            let contents = try fileManager.contentsOfDirectoryAtPath(path)
+            let contents = try fileManager.contentsOfDirectory(atPath: path)
             return contents
         } catch {
             return [String]()
@@ -98,12 +98,12 @@ class Disk : Persistence {
         return anyError ? nil : Int(storedMB)
     }
     
-    func fileBytes(key: String) -> Double? {
+    func fileBytes(_ key: String) -> Double? {
         let path = self.path
 
-        let pathFile = (path as NSString).stringByAppendingPathComponent(key)
+        let pathFile = (path as NSString).appendingPathComponent(key)
         do {
-            let attr : NSDictionary? = try NSFileManager.defaultManager().attributesOfItemAtPath(pathFile)
+            let attr : NSDictionary? = try FileManager.default.attributesOfItem(atPath: pathFile) as NSDictionary?
             
             if let _attr = attr {
                 return Double(_attr.fileSize())
@@ -114,10 +114,10 @@ class Disk : Persistence {
         }
     }
     
-    func retrieveRecord<T>(key: String) -> Record<T>? {
+    func retrieveRecord<T>(_ key: String) -> Record<T>? {
         NSKeyedUnarchiver.setClass(Record<T>.self, forClassName: "Record")
         
-        if let record : Record<T> = NSKeyedUnarchiver.unarchiveObjectWithFile(path+key) as? Record<T> {
+        if let record : Record<T> = NSKeyedUnarchiver.unarchiveObject(withFile: path+key) as? Record<T> {
             if let fileBytes = fileBytes(key) {
                 record.sizeOnMb = fileBytes/1024/1024
             }
@@ -127,8 +127,8 @@ class Disk : Persistence {
         return nil
     }
     
-    func saveRecord<T>(key: String, record : Record<T>) -> Bool {
-        NSKeyedArchiver.setClassName("Record", forClass: Record<T>.self)
+    func saveRecord<T>(_ key: String, record : Record<T>) -> Bool {
+        NSKeyedArchiver.setClassName("Record", for: Record<T>.self)
         return NSKeyedArchiver.archiveRootObject(record, toFile: path+key)
     }
 }

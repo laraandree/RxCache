@@ -1,32 +1,28 @@
 PODS:
-  - Alamofire (3.2.1)
-  - Gloss (0.7.1)
-  - Moya/Core (6.3.0):
-    - Alamofire (~> 3.0)
-    - Result (~> 1.0)
-  - Moya/RxSwift (6.3.0):
-    - Moya/Core
-    - RxSwift (~> 2.0)
-  - ObjectMapper (1.1.5)
-  - Result (1.0.2)
-  - RxCache (0.1.2):
-    - RxSwift (~> 2.0)
-  - RxSwift (2.2.0)
+  - Gloss (0.7.4)
+  - ObjectMapper (2.0.0)
+  - RxSwift (3.0.0-beta.2)
 
 DEPENDENCIES:
-  - Gloss (~> 0.7)
-  - Moya/RxSwift
-  - ObjectMapper (~> 1.1)
-  - RxCache (~> 0.1.2)
-  - RxSwift (~> 2.0)
+  - Gloss (from `https://github.com/hkellaway/Gloss.git`, branch `swift_3.0`)
+  - ObjectMapper (~> 2.0)
+  - RxSwift (>= 3.0.0-beta.1)
+
+EXTERNAL SOURCES:
+  Gloss:
+    :branch: swift_3.0
+    :git: https://github.com/hkellaway/Gloss.git
+
+CHECKOUT OPTIONS:
+  Gloss:
+    :commit: 145c78888ccca678bf146b5b0b58882016a4d9aa
+    :git: https://github.com/hkellaway/Gloss.git
 
 SPEC CHECKSUMS:
-  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
-  Gloss: e674d7aa06a7e292a591d0d39a759b826daf503e
-  Moya: a202c1d62c950e23437fd4ef5557395f488fdca6
-  ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
-  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
-  RxCache: f6cf9d968b56bb97a1ab9256da6afa235f68f045
-  RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
+  Gloss: d86009ef4d12c221d889c4e3f9e1eb547ee6251d
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  RxSwift: 0ea939d7d97cb70657190ffde8dc2a9b455778fc
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: a911d188f07a8ed823e02e664cc0454bce558b2d
+
+COCOAPODS: 1.1.0.rc.2

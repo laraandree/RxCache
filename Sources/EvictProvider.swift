@@ -25,7 +25,7 @@
 * For those providers which will need to evict all the records
 * see EvictDynamicKeyGroup
 */
-public class EvictProvider {
+open class EvictProvider {
     let evict : Bool
     
     public init(evict : Bool) {

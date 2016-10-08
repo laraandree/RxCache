@@ -8,7 +8,7 @@
 
 internal class PlaceholderProvider: Provider {
     
-    private let provider: Provider
+    fileprivate let provider: Provider
     
     init(provider: Provider) {
         self.provider = provider

@@ -26,7 +26,7 @@
 * so they need to provide multiple keys organized in groups, such us end points with filtering AND pagination
 * requirements
 */
-public class DynamicKeyGroup {
+open class DynamicKeyGroup {
     let dynamicKey : String
     let group: String
     

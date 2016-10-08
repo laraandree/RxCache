@@ -27,8 +27,8 @@ import Nimble
 @testable import RxCache
 
 class DiskTest: XCTestCase {
-    private var diskUT : Disk!
-    private let KeyRecords = "records", Key1 = "record1", Key2 = "record2"
+    fileprivate var diskUT : Disk!
+    fileprivate let KeyRecords = "records", Key1 = "record1", Key2 = "record2"
     
     override class func initialize () {
         Disk().evictAll()

@@ -21,28 +21,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
 import RxCache
 
 public enum RxProvidersMock : Provider {
-    case GetMock()
-    case GetMocksWithDetailResponse()
-    case GetMocksResponseOneSecond()
-    case GetMocksEvictCache(evict : Bool)
-    case GetMocksPaginate(page : Int)
-    case GetMocksPaginateNotExpirable(page : Int)
-    case GetMocksPaginateEvictAll(page : Int, evictAll: Bool)
-    case GetMocksPaginateEvictByPage(page : Int, evictByPage: Bool)
-    case GetMocksFilteredPaginateEvict(filter: String, page : String, evict: EvictProvider)
-    case GetMocksLogin(Evict: Bool)
-    case GetEphemeralMocksPaginate(page : String)
+    case getMock()
+    case getMocksWithDetailResponse()
+    case getMocksResponseOneSecond()
+    case getMocksEvictCache(evict : Bool)
+    case getMocksPaginate(page : Int)
+    case getMocksPaginateNotExpirable(page : Int)
+    case getMocksPaginateEvictAll(page : Int, evictAll: Bool)
+    case getMocksPaginateEvictByPage(page : Int, evictByPage: Bool)
+    case getMocksFilteredPaginateEvict(filter: String, page : String, evict: EvictProvider)
+    case getMocksLogin(Evict: Bool)
+    case getEphemeralMocksPaginate(page : String)
 
     public var lifeCache: LifeCache? {
         switch self {
-        case GetMocksResponseOneSecond:
-            return LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Seconds)
-        case GetEphemeralMocksPaginate:
-            return LifeCache(duration: 0.01, timeUnit: LifeCache.TimeUnit.Seconds)
+        case .getMocksResponseOneSecond:
+            return LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.seconds)
+        case .getEphemeralMocksPaginate:
+            return LifeCache(duration: 0.01, timeUnit: LifeCache.TimeUnit.seconds)
         default:
             return nil
         }
@@ -50,15 +49,15 @@ public enum RxProvidersMock : Provider {
     
     public var dynamicKey: DynamicKey? {
         switch self {
-        case let GetMocksPaginate(page):
+        case let .getMocksPaginate(page):
             return DynamicKey(dynamicKey: String(page))
-        case let GetMocksPaginateNotExpirable(page):
+        case let .getMocksPaginateNotExpirable(page):
             return DynamicKey(dynamicKey: String(page))
-        case let GetMocksPaginateEvictAll(page, _):
+        case let .getMocksPaginateEvictAll(page, _):
             return DynamicKey(dynamicKey: String(page))
-        case let GetMocksPaginateEvictByPage(page, _):
+        case let .getMocksPaginateEvictByPage(page, _):
             return DynamicKey(dynamicKey: String(page))
-        case let GetEphemeralMocksPaginate(page):
+        case let .getEphemeralMocksPaginate(page):
             return DynamicKey(dynamicKey: String(page))
         default:
             return nil
@@ -67,7 +66,7 @@ public enum RxProvidersMock : Provider {
     
     public var dynamicKeyGroup: DynamicKeyGroup? {
         switch self {
-        case let GetMocksFilteredPaginateEvict(filter, page, _):
+        case let .getMocksFilteredPaginateEvict(filter, page, _):
             return DynamicKeyGroup(dynamicKey: filter, group: page)
         default:
             return nil
@@ -76,15 +75,15 @@ public enum RxProvidersMock : Provider {
     
     public var evict: EvictProvider? {
         switch self {
-        case let GetMocksEvictCache(evict):
+        case let .getMocksEvictCache(evict):
             return EvictProvider(evict: evict)
-        case let GetMocksPaginateEvictAll(_, evict):
+        case let .getMocksPaginateEvictAll(_, evict):
             return EvictProvider(evict: evict)
-        case let GetMocksLogin(evict):
+        case let .getMocksLogin(evict):
             return EvictProvider(evict: evict)
-        case let GetMocksPaginateEvictByPage(_, evictByPage):
+        case let .getMocksPaginateEvictByPage(_, evictByPage):
             return EvictDynamicKey(evict: evictByPage)
-        case let GetMocksFilteredPaginateEvict(_, _, evict):
+        case let .getMocksFilteredPaginateEvict(_, _, evict):
             return evict
         default:
             return nil
@@ -93,7 +92,7 @@ public enum RxProvidersMock : Provider {
     
     public func expirable() -> Bool {
         switch self {
-        case GetMocksPaginateNotExpirable(_):
+        case .getMocksPaginateNotExpirable(_):
             return false
         default:
             return true

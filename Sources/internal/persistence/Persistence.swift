@@ -23,10 +23,10 @@
 
 
 protocol Persistence {
-    func saveRecord<T>(key: String, record : Record<T>) -> Bool
-    func evict(key: String)
+    func saveRecord<T>(_ key: String, record : Record<T>) -> Bool
+    func evict(_ key: String)
     func evictAll()
-    func retrieveRecord<T>(key: String) -> Record<T>?
+    func retrieveRecord<T>(_ key: String) -> Record<T>?
     func allKeys() -> [String]
     func storedMB() -> Int?
 }

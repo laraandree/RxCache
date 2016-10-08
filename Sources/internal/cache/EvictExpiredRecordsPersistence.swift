@@ -37,14 +37,14 @@ class EvictExpiredRecordsPersistence {
             
             let allKeys = self.persistence.allKeys()
             allKeys.forEach({ (key) -> () in                
-                if let record : Record<CacheablePlaceholder> = self.persistence.retrieveRecord(key) where self.hasRecordExpired.hasRecordExpired(record) {
+                if let record : Record<CacheablePlaceholder> = self.persistence.retrieveRecord(key) , self.hasRecordExpired.hasRecordExpired(record: record) {
                     self.persistence.evict(key)
                     subscriber.onNext(key)
                 }
             })
     
             subscriber.onCompleted()
-            return NopDisposable.instance
+            return Disposables.create()
         }
     }
 }

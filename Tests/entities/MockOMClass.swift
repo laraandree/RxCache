@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 import ObjectMapper
-import RxCache
+@testable import RxCache
 
 class MockOMClass : Mappable, OMCacheable {
     var aString : String!
@@ -31,12 +31,8 @@ class MockOMClass : Mappable, OMCacheable {
         self.aString = aString
     }
     
-    required init?(JSON: [String : AnyObject]) {
+    required init?(map: Map) {
         
-    }
-    
-    required init?(_ map: Map) {
-
     }
     
     func mapping(map: Map) {

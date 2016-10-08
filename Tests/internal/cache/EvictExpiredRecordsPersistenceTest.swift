@@ -29,12 +29,12 @@ import RxSwift
 
 class EvictExpiredRecordsPersistenceTest : XCTestCase {
     
-    private var twoLayersCache : TwoLayersCache!
-    private var evictExpiredRecordsPersistenceUT : EvictExpiredRecordsPersistence!
-    private let oneSecond = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Seconds)
-    private let thirtySecond = LifeCache(duration: 30, timeUnit: LifeCache.TimeUnit.Seconds)
-    private let moreThanOneSecond : Double = 1.5
-    private var persistence : Persistence!
+    fileprivate var twoLayersCache : TwoLayersCache!
+    fileprivate var evictExpiredRecordsPersistenceUT : EvictExpiredRecordsPersistence!
+    fileprivate let oneSecond = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.seconds)
+    fileprivate let thirtySecond = LifeCache(duration: 30, timeUnit: LifeCache.TimeUnit.seconds)
+    fileprivate let moreThanOneSecond : Double = 1.5
+    fileprivate var persistence : Persistence!
     
     override func setUp() {
         super.setUp()
@@ -64,7 +64,7 @@ class EvictExpiredRecordsPersistenceTest : XCTestCase {
             twoLayersCache.save(keyLive, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: data(keyLive), lifeCache: thirtySecond, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         }
         
-        NSThread.sleepForTimeInterval(moreThanOneSecond)
+        Thread.sleep(forTimeInterval: moreThanOneSecond)
         expect(self.persistence.allKeys().count).to(equal(recordsCount))
     
         var completed = false
@@ -89,17 +89,17 @@ class EvictExpiredRecordsPersistenceTest : XCTestCase {
         expect(allkeys.count).to(equal(recordsCount / 2))
 
         allkeys.forEach { (key) -> () in
-            let parts = key.componentsSeparatedByString("$")
+            let parts = key.components(separatedBy: "$")
             let realKey = parts[0]
             
             let record : Record<Mock> = twoLayersCache.retrieve(realKey, dynamicKey: nil, dynamicKeyGroup: nil,useExpiredDataIfLoaderNotAvailable: false, lifeCache: thirtySecond)!
             
-            XCTAssert(record.cacheables[0].aString!.containsString("live"))
-            XCTAssert(!record.cacheables[0].aString!.containsString("expired"))
+            XCTAssert(record.cacheables[0].aString!.contains("live"))
+            XCTAssert(!record.cacheables[0].aString!.contains("expired"))
         }
     }
     
-    private func data(value: String) -> [Mock] {
+    fileprivate func data(_ value: String) -> [Mock] {
         return [Mock(aString: value)]
     }
     

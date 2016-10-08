@@ -26,7 +26,7 @@ import RxSwift
 class SaveRecord : Action {
     let memory : Memory
     let evictExpirableRecordsPersistence : EvictExpirableRecordsPersistence
-    private let persistence : Persistence
+    fileprivate let persistence : Persistence
 
     init(memory : Memory, persistence : Persistence) {
         self.memory = memory
@@ -34,14 +34,14 @@ class SaveRecord : Action {
         self.persistence = persistence
     }
     
-    func save<T>(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, cacheables: [T], lifeCache: LifeCache?, maxMBPersistenceCache: Int, isExpirable: Bool) {
+    func save<T>(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, cacheables: [T], lifeCache: LifeCache?, maxMBPersistenceCache: Int, isExpirable: Bool) {
         let composedKey = composeKey(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup);
         
         let lifeTimeInSeconds = lifeCache != nil ? lifeCache!.getLifeTimeInSeconds() : 0
         let record : Record<T> = Record(cacheables: cacheables, lifeTimeInSeconds: lifeTimeInSeconds, isExpirable: isExpirable)
         memory.put(composedKey, record: record)
         
-        if let storedMB = persistence.storedMB() where storedMB >= maxMBPersistenceCache {
+        if let storedMB = persistence.storedMB() , storedMB >= maxMBPersistenceCache {
             print(Locale.DataCanNotBePersistedBecauseWouldExceedThresholdLimit)
         } else {
             persistence.saveRecord(composedKey, record: record)

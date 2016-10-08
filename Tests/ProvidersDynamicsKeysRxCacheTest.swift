@@ -50,141 +50,141 @@ class ProvidersDynamicsKeysRxCacheTest : XCTestCase {
 
     
     func test1Pagination() {
-        let providerPage1 = RxProvidersMock.GetMocksPaginate(page: 1)
-        let providerPage2 = RxProvidersMock.GetMocksPaginate(page: 2)
-        let providerPage3 = RxProvidersMock.GetMocksPaginate(page: 3)
+        let providerPage1 = RxProvidersMock.getMocksPaginate(page: 1)
+        let providerPage2 = RxProvidersMock.getMocksPaginate(page: 2)
+        let providerPage3 = RxProvidersMock.getMocksPaginate(page: 3)
         let mocks1 = createMocks(Size)
         let mockPage1Value = mocks1[0].aString!
-        NSThread.sleepForTimeInterval(0.1)
+        Thread.sleep(forTimeInterval: 0.1)
         
         var success = false
-        providers.cache(Observable.just(mocks1), provider: providerPage1).subscribeNext {data in
+        providers.cache(Observable.just(mocks1), provider: providerPage1).subscribe(onNext: { data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         let mocks2 = createMocks(Size)
         let mockPage2Value = mocks2[0].aString!
-        NSThread.sleepForTimeInterval(0.1)
+        Thread.sleep(forTimeInterval: 0.1)
         
         success = false
-        providers.cache(Observable.just(mocks2), provider: providerPage2).subscribeNext {data in
+        providers.cache(Observable.just(mocks2), provider: providerPage2).subscribe(onNext: { data in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         let mocks3 = createMocks(Size)
         let mockPage3Value = mocks3[0].aString!
         
         success = false
-        providers.cache(Observable.just(mocks3), provider: providerPage3).subscribeNext {data in
+        providers.cache(Observable.just(mocks3), provider: providerPage3).subscribe(onNext: {data in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1).subscribeNext {data in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1).subscribe(onNext: {data in
             success = true
             expect(data[0].aString).to(equal(mockPage1Value))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2).subscribeNext {data in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2).subscribe(onNext: {data in
             success = true
             expect(data[0].aString).to(equal(mockPage2Value))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage3).subscribeNext {data in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage3).subscribe(onNext: {data in
             success = true
             expect(data[0].aString).to(equal(mockPage3Value))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
     func test2PaginationEvictAll() {
-        let providerPage1NoEvict = RxProvidersMock.GetMocksPaginateEvictAll(page: 1, evictAll: false)
-        let providerPage2NoEvict = RxProvidersMock.GetMocksPaginateEvictAll(page: 2, evictAll: false)
-        let providerEvictAll = RxProvidersMock.GetMocksPaginateEvictAll(page: 1, evictAll: true)
+        let providerPage1NoEvict = RxProvidersMock.getMocksPaginateEvictAll(page: 1, evictAll: false)
+        let providerPage2NoEvict = RxProvidersMock.getMocksPaginateEvictAll(page: 2, evictAll: false)
+        let providerEvictAll = RxProvidersMock.getMocksPaginateEvictAll(page: 1, evictAll: true)
         
         var success = false
-        providers.cache(createObservableMocks(Size), provider: providerPage1NoEvict).subscribeNext {data in
+        providers.cache(createObservableMocks(Size), provider: providerPage1NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(createObservableMocks(Size), provider: providerPage2NoEvict).subscribeNext {data in
+        providers.cache(createObservableMocks(Size), provider: providerPage2NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1NoEvict).subscribeNext {data in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2NoEvict).subscribeNext {data in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerEvictAll).subscribeNext {data in}.addDisposableTo(DisposeBag())
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerEvictAll).subscribe(onNext: {data in }).addDisposableTo(DisposeBag())
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1NoEvict).subscribeError { (error) -> Void in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1NoEvict).subscribe(onError: { error in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2NoEvict).subscribeError { (error) -> Void in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2NoEvict).subscribe(onError: { (error) -> Void in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
     func test3PaginationEvictByPage() {
-        let providerPage1NoEvict = RxProvidersMock.GetMocksPaginateEvictByPage(page: 1, evictByPage: false)
-        let providerPage2NoEvict = RxProvidersMock.GetMocksPaginateEvictByPage(page: 2, evictByPage: false)
-        let providerPage1Evict = RxProvidersMock.GetMocksPaginateEvictByPage(page: 1, evictByPage: true)
+        let providerPage1NoEvict = RxProvidersMock.getMocksPaginateEvictByPage(page: 1, evictByPage: false)
+        let providerPage2NoEvict = RxProvidersMock.getMocksPaginateEvictByPage(page: 2, evictByPage: false)
+        let providerPage1Evict = RxProvidersMock.getMocksPaginateEvictByPage(page: 1, evictByPage: true)
         
         var success = false
-        providers.cache(createObservableMocks(Size), provider: providerPage1NoEvict).subscribeNext {data in
+        providers.cache(createObservableMocks(Size), provider: providerPage1NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(createObservableMocks(Size), provider: providerPage2NoEvict).subscribeNext {data in
+        providers.cache(createObservableMocks(Size), provider: providerPage2NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1Evict).subscribeNext {data in}.addDisposableTo(DisposeBag())
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1Evict).subscribe(onNext: {data in}).addDisposableTo(DisposeBag())
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1NoEvict).subscribeError { (error) -> Void in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage1NoEvict).subscribe(onError: { (error) -> Void in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2NoEvict).subscribeNext {data in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: providerPage2NoEvict).subscribe(onNext: {data in
             success = true
             expect(data.count).to(equal(self.Size))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         providers.twoLayersCache.evictAll()
@@ -260,7 +260,7 @@ class ProvidersDynamicsKeysRxCacheTest : XCTestCase {
         providers.twoLayersCache.evictAll()
     }
     
-    private func populateAndCheckRetrieved() {
+    fileprivate func populateAndCheckRetrieved() {
         populateFilterPage(filter1Page1)
         populateFilterPage(filter1Page2)
         populateFilterPage(filter1Page3)
@@ -277,11 +277,11 @@ class ProvidersDynamicsKeysRxCacheTest : XCTestCase {
     }
     
     
-    private func populateFilterPage(filter_page: String) {
-        let filer_pageArra = filter_page.componentsSeparatedByString("_")
+    fileprivate func populateFilterPage(_ filter_page: String) {
+        let filer_pageArra = filter_page.components(separatedBy: "_")
         let filter = filer_pageArra[0]
         let page =  filer_pageArra[1]
-        let provider = RxProvidersMock.GetMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictProvider(evict: false))
+        let provider = RxProvidersMock.getMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictProvider(evict: false))
 
         var success = false
         let oMock : Observable<Mock> = Observable.just(Mock(aString: filter_page))
@@ -292,77 +292,77 @@ class ProvidersDynamicsKeysRxCacheTest : XCTestCase {
         expect(success).toEventually(equal(true))
     }
     
-    private func retrieveAndCheckFilterPageValue(filter_page: String, shouldThrowException : Bool) {
-        let filer_pageArra = filter_page.componentsSeparatedByString("_")
+    fileprivate func retrieveAndCheckFilterPageValue(_ filter_page: String, shouldThrowException : Bool) {
+        let filer_pageArra = filter_page.components(separatedBy: "_")
         let filter = filer_pageArra[0]
         let page =  filer_pageArra[1]
-        let provider = RxProvidersMock.GetMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictProvider(evict: false))
+        let provider = RxProvidersMock.getMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictProvider(evict: false))
         
         var success = false
         
         if shouldThrowException {
-            providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribeError { (error) -> Void in
+            providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribe(onError: { (error) -> Void in
                 success = true
-                }.addDisposableTo(DisposeBag())
+                }).addDisposableTo(DisposeBag())
             expect(success).toEventually(equal(true))
         } else {
-            providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribeNext {data in
+            providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribe(onNext: {data in
                 success = true
                 expect(data[0].aString).to(equal(filter_page))
-                }.addDisposableTo(DisposeBag())
+                }).addDisposableTo(DisposeBag())
             expect(success).toEventually(equal(true))
         }
     }
     
-    private func evictProviderKey(filter_page: String) {
-        let filer_pageArra = filter_page.componentsSeparatedByString("_")
+    fileprivate func evictProviderKey(_ filter_page: String) {
+        let filer_pageArra = filter_page.components(separatedBy: "_")
         let filter = filer_pageArra[0]
         let page =  filer_pageArra[1]
-        let provider = RxProvidersMock.GetMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictProvider(evict: true))
+        let provider = RxProvidersMock.getMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictProvider(evict: true))
         
         var success = false
         
-        providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribeError { (error) -> Void in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribe(onError: { (error) -> Void in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
-    private func evictDynamicKey(filter_page: String) {
-        let filer_pageArray = filter_page.componentsSeparatedByString("_")
+    fileprivate func evictDynamicKey(_ filter_page: String) {
+        let filer_pageArray = filter_page.components(separatedBy: "_")
         let filter = filer_pageArray[0]
         let page =  filer_pageArray[1]
-        let provider = RxProvidersMock.GetMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictDynamicKey(evict: true))
+        let provider = RxProvidersMock.getMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictDynamicKey(evict: true))
         var success = false
         
-        providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribeError { (error) -> Void in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribe(onError: { (error) -> Void in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
-    private func evictDynamicKeyGroup(filter_page: String) {
-        let filer_pageArra = filter_page.componentsSeparatedByString("_")
+    fileprivate func evictDynamicKeyGroup(_ filter_page: String) {
+        let filer_pageArra = filter_page.components(separatedBy: "_")
         let filter = filer_pageArra[0]
         let page =  filer_pageArra[1]
-        let provider = RxProvidersMock.GetMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictDynamicKeyGroup(evict: true))
+        let provider = RxProvidersMock.getMocksFilteredPaginateEvict(filter: filter, page: page, evict: EvictDynamicKeyGroup(evict: true))
         var success = false
         
-        providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribeError { (error) -> Void in
+        providers.cache(RxCache.errorObservable([Mock].self), provider: provider).subscribe(onError: { (error) -> Void in
             success = true
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
-    private func createObservableMocks(size : Int) -> Observable<[Mock]> {
+    fileprivate func createObservableMocks(_ size : Int) -> Observable<[Mock]> {
         return Observable.just(createMocks(size))
     }
     
-    private func createMocks(size : Int) -> [Mock] {
+    fileprivate func createMocks(_ size : Int) -> [Mock] {
         var mocks = [Mock]()
         
         for index in 1...size {
-            let nowDouble = NSDate().timeIntervalSince1970
+            let nowDouble = Date().timeIntervalSince1970
             mocks.append(Mock(aString: String(Int64(nowDouble*1000)+index)))
         }
         

@@ -40,8 +40,7 @@ class EvictExpirableRecordsPersistence {
     }
     
     func startTaskIfNeeded() {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        DispatchQueue.global(qos: .default).async {
             if self.isRunning {
                 return
             }
@@ -60,7 +59,7 @@ class EvictExpirableRecordsPersistence {
                 return
             }
             
-            if !self.reachedPercentageMemoryToStart(storedMB!) {
+            if !self.reachedPercentageMemoryToStart(storedMB: storedMB!) {
                 self.isRunning  = false
                 return
             }
@@ -70,8 +69,7 @@ class EvictExpirableRecordsPersistence {
             var releasedMBSoFar : Double = 0
             
             for key in allKeys  {
-                if self.reachedPercentageMemoryToStop(storedMB!, releasedMBSoFar: releasedMBSoFar) {
-                    self.reachedPercentageMemoryToStop(storedMB!, releasedMBSoFar: releasedMBSoFar)
+                if self.reachedPercentageMemoryToStop(storedMBWhenStarted: storedMB!, releasedMBSoFar: releasedMBSoFar) {
                     break
                 }
                 
@@ -83,7 +81,7 @@ class EvictExpirableRecordsPersistence {
                 }
             }
             
-            self.couldBeExpirableRecords = self.reachedPercentageMemoryToStop(storedMB!, releasedMBSoFar: releasedMBSoFar)
+            self.couldBeExpirableRecords = self.reachedPercentageMemoryToStop(storedMBWhenStarted: storedMB!, releasedMBSoFar: releasedMBSoFar)
             
             self.isRunning  = false
         }

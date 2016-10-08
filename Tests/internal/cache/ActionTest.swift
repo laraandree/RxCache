@@ -93,7 +93,7 @@ class Actiontest : XCTestCase {
     }
     
     
-    func mock(value : String) -> Record<Mock> {
+    func mock(_ value : String) -> Record<Mock> {
         return Record<Mock>(cacheables: [Mock(aString: value)], lifeTimeInSeconds: 0, isExpirable: true)
     }
     
@@ -108,9 +108,9 @@ class ActionUT : Action {
 }
 
 class MemoryMock : Memory {
-    private var records = [String]()
+    fileprivate var records = [String]()
     
-    func getIfPresent<T>(key: String) -> Record<T>? {
+    func getIfPresent<T>(_ key: String) -> Record<T>? {
         var data = ""
         
         records.forEach { (value) -> () in
@@ -122,7 +122,7 @@ class MemoryMock : Memory {
         return Record<T>(cacheables: [data as! T], lifeTimeInSeconds: 0, isExpirable: true)
     }
     
-    func put<T>(key: String, record: Record<T>) {
+    func put<T>(_ key: String, record: Record<T>) {
         records.append(key)
     }
     
@@ -130,7 +130,7 @@ class MemoryMock : Memory {
         return records
     }
     
-    func evict(key: String) {
+    func evict(_ key: String) {
         fatalError("evict mock not implemented")
     }
     

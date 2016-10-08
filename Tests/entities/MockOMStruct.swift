@@ -22,17 +22,16 @@
 // THE SOFTWARE.
 
 import ObjectMapper
-import RxCache
+@testable import RxCache
 
 struct MockOMStruct: Mappable, OMCacheable {
     var aString : String!
 
-    
     init(aString : String) {
         self.aString = aString
     }
     
-    init?(_ map: Map) {
+    init?(map: Map) {
         
     }
     

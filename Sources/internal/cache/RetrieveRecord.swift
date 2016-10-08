@@ -23,9 +23,9 @@
 
 class RetrieveRecord : Action {
     let memory : Memory
-    private let evictRecord : EvictRecord
-    private let hasRecordExpired : HasRecordExpired
-    private let persistence : Persistence
+    fileprivate let evictRecord : EvictRecord
+    fileprivate let hasRecordExpired : HasRecordExpired
+    fileprivate let persistence : Persistence
     
     init(memory : Memory, evictRecord : EvictRecord, hasRecordExpired : HasRecordExpired, persistence : Persistence) {
         self.memory = memory
@@ -34,7 +34,7 @@ class RetrieveRecord : Action {
         self.persistence = persistence
     }
     
-    func retrieve<T>(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, useExpiredDataIfLoaderNotAvailable: Bool, lifeCache: LifeCache?) -> Record<T>? {
+    func retrieve<T>(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?, useExpiredDataIfLoaderNotAvailable: Bool, lifeCache: LifeCache?) -> Record<T>? {
 
         let composedKey = composeKey(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup);
 
@@ -54,7 +54,7 @@ class RetrieveRecord : Action {
         let lifeTimeInSeconds = lifeCache != nil ? lifeCache!.getLifeTimeInSeconds() : 0
         record.lifeTimeInSeconds = lifeTimeInSeconds
         
-        if hasRecordExpired.hasRecordExpired(record) {
+        if hasRecordExpired.hasRecordExpired(record: record) {
             if let dynamicKeyGroup = dynamicKeyGroup {
                 evictRecord.evictRecordMatchingDynamicKeyGroup(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup)
             } else if let dynamicKey = dynamicKey {

@@ -23,7 +23,7 @@
 
 class EvictRecord : Action {
     let memory : Memory
-    private let persistence : Persistence
+    fileprivate let persistence : Persistence
 
     init(memory : Memory, persistence : Persistence) {
         self.memory = memory
@@ -31,7 +31,7 @@ class EvictRecord : Action {
 
     }
     
-    func evictRecordsMatchingProviderKey(providerKey: String) {
+    func evictRecordsMatchingProviderKey(_ providerKey: String) {
         let keysMatchingKeyProvider = getKeysMatchingProviderKey(providerKey)
         
         keysMatchingKeyProvider.forEach { (keyMatchingKeyProvider) -> () in
@@ -40,7 +40,7 @@ class EvictRecord : Action {
         }
     }
     
-    func evictRecordsMatchingDynamicKey(providerKey: String, dynamicKey : DynamicKey?) {
+    func evictRecordsMatchingDynamicKey(_ providerKey: String, dynamicKey : DynamicKey?) {
         let keysMatchingDynamicKey = getKeysMatchingDynamicKey(providerKey, dynamicKey: dynamicKey)
         
         keysMatchingDynamicKey.forEach { (keyMatchingDynamicKey) -> () in
@@ -49,7 +49,7 @@ class EvictRecord : Action {
         }
     }
     
-    func evictRecordMatchingDynamicKeyGroup(providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) {
+    func evictRecordMatchingDynamicKeyGroup(_ providerKey: String, dynamicKey : DynamicKey?, dynamicKeyGroup : DynamicKeyGroup?) {
         let composedKey = getKeyMatchingDynamicKeyGroup(providerKey, dynamicKey: dynamicKey, dynamicKeyGroup: dynamicKeyGroup)
         memory.evict(composedKey)
         persistence.evict(composedKey)

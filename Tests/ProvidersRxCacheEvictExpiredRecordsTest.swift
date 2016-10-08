@@ -42,47 +42,47 @@ class ProvidersRxCacheEvictExpiredRecordsTest : XCTestCase {
     }
     
     func test1PopulateDiskWithExpiredRecordsButNoRetrievableKeys() {
-        expect(persistence.storedMB()).to(beCloseTo(0, within: 2))
+        expect(Double(persistence.storedMB()!)).to(beCloseTo(0, within: 2))
         
         for index in 1...100 {
             var finish = false
-            providers.cache(createObservableMocks(100), provider: RxProvidersMock.GetEphemeralMocksPaginate(page: String(index))).subscribeNext { mocks in
+            providers.cache(createObservableMocks(100), provider: RxProvidersMock.getEphemeralMocksPaginate(page: String(index))).subscribeNext { mocks in
                 finish = true
             }.addDisposableTo(DisposeBag())
             
             expect(finish).toEventually(equal(true))
         }
         
-        XCTAssert(persistence.storedMB() > 0)
+        XCTAssert(persistence.storedMB()! > 0)
     }
     
     func test2PerformEvictingTaskAndCheckResults() {
-        XCTAssert(persistence.storedMB() > 0)
+        XCTAssert(persistence.storedMB()! > 0)
         
         providers.evictExpiredRecordsPersistence.startEvictingExpiredRecords()
             .subscribeCompleted {_ in}
             .addDisposableTo(DisposeBag())
         
-        expect(persistence.storedMB()).to(beCloseTo(0, within: 1.5))
+        expect(Double(persistence.storedMB()!)).to(beCloseTo(0, within: 1.5))
     }
     
     func test3PopulateDiskWithNoExpiredRecordsButNoRetrievableKeys() {
-        expect(persistence.storedMB()).to(beCloseTo(0, within: 1.5))
+        expect(Double(persistence.storedMB()!)).to(beCloseTo(0, within: 1.5))
         
         for index in 1...100 {
             var finish = false
-            providers.cache(createObservableMocks(100), provider: RxProvidersMock.GetMocksPaginate(page: index)).subscribeNext { mocks in
+            providers.cache(createObservableMocks(100), provider: RxProvidersMock.getMocksPaginate(page: index)).subscribeNext { mocks in
                 finish = true
                 }.addDisposableTo(DisposeBag())
             
             expect(finish).toEventually(equal(true))
         }
         
-        XCTAssert(persistence.storedMB() > 0)
+        XCTAssert(persistence.storedMB()! > 0)
     }
     
     func test4PerformEvictingTaskAndCheckResults() {
-        XCTAssert(persistence.storedMB() > 0)
+        XCTAssert(persistence.storedMB()! > 0)
         
         providers.evictExpiredRecordsPersistence.startEvictingExpiredRecords()
             .subscribeCompleted {_ in}
@@ -92,11 +92,11 @@ class ProvidersRxCacheEvictExpiredRecordsTest : XCTestCase {
         RxCache.Providers.twoLayersCache.evictAll()
     }
     
-    private func createObservableMocks(size : Int) -> Observable<[Mock]> {
+    fileprivate func createObservableMocks(_ size : Int) -> Observable<[Mock]> {
         return Observable.just(createMocks(size))
     }
     
-    private func createMocks(size : Int) -> [Mock] {
+    fileprivate func createMocks(_ size : Int) -> [Mock] {
         var mocks = [Mock]()
         
         for _ in 1...size {
