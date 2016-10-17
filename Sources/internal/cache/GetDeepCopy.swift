@@ -20,16 +20,7 @@ class GetDeepCopy {
                 let data = object as? Cacheable,
                 let json = data.toJSON() {
                 return cacheable.init(json: json) as! T
-            }
-//            if let gloss = T.self as? GlossCacheable.Type,
-//                let data = object as? GlossCacheable,
-//                let json = data.toJSON() {
-//                    return gloss.init(json: json) as! T
-//            } else if let objectMapper = T.self as? OMCacheable.Type,
-//                    let data = object as? OMCacheable {
-//                    return objectMapper.init(JSON: data.toJSON()) as! T
-//            }
-            else {
+            } else {
                 fatalError((String(describing: T.self) + Locale.CacheableIsNotEnought))
             }
         }
