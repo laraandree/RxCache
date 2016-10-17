@@ -49,7 +49,7 @@ class EvictExpiredRecordsPersistence {
     }
 }
 
-class CacheablePlaceholder : GlossCacheable {
+class CacheablePlaceholder : Cacheable {
     func toJSON() -> JSON? {
         return [String : AnyObject]()
     }
