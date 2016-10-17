@@ -24,7 +24,7 @@
 import ObjectMapper
 @testable import RxCache
 
-class MockOMClass : Mappable, OMCacheable {
+class MockOMClass: OMCacheable {
     var aString : String!
     
     init(aString : String) {
