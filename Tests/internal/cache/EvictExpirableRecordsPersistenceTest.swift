@@ -84,7 +84,7 @@ class EvictExpirableRecordsPersistenceTest : XCTestCase {
         let expectedStoredMB = (Double(maxMgPersistenceCache) * EvictExpirableRecordsPersistence.PercentageMemoryStoredToStop)
         expect(self.persistence.storedMB()).toEventually(beTruthy(), timeout: 5)
         
-        expect(Double(self.persistence.storedMB()!)).toEventually(beCloseTo(expectedStoredMB, within: 2), timeout: 2)
+        expect(Double(self.persistence.storedMB()!)).toEventually(beCloseTo(expectedStoredMB, within: 4), timeout: 2)
     }
     
     func testWhenReachedMemoryThresholdButNotExpirableRecordsDoNotEvict() {
