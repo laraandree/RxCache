@@ -1,14 +1,6 @@
-#
-# Be sure to run `pod lib lint RxCache.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "RxCache"
-  s.version          = "0.1.5"
+  s.version          = "1.0.0"
   s.summary          = "Reactive caching library for Swift"
 
   s.homepage         = "https://github.com/FuckBoilerplate/RxCache"
@@ -22,8 +14,21 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
   s.requires_arc = true
 
-  s.source_files = 'Sources/**/*'
+  s.default_subspec = "Core"
 
-  # s.public_header_files = 'Sources/**/*.h'
-  s.dependency 'RxSwift', '~> 2.0'
+  s.subspec "Core" do |ss|
+    ss.source_files = 'Sources/Core/**/*'
+    ss.dependency "RxSwift", ">= 3.0.0-beta.1"
+  end
+
+  s.subspec "ObjectMapper" do |ss|
+    ss.source_files = 'Sources/Cacheabe/ObjectMapper/*.swift'
+    ss.dependency "RxCache/Core"
+  end
+
+  s.subspec "Gloss" do |ss|
+    ss.source_files = 'Sources/Cacheabe/Gloss/*.swift'
+    ss.dependency "RxCache/Core"
+  end
+
 end

@@ -25,17 +25,21 @@
 
 import Foundation
 
+// MARK: - Decodable
+
 public extension Array where Element: Decodable {
     
+    // MARK: Public functions
+    
     /**
-     Returns array of new instances created from provided JSON array
+     Returns array of new objects created from provided JSON array.
+     If any decodings fail, nil is returned.
      
-     Note: The returned array will have only models that successfully
-     decoded
+     - parameter jsonArray: Array of JSON representations of objects.
      
-     :parameter: json Array of JSON representations of object
+     - returns: Array of objects created from JSON.
      */
-    static func fromJSONArray(jsonArray: [JSON]) -> [Element] {
+    static func from(jsonArray: [JSON]) -> [Element]? {
         var models: [Element] = []
         
         for json in jsonArray {
@@ -43,6 +47,8 @@ public extension Array where Element: Decodable {
             
             if let model = model {
                 models.append(model)
+            } else {
+                return nil
             }
         }
         
@@ -51,12 +57,17 @@ public extension Array where Element: Decodable {
     
 }
 
+// MARK: - Encodable
+
 public extension Array where Element: Encodable {
     
+    // MARK: Public functions
+    
     /**
-     Objects encoded as JSON Array
+     Encodes array of objects as JSON array.
+     If any encodings fail, nil is returned.
      
-     :returns: JSON array
+     - returns: Array of JSON created from objects.
      */
     func toJSONArray() -> [JSON]? {
         var jsonArray: [JSON] = []
@@ -64,6 +75,8 @@ public extension Array where Element: Encodable {
         for json in self {
             if let json = json.toJSON() {
                 jsonArray.append(json)
+            } else {
+                return nil
             }
         }
         

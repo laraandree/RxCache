@@ -27,18 +27,18 @@ import Nimble
 @testable import RxCache
 
 class TwoLayersCacheTest: XCTestCase {
-    private var twoLayersCache : TwoLayersCache!
-    private let ProviderKey1 = "ProviderKey1", ProviderKey2 = "ProviderKey2", MockValue = "mock_value"
-    private let DynamicKey1 = DynamicKey(dynamicKey: "DynamicKey1") , DynamicKey2 = DynamicKey(dynamicKey: "DynamicKey2")
-    private let DummyLifeCache : LifeCache? = nil
-    private let DynamicKey1Group1 = DynamicKeyGroup(dynamicKey: "1", group: "1")
-    private let DynamicKey1Group2 = DynamicKeyGroup(dynamicKey: "1", group: "2")
-    private let DynamicKey2Group1 = DynamicKeyGroup(dynamicKey: "2", group: "1")
-    private let DynamicKey2Group2 = DynamicKeyGroup(dynamicKey: "2", group: "2")
-    private let mock = [Mock(aString: "mock_value")]
-    private let lifeCache = LifeCache(duration: 0.5, timeUnit: LifeCache.TimeUnit.Seconds)
-    private let lifeCacheOneSecond = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Seconds)
-    private let WaitTime : Double = 0.6
+    fileprivate var twoLayersCache : TwoLayersCache!
+    fileprivate let ProviderKey1 = "ProviderKey1", ProviderKey2 = "ProviderKey2", MockValue = "mock_value"
+    fileprivate let DynamicKey1 = DynamicKey(dynamicKey: "DynamicKey1") , DynamicKey2 = DynamicKey(dynamicKey: "DynamicKey2")
+    fileprivate let DummyLifeCache : LifeCache? = nil
+    fileprivate let DynamicKey1Group1 = DynamicKeyGroup(dynamicKey: "1", group: "1")
+    fileprivate let DynamicKey1Group2 = DynamicKeyGroup(dynamicKey: "1", group: "2")
+    fileprivate let DynamicKey2Group1 = DynamicKeyGroup(dynamicKey: "2", group: "1")
+    fileprivate let DynamicKey2Group2 = DynamicKeyGroup(dynamicKey: "2", group: "2")
+    fileprivate let mock = [Mock(aString: "mock_value")]
+    fileprivate let lifeCache = LifeCache(duration: 0.5, timeUnit: LifeCache.TimeUnit.seconds)
+    fileprivate let lifeCacheOneSecond = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.seconds)
+    fileprivate let WaitTime : Double = 0.6
     
     override func setUp() {
         super.setUp()        
@@ -73,7 +73,7 @@ class TwoLayersCacheTest: XCTestCase {
     func testWhenSaveAndRecordHasExpiredGetNull() {
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
         
         let record : Record<Mock>? = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil,useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
         
@@ -84,7 +84,7 @@ class TwoLayersCacheTest: XCTestCase {
         twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         twoLayersCache.save(ProviderKey1, dynamicKey: DynamicKey2, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
 
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
         
         var recordNil : Record<Mock>? = twoLayersCache.retrieve(ProviderKey1, dynamicKey: DynamicKey1, dynamicKeyGroup: nil,useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
         expect(recordNil).to(beNil())
@@ -102,7 +102,7 @@ class TwoLayersCacheTest: XCTestCase {
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey2Group1, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey2Group2, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
         
         var recordNil : Record<Mock>? = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: DynamicKey1Group1,useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
         expect(recordNil).to(beNil())
@@ -124,7 +124,7 @@ class TwoLayersCacheTest: XCTestCase {
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
         twoLayersCache.mockMemoryDestroyed()
 
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
         
         var record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: nil)!
         
@@ -263,7 +263,7 @@ class TwoLayersCacheTest: XCTestCase {
     
     func testWhenExpirationDateHasBeenModifiedThenReflectThisChange() {
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
 
         var record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCacheOneSecond)!
         expect(record.cacheables[0].aString).to(equal(MockValue))
@@ -272,7 +272,7 @@ class TwoLayersCacheTest: XCTestCase {
         expect(recordNil).to(beNil())
         
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
 
         record = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCacheOneSecond)!
         expect(record.cacheables[0].aString).to(equal(MockValue))
@@ -281,7 +281,7 @@ class TwoLayersCacheTest: XCTestCase {
         expect(recordNil).to(beNil())
         
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
 
         record = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: nil)!
         expect(record.cacheables[0].aString).to(equal(MockValue))
@@ -289,7 +289,7 @@ class TwoLayersCacheTest: XCTestCase {
     
     func testWhenExpiredDateAndNotuseExpiredDataIfLoaderNotAvailableThenGetNull() {
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
         
         let recordNil : Record<Mock>? = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: false, lifeCache: lifeCache)
         expect(recordNil).to(beNil())
@@ -297,7 +297,7 @@ class TwoLayersCacheTest: XCTestCase {
     
     func testWhenExpiredDateButuseExpiredDataIfLoaderNotAvailableThenGetMock() {
         twoLayersCache.save(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, cacheables: mock, lifeCache: DummyLifeCache, maxMBPersistenceCache: RxCache.Providers.maxMBPersistenceCache, isExpirable: true)
-        NSThread.sleepForTimeInterval(WaitTime)
+        Thread.sleep(forTimeInterval: WaitTime)
         
         let record : Record<Mock> = twoLayersCache.retrieve(ProviderKey1, dynamicKey: nil, dynamicKeyGroup: nil, useExpiredDataIfLoaderNotAvailable: true, lifeCache: lifeCache)!
         expect(record.cacheables[0].aString).to(equal(MockValue))

@@ -28,8 +28,8 @@ import Nimble
 @testable import RxCache
 
 class ProvidersTest: XCTestCase {
-    private var providers : RxCache!
-    private var persistence : Disk!
+    fileprivate var providers : RxCache!
+    fileprivate var persistence : Disk!
     
     override func setUp() {
         super.setUp()
@@ -44,12 +44,12 @@ class ProvidersTest: XCTestCase {
         let mock = [Mock(aString: "1")]
         var success = false
         
-        let provider = MockProvider.Mock(evict: nil, lifeCache: nil)
-        providers.cacheArray(Observable.just(mock), provider: provider).subscribeNext {record in
+        let provider = MockProvider.mock(evict: nil, lifeCache: nil)
+        providers.cacheArray(Observable.just(mock), provider: provider).subscribe(onNext: { record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).to(equal(Source.Cloud.rawValue))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
@@ -57,20 +57,20 @@ class ProvidersTest: XCTestCase {
         let mock = [Mock(aString: "1")]
         var success = false
         
-        let provider = MockProvider.Mock(evict: nil, lifeCache: nil)
-        providers.cacheArray(Observable.just(mock), provider: provider).subscribeNext {record in
+        let provider = MockProvider.mock(evict: nil, lifeCache: nil)
+        providers.cacheArray(Observable.just(mock), provider: provider).subscribe(onNext: { record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).to(equal(Source.Cloud.rawValue))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
         success = false
-        providers.cacheArray(Observable.just(mock), provider: provider).subscribeNext {record in
+        providers.cacheArray(Observable.just(mock), provider: provider).subscribe(onNext: { record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).toNot(equal(Source.Cloud.rawValue))
-            }.addDisposableTo(DisposeBag())
+            }).addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
     }
     
@@ -78,14 +78,14 @@ class ProvidersTest: XCTestCase {
         let mock = [Mock(aString: "1")]
         var success = false
         
-        providers.cacheArray(Observable.just(mock), provider: MockProvider.Mock(evict: nil, lifeCache: nil)).subscribeNext {record in
+        providers.cacheArray(Observable.just(mock), provider: MockProvider.mock(evict: nil, lifeCache: nil)).subscribeNext {record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).to(equal(Source.Cloud.rawValue))
             }.addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
-        let provider = MockProvider.Mock(evict: EvictProvider(evict: true), lifeCache: nil)
+        let provider = MockProvider.mock(evict: EvictProvider(evict: true), lifeCache: nil)
         success = false
         providers.cacheArray(Observable.just(mock), provider: provider).subscribeNext {record in
             success = true
@@ -98,7 +98,7 @@ class ProvidersTest: XCTestCase {
     func testWhenLoaderThrowsExceptionAndThereIsNoCacheThenGetThrowException() {
         let loader : Observable<[Mock]> = Observable.error(NSError(domain: Locale.NotDataReturnWhenCallingObservableLoader, code: 0, userInfo: nil))
         
-        let provider = MockProvider.Mock(evict: nil, lifeCache: nil)
+        let provider = MockProvider.mock(evict: nil, lifeCache: nil)
         
         var errorThrown = false
         providers.cacheArray(loader, provider: provider)
@@ -110,7 +110,7 @@ class ProvidersTest: XCTestCase {
     }
     
     func tetsWhenUselessLoaderAndCacheNoExpiredByLifeCache0ThenGetMock() {
-        let lifeCache : LifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.Seconds)
+        let lifeCache : LifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.seconds)
         whenUselessLoaderAndCacheNoExpiredThenGetMock(lifeCache)
     }
     
@@ -118,11 +118,11 @@ class ProvidersTest: XCTestCase {
         whenUselessLoaderAndCacheNoExpiredThenGetMock(nil)
     }
     
-    private func whenUselessLoaderAndCacheNoExpiredThenGetMock(lifeCache : LifeCache?) {
+    fileprivate func whenUselessLoaderAndCacheNoExpiredThenGetMock(_ lifeCache : LifeCache?) {
         let mock = [Mock(aString: "1")]
         
         var success = false
-        providers.cacheArray(Observable.just(mock), provider: MockProvider.Mock(evict: nil, lifeCache: nil)).subscribeNext {record in
+        providers.cacheArray(Observable.just(mock), provider: MockProvider.mock(evict: nil, lifeCache: nil)).subscribeNext {record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).to(equal(Source.Cloud.rawValue))
@@ -130,7 +130,7 @@ class ProvidersTest: XCTestCase {
         expect(success).toEventually(equal(true))
         
         var errorThrown = true
-        let provider = MockProvider.Mock(evict: nil, lifeCache: lifeCache)
+        let provider = MockProvider.mock(evict: nil, lifeCache: lifeCache)
         providers.cacheArray(RxCache.errorObservable([Mock].self), provider: provider).subscribeNext {record in
             expect(record.cacheables[0]).toNot(beNil())
             errorThrown = false
@@ -144,7 +144,7 @@ class ProvidersTest: XCTestCase {
         
         let mock = [Mock(aString: "1")]
         var success = false
-        providers.cacheArray(Observable.just(mock), provider: MockProvider.Mock(evict: nil, lifeCache: nil)).subscribeNext {record in
+        providers.cacheArray(Observable.just(mock), provider: MockProvider.mock(evict: nil, lifeCache: nil)).subscribeNext {record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).to(equal(Source.Cloud.rawValue))
@@ -153,7 +153,7 @@ class ProvidersTest: XCTestCase {
         
         var errorThrown = true
         
-        let provider = MockProvider.Mock(evict: EvictProvider(evict: true), lifeCache: nil)
+        let provider = MockProvider.mock(evict: EvictProvider(evict: true), lifeCache: nil)
         providers.cacheArray(RxCache.errorObservable([Mock].self), provider: provider).subscribeNext {record in
             expect(record.cacheables[0]).toNot(beNil())
             errorThrown = false
@@ -167,14 +167,14 @@ class ProvidersTest: XCTestCase {
         
         let mock = [Mock(aString: "1")]
         var success = false
-        providers.cacheArray(Observable.just(mock), provider: MockProvider.Mock(evict: nil, lifeCache: nil)).subscribeNext {record in
+        providers.cacheArray(Observable.just(mock), provider: MockProvider.mock(evict: nil, lifeCache: nil)).subscribeNext {record in
             success = true
             expect(record.cacheables[0]).toNot(beNil())
             expect(record.source.rawValue).to(equal(Source.Cloud.rawValue))
             }.addDisposableTo(DisposeBag())
         expect(success).toEventually(equal(true))
         
-        let provider = MockProvider.Mock(evict: EvictProvider(evict: true), lifeCache: nil)
+        let provider = MockProvider.mock(evict: EvictProvider(evict: true), lifeCache: nil)
         var errorThrown = false
         providers.cacheArray(RxCache.errorObservable([Mock].self), provider: provider).subscribeError { (error) -> Void in
             errorThrown = true
@@ -186,7 +186,7 @@ class ProvidersTest: XCTestCase {
     func testWhenCacheIsCalledObservableIsDeferredUntilSubscription() {
         self.providers.twoLayersCache.retrieveHasBeenCalled = false
         
-        let provider = MockProvider.Mock(evict: nil, lifeCache: nil)
+        let provider = MockProvider.mock(evict: nil, lifeCache: nil)
         let mock = [Mock(aString: "1")]
         let oMock = providers.cacheArray(Observable.just(mock), provider: provider)
         
@@ -199,13 +199,13 @@ class ProvidersTest: XCTestCase {
         let mock = [Mock(aString: "1")]
         
         var errorThrown = false
-        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKey.Error()).subscribeError { (error) -> Void in
+        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKey.error()).subscribeError { (error) -> Void in
             errorThrown = true
             }.addDisposableTo(DisposeBag())
         
         expect(errorThrown).toEventually(equal(true))
         
-        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKey.Success())
+        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKey.success())
             .subscribeNext {record in
                 errorThrown = false
                 expect(record.cacheables[0]).toNot(beNil())
@@ -217,13 +217,13 @@ class ProvidersTest: XCTestCase {
         let mock = [Mock(aString: "1")]
         
         var errorThrown = false
-        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKeyGroup.Error())
+        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKeyGroup.error())
             .subscribeError { (error) -> Void in
                 errorThrown = true
             }.addDisposableTo(DisposeBag())
         expect(errorThrown).toEventually(equal(true))
         
-        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKeyGroup.Success())
+        providers.cacheArray(Observable.just(mock), provider: MockProviderEvictDynamicKeyGroup.success())
             .subscribeNext {record in
                 errorThrown = false
                 expect(record.cacheables[0]).toNot(beNil())
@@ -232,11 +232,11 @@ class ProvidersTest: XCTestCase {
     }
     
     enum MockProvider : Provider {
-        case Mock(evict: EvictProvider?, lifeCache : LifeCache? )
+        case mock(evict: EvictProvider?, lifeCache : LifeCache? )
         
         var lifeCache: LifeCache? {
             switch self {
-            case let Mock(_, lifeCache):
+            case let .mock(_, lifeCache):
                 return lifeCache
             }
         }
@@ -251,15 +251,15 @@ class ProvidersTest: XCTestCase {
         
         var evict: EvictProvider? {
             switch self {
-            case let Mock(evict, _):
+            case let .mock(evict, _):
                 return evict
             }
         }
     }
     
     enum MockProviderEvictDynamicKey : Provider {
-        case Error()
-        case Success()
+        case error()
+        case success()
         
         var lifeCache: LifeCache? {
             return nil
@@ -267,9 +267,9 @@ class ProvidersTest: XCTestCase {
         
         var dynamicKey: DynamicKey? {
             switch self {
-            case Error():
+            case .error():
                 return nil
-            case Success():
+            case .success():
                 return DynamicKey(dynamicKey: "1")
             }
         }
@@ -284,8 +284,8 @@ class ProvidersTest: XCTestCase {
     }
     
     enum MockProviderEvictDynamicKeyGroup : Provider {
-        case Error()
-        case Success()
+        case error()
+        case success()
         
         var lifeCache: LifeCache? {
             return nil
@@ -297,9 +297,9 @@ class ProvidersTest: XCTestCase {
         
         var dynamicKeyGroup: DynamicKeyGroup? {
             switch self {
-            case Error():
+            case .error():
                 return nil
-            case Success():
+            case .success():
                 return DynamicKeyGroup(dynamicKey: "1", group: "1")
             }
         }

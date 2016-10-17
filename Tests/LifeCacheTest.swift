@@ -28,60 +28,60 @@ import Nimble
 class LifeCacheTest: XCTestCase {
 
     func testSeconds() {
-        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Seconds)
+        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.seconds)
         let _1Second : Double = 1
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_1Second))
         
-        lifeCache = LifeCache(duration: 21, timeUnit: LifeCache.TimeUnit.Seconds)
+        lifeCache = LifeCache(duration: 21, timeUnit: LifeCache.TimeUnit.seconds)
         let _21Seconds : Double = 21
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_21Seconds))
         
-        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.Seconds)
+        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.seconds)
         let _0Seconds : Double  = 0
         let expected = lifeCache.getLifeTimeInSeconds()
         expect(expected).to(equal(_0Seconds))
     }
     
     func testMinutes() {
-        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Minutes)
+        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.minutes)
         let _1Minute : Double = 60
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_1Minute))
         
-        lifeCache = LifeCache(duration: 21, timeUnit: LifeCache.TimeUnit.Minutes)
+        lifeCache = LifeCache(duration: 21, timeUnit: LifeCache.TimeUnit.minutes)
         let _21Minutes : Double  = 60 * 21
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_21Minutes))
         
-        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.Minutes)
+        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.minutes)
         let _0Minutes : Double  = 0
         let expected = lifeCache.getLifeTimeInSeconds()
         expect(expected).to(equal(_0Minutes))
     }
     
     func testHours() {
-        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Hours)
+        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.hours)
         let _1Hour : Double  = 60 * 60
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_1Hour))
         
-        lifeCache = LifeCache(duration: 67, timeUnit: LifeCache.TimeUnit.Hours)
+        lifeCache = LifeCache(duration: 67, timeUnit: LifeCache.TimeUnit.hours)
         let _67Hours : Double  = 60 * 60 * 67
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_67Hours))
         
-        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.Hours)
+        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.hours)
         let _0Hours : Double  = 0
         let expected = lifeCache.getLifeTimeInSeconds()
         expect(expected).to(equal(_0Hours))
     }
     
     func testDays() {
-        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.Days)
+        var lifeCache = LifeCache(duration: 1, timeUnit: LifeCache.TimeUnit.days)
         let oneDay : Double  = 60 * 60 * 24
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(oneDay))
         
-        lifeCache = LifeCache(duration: 12, timeUnit: LifeCache.TimeUnit.Days)
+        lifeCache = LifeCache(duration: 12, timeUnit: LifeCache.TimeUnit.days)
         let _12Days : Double = 60 * 60 * 24 * 12
         expect(lifeCache.getLifeTimeInSeconds()).to(equal(_12Days))
         
-        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.Days)
+        lifeCache = LifeCache(duration: 0, timeUnit: LifeCache.TimeUnit.days)
         let _0Days : Double =  0
         let expected = lifeCache.getLifeTimeInSeconds()
         expect(expected).to(equal(_0Days))

@@ -29,9 +29,9 @@ import RxSwift
 @testable import RxCache
 
 class SaveRecordTest : XCTestCase {
-    private var saveRecordUT : SaveRecord!
-    private var twoLayersCache : TwoLayersCache!
-    private var persistence : Disk!
+    fileprivate var saveRecordUT : SaveRecord!
+    fileprivate var twoLayersCache : TwoLayersCache!
+    fileprivate var persistence : Disk!
     
     override func setUp() {
         super.setUp()
@@ -61,7 +61,7 @@ class SaveRecordTest : XCTestCase {
         whenMaxPersistenceExceedDoNotPersistsData(15)
     }
     
-    func whenMaxPersistenceExceedDoNotPersistsData(maxMB: Int) {
+    func whenMaxPersistenceExceedDoNotPersistsData(_ maxMB: Int) {
         XCTAssert(persistence.storedMB() == 0)
         expect(self.saveRecordUT.memory.keys().count).to(equal(0))
 
@@ -72,14 +72,15 @@ class SaveRecordTest : XCTestCase {
             saveRecordUT.save(String(i), dynamicKey: nil, dynamicKeyGroup: nil, cacheables: createMocks(records), lifeCache: nil, maxMBPersistenceCache: maxMB, isExpirable: true)
         }
         
-        let expected = Int(Double(maxMB) * 0.85)
-        expect(self.persistence.storedMB()).toEventually(beCloseTo(expected, within: 2), timeout: 5)
+        let expected = Double(maxMB) * 0.85
+        let storedMB = Double(self.persistence.storedMB()!)
+        expect(storedMB).toEventually(beCloseTo(expected, within: 2.0), timeout: 5)
         expect(self.saveRecordUT.memory.keys().count).to(equal(records))
     }
     
     
     //39 megabytes of memory
-    private func createMocks(size : Int) -> [Mock] {
+    fileprivate func createMocks(_ size : Int) -> [Mock] {
         var mocks = [Mock]()
         
         for _ in 1...size {

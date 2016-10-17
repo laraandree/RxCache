@@ -7,37 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1089D13F7180F53F7184E5E5 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBC741DAAF0AFB0D7180006 /* Pods_RxCache.framework */; };
 		5732E4B31C9C64F3005513E0 /* RxCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 5732E4B21C9C64F3005513E0 /* RxCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5732E4BA1C9C64F3005513E0 /* RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5732E4AF1C9C64F3005513E0 /* RxCache.framework */; };
 		5732E4BF1C9C64F3005513E0 /* RxCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4BE1C9C64F3005513E0 /* RxCacheTests.swift */; };
-		5732E4E71C9C6576005513E0 /* DynamicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4C91C9C6576005513E0 /* DynamicKey.swift */; };
-		5732E4E81C9C6576005513E0 /* DynamicKeyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4CA1C9C6576005513E0 /* DynamicKeyGroup.swift */; };
-		5732E4E91C9C6576005513E0 /* EvictDynamicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4CB1C9C6576005513E0 /* EvictDynamicKey.swift */; };
-		5732E4EA1C9C6576005513E0 /* EvictDynamicKeyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4CC1C9C6576005513E0 /* EvictDynamicKeyGroup.swift */; };
-		5732E4EB1C9C6576005513E0 /* EvictProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4CD1C9C6576005513E0 /* EvictProvider.swift */; };
-		5732E4EC1C9C6576005513E0 /* GlossCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4CE1C9C6576005513E0 /* GlossCacheable.swift */; };
-		5732E4ED1C9C6576005513E0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D11C9C6576005513E0 /* Action.swift */; };
-		5732E4EE1C9C6576005513E0 /* EvictExpirableRecordsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D21C9C6576005513E0 /* EvictExpirableRecordsPersistence.swift */; };
-		5732E4EF1C9C6576005513E0 /* EvictExpiredRecordsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D31C9C6576005513E0 /* EvictExpiredRecordsPersistence.swift */; };
-		5732E4F01C9C6576005513E0 /* EvictRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D41C9C6576005513E0 /* EvictRecord.swift */; };
-		5732E4F11C9C6576005513E0 /* HasRecordExpired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D51C9C6576005513E0 /* HasRecordExpired.swift */; };
-		5732E4F21C9C6576005513E0 /* RetrieveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D61C9C6576005513E0 /* RetrieveRecord.swift */; };
-		5732E4F31C9C6576005513E0 /* SaveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D71C9C6576005513E0 /* SaveRecord.swift */; };
-		5732E4F41C9C6576005513E0 /* TwoLayersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D81C9C6576005513E0 /* TwoLayersCache.swift */; };
-		5732E4F51C9C6576005513E0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4D91C9C6576005513E0 /* Locale.swift */; };
-		5732E4F61C9C6576005513E0 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4DA1C9C6576005513E0 /* Memory.swift */; };
-		5732E4F71C9C6576005513E0 /* MemoryNsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4DB1C9C6576005513E0 /* MemoryNsCache.swift */; };
-		5732E4F81C9C6576005513E0 /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4DD1C9C6576005513E0 /* Disk.swift */; };
-		5732E4F91C9C6576005513E0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4DE1C9C6576005513E0 /* Persistence.swift */; };
-		5732E4FA1C9C6576005513E0 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4DF1C9C6576005513E0 /* Record.swift */; };
-		5732E4FB1C9C6576005513E0 /* RxCacheInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E01C9C6576005513E0 /* RxCacheInternal.swift */; };
-		5732E4FC1C9C6576005513E0 /* LifeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E11C9C6576005513E0 /* LifeCache.swift */; };
-		5732E4FD1C9C6576005513E0 /* OMCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E21C9C6576005513E0 /* OMCacheable.swift */; };
-		5732E4FE1C9C6576005513E0 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E31C9C6576005513E0 /* Provider.swift */; };
-		5732E4FF1C9C6576005513E0 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E41C9C6576005513E0 /* Reply.swift */; };
-		5732E5001C9C6576005513E0 /* RxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E51C9C6576005513E0 /* RxCache.swift */; };
-		5732E5011C9C6576005513E0 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E4E61C9C6576005513E0 /* Source.swift */; };
 		5732E51A1C9C6598005513E0 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E5031C9C6598005513E0 /* Mock.swift */; };
 		5732E51B1C9C6598005513E0 /* MockGlossClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E5041C9C6598005513E0 /* MockGlossClass.swift */; };
 		5732E51C1C9C6598005513E0 /* MockGlossStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E5051C9C6598005513E0 /* MockGlossStruct.swift */; };
@@ -57,7 +29,39 @@
 		5732E52A1C9C6598005513E0 /* ProvidersRxCacheEvictExpirableRecordsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E5161C9C6598005513E0 /* ProvidersRxCacheEvictExpirableRecordsTest.swift */; };
 		5732E52B1C9C6598005513E0 /* ProvidersRxCacheEvictExpiredRecordsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E5171C9C6598005513E0 /* ProvidersRxCacheEvictExpiredRecordsTest.swift */; };
 		5732E52C1C9C6598005513E0 /* ProvidersRxCacheTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E5181C9C6598005513E0 /* ProvidersRxCacheTest.swift */; };
-		630ACC1F809371F8CC11C72D /* Pods_RxCacheTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67967B07F19DB3D5509F0598 /* Pods_RxCacheTests.framework */; };
+		9FC07DBE4D6B122C3EB653ED /* Pods_RxCacheTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A853139A4FB71F4DCA296EE /* Pods_RxCacheTests.framework */; };
+		A24FD4121DB54661001C3C2F /* GlossCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3EE1DB54661001C3C2F /* GlossCacheable.swift */; };
+		A24FD4131DB54661001C3C2F /* OMCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F01DB54661001C3C2F /* OMCacheable.swift */; };
+		A24FD4141DB54661001C3C2F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F21DB54661001C3C2F /* Actions.swift */; };
+		A24FD4151DB54661001C3C2F /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F31DB54661001C3C2F /* Cacheable.swift */; };
+		A24FD4161DB54661001C3C2F /* DynamicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F41DB54661001C3C2F /* DynamicKey.swift */; };
+		A24FD4171DB54661001C3C2F /* DynamicKeyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F51DB54661001C3C2F /* DynamicKeyGroup.swift */; };
+		A24FD4181DB54661001C3C2F /* EvictDynamicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F61DB54661001C3C2F /* EvictDynamicKey.swift */; };
+		A24FD4191DB54661001C3C2F /* EvictDynamicKeyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F71DB54661001C3C2F /* EvictDynamicKeyGroup.swift */; };
+		A24FD41A1DB54661001C3C2F /* EvictProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3F81DB54661001C3C2F /* EvictProvider.swift */; };
+		A24FD41B1DB54661001C3C2F /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3FB1DB54661001C3C2F /* Action.swift */; };
+		A24FD41C1DB54661001C3C2F /* EvictExpirableRecordsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3FC1DB54661001C3C2F /* EvictExpirableRecordsPersistence.swift */; };
+		A24FD41D1DB54661001C3C2F /* EvictExpiredRecordsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3FD1DB54661001C3C2F /* EvictExpiredRecordsPersistence.swift */; };
+		A24FD41E1DB54661001C3C2F /* EvictRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3FE1DB54661001C3C2F /* EvictRecord.swift */; };
+		A24FD41F1DB54661001C3C2F /* GetDeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD3FF1DB54661001C3C2F /* GetDeepCopy.swift */; };
+		A24FD4201DB54661001C3C2F /* HasRecordExpired.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4001DB54661001C3C2F /* HasRecordExpired.swift */; };
+		A24FD4211DB54661001C3C2F /* RetrieveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4011DB54661001C3C2F /* RetrieveRecord.swift */; };
+		A24FD4221DB54661001C3C2F /* SaveRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4021DB54661001C3C2F /* SaveRecord.swift */; };
+		A24FD4231DB54661001C3C2F /* TwoLayersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4031DB54661001C3C2F /* TwoLayersCache.swift */; };
+		A24FD4241DB54661001C3C2F /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4041DB54661001C3C2F /* Locale.swift */; };
+		A24FD4251DB54661001C3C2F /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4051DB54661001C3C2F /* Memory.swift */; };
+		A24FD4261DB54661001C3C2F /* MemoryNsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4061DB54661001C3C2F /* MemoryNsCache.swift */; };
+		A24FD4271DB54661001C3C2F /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4081DB54661001C3C2F /* Disk.swift */; };
+		A24FD4281DB54661001C3C2F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4091DB54661001C3C2F /* Persistence.swift */; };
+		A24FD4291DB54661001C3C2F /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD40A1DB54661001C3C2F /* Record.swift */; };
+		A24FD42A1DB54661001C3C2F /* PlaceholderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD40B1DB54661001C3C2F /* PlaceholderProvider.swift */; };
+		A24FD42B1DB54661001C3C2F /* RxCacheInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD40C1DB54661001C3C2F /* RxCacheInternal.swift */; };
+		A24FD42C1DB54661001C3C2F /* LifeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD40D1DB54661001C3C2F /* LifeCache.swift */; };
+		A24FD42D1DB54661001C3C2F /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD40E1DB54661001C3C2F /* Provider.swift */; };
+		A24FD42E1DB54661001C3C2F /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD40F1DB54661001C3C2F /* Reply.swift */; };
+		A24FD42F1DB54661001C3C2F /* RxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4101DB54661001C3C2F /* RxCache.swift */; };
+		A24FD4301DB54661001C3C2F /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FD4111DB54661001C3C2F /* Source.swift */; };
+		D65F045476140050319A0BC3 /* Pods_RxCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 556C28336344205D0F654756 /* Pods_RxCache.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,41 +75,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0CBC741DAAF0AFB0D7180006 /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		500B428AF10CDF85D526E2A4 /* Pods-RxCacheTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCacheTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests.release.xcconfig"; sourceTree = "<group>"; };
+		08A3CA7F5ECD06D7F593D4C0 /* Pods-RxCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.debug.xcconfig"; sourceTree = "<group>"; };
+		1A853139A4FB71F4DCA296EE /* Pods_RxCacheTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCacheTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		556C28336344205D0F654756 /* Pods_RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5732E4AF1C9C64F3005513E0 /* RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5732E4B21C9C64F3005513E0 /* RxCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxCache.h; sourceTree = "<group>"; };
 		5732E4B41C9C64F3005513E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5732E4B91C9C64F3005513E0 /* RxCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5732E4BE1C9C64F3005513E0 /* RxCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxCacheTests.swift; sourceTree = "<group>"; };
 		5732E4C01C9C64F3005513E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5732E4C91C9C6576005513E0 /* DynamicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicKey.swift; path = ../../Sources/DynamicKey.swift; sourceTree = "<group>"; };
-		5732E4CA1C9C6576005513E0 /* DynamicKeyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicKeyGroup.swift; path = ../../Sources/DynamicKeyGroup.swift; sourceTree = "<group>"; };
-		5732E4CB1C9C6576005513E0 /* EvictDynamicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvictDynamicKey.swift; path = ../../Sources/EvictDynamicKey.swift; sourceTree = "<group>"; };
-		5732E4CC1C9C6576005513E0 /* EvictDynamicKeyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvictDynamicKeyGroup.swift; path = ../../Sources/EvictDynamicKeyGroup.swift; sourceTree = "<group>"; };
-		5732E4CD1C9C6576005513E0 /* EvictProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvictProvider.swift; path = ../../Sources/EvictProvider.swift; sourceTree = "<group>"; };
-		5732E4CE1C9C6576005513E0 /* GlossCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlossCacheable.swift; path = ../../Sources/GlossCacheable.swift; sourceTree = "<group>"; };
-		5732E4D11C9C6576005513E0 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		5732E4D21C9C6576005513E0 /* EvictExpirableRecordsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictExpirableRecordsPersistence.swift; sourceTree = "<group>"; };
-		5732E4D31C9C6576005513E0 /* EvictExpiredRecordsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictExpiredRecordsPersistence.swift; sourceTree = "<group>"; };
-		5732E4D41C9C6576005513E0 /* EvictRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictRecord.swift; sourceTree = "<group>"; };
-		5732E4D51C9C6576005513E0 /* HasRecordExpired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasRecordExpired.swift; sourceTree = "<group>"; };
-		5732E4D61C9C6576005513E0 /* RetrieveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveRecord.swift; sourceTree = "<group>"; };
-		5732E4D71C9C6576005513E0 /* SaveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveRecord.swift; sourceTree = "<group>"; };
-		5732E4D81C9C6576005513E0 /* TwoLayersCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLayersCache.swift; sourceTree = "<group>"; };
-		5732E4D91C9C6576005513E0 /* Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
-		5732E4DA1C9C6576005513E0 /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
-		5732E4DB1C9C6576005513E0 /* MemoryNsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryNsCache.swift; sourceTree = "<group>"; };
-		5732E4DD1C9C6576005513E0 /* Disk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
-		5732E4DE1C9C6576005513E0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		5732E4DF1C9C6576005513E0 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
-		5732E4E01C9C6576005513E0 /* RxCacheInternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCacheInternal.swift; sourceTree = "<group>"; };
-		5732E4E11C9C6576005513E0 /* LifeCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifeCache.swift; path = ../../Sources/LifeCache.swift; sourceTree = "<group>"; };
-		5732E4E21C9C6576005513E0 /* OMCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OMCacheable.swift; path = ../../Sources/OMCacheable.swift; sourceTree = "<group>"; };
-		5732E4E31C9C6576005513E0 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = ../../Sources/Provider.swift; sourceTree = "<group>"; };
-		5732E4E41C9C6576005513E0 /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reply.swift; path = ../../Sources/Reply.swift; sourceTree = "<group>"; };
-		5732E4E51C9C6576005513E0 /* RxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxCache.swift; path = ../../Sources/RxCache.swift; sourceTree = "<group>"; };
-		5732E4E61C9C6576005513E0 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Source.swift; path = ../../Sources/Source.swift; sourceTree = "<group>"; };
 		5732E5031C9C6598005513E0 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		5732E5041C9C6598005513E0 /* MockGlossClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGlossClass.swift; sourceTree = "<group>"; };
 		5732E5051C9C6598005513E0 /* MockGlossStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGlossStruct.swift; sourceTree = "<group>"; };
@@ -126,10 +104,40 @@
 		5732E5171C9C6598005513E0 /* ProvidersRxCacheEvictExpiredRecordsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProvidersRxCacheEvictExpiredRecordsTest.swift; path = ../../Tests/ProvidersRxCacheEvictExpiredRecordsTest.swift; sourceTree = "<group>"; };
 		5732E5181C9C6598005513E0 /* ProvidersRxCacheTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProvidersRxCacheTest.swift; path = ../../Tests/ProvidersRxCacheTest.swift; sourceTree = "<group>"; };
 		5732E5191C9C6598005513E0 /* RxCache_Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RxCache_Tests-Bridging-Header.h"; path = "../../Tests/RxCache_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		57E9A6EF7642B8541EB431E0 /* Pods-RxCacheTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCacheTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests.debug.xcconfig"; sourceTree = "<group>"; };
-		665FBF6FA3A9A120DC1FD941 /* Pods-RxCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.debug.xcconfig"; sourceTree = "<group>"; };
-		67967B07F19DB3D5509F0598 /* Pods_RxCacheTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCacheTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8790F8997C0231E860B740B7 /* Pods-RxCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.release.xcconfig"; sourceTree = "<group>"; };
+		79D89BFCA0FDF96681EAF09B /* Pods-RxCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCache.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCache/Pods-RxCache.release.xcconfig"; sourceTree = "<group>"; };
+		9BD4F2653C9155103EC12560 /* Pods-RxCacheTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCacheTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests.release.xcconfig"; sourceTree = "<group>"; };
+		A24FD3EE1DB54661001C3C2F /* GlossCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossCacheable.swift; sourceTree = "<group>"; };
+		A24FD3F01DB54661001C3C2F /* OMCacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMCacheable.swift; sourceTree = "<group>"; };
+		A24FD3F21DB54661001C3C2F /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		A24FD3F31DB54661001C3C2F /* Cacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
+		A24FD3F41DB54661001C3C2F /* DynamicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicKey.swift; sourceTree = "<group>"; };
+		A24FD3F51DB54661001C3C2F /* DynamicKeyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicKeyGroup.swift; sourceTree = "<group>"; };
+		A24FD3F61DB54661001C3C2F /* EvictDynamicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictDynamicKey.swift; sourceTree = "<group>"; };
+		A24FD3F71DB54661001C3C2F /* EvictDynamicKeyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictDynamicKeyGroup.swift; sourceTree = "<group>"; };
+		A24FD3F81DB54661001C3C2F /* EvictProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictProvider.swift; sourceTree = "<group>"; };
+		A24FD3FB1DB54661001C3C2F /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A24FD3FC1DB54661001C3C2F /* EvictExpirableRecordsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictExpirableRecordsPersistence.swift; sourceTree = "<group>"; };
+		A24FD3FD1DB54661001C3C2F /* EvictExpiredRecordsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictExpiredRecordsPersistence.swift; sourceTree = "<group>"; };
+		A24FD3FE1DB54661001C3C2F /* EvictRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvictRecord.swift; sourceTree = "<group>"; };
+		A24FD3FF1DB54661001C3C2F /* GetDeepCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDeepCopy.swift; sourceTree = "<group>"; };
+		A24FD4001DB54661001C3C2F /* HasRecordExpired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasRecordExpired.swift; sourceTree = "<group>"; };
+		A24FD4011DB54661001C3C2F /* RetrieveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveRecord.swift; sourceTree = "<group>"; };
+		A24FD4021DB54661001C3C2F /* SaveRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveRecord.swift; sourceTree = "<group>"; };
+		A24FD4031DB54661001C3C2F /* TwoLayersCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLayersCache.swift; sourceTree = "<group>"; };
+		A24FD4041DB54661001C3C2F /* Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
+		A24FD4051DB54661001C3C2F /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		A24FD4061DB54661001C3C2F /* MemoryNsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryNsCache.swift; sourceTree = "<group>"; };
+		A24FD4081DB54661001C3C2F /* Disk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
+		A24FD4091DB54661001C3C2F /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		A24FD40A1DB54661001C3C2F /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A24FD40B1DB54661001C3C2F /* PlaceholderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderProvider.swift; sourceTree = "<group>"; };
+		A24FD40C1DB54661001C3C2F /* RxCacheInternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCacheInternal.swift; sourceTree = "<group>"; };
+		A24FD40D1DB54661001C3C2F /* LifeCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCache.swift; sourceTree = "<group>"; };
+		A24FD40E1DB54661001C3C2F /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		A24FD40F1DB54661001C3C2F /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		A24FD4101DB54661001C3C2F /* RxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCache.swift; sourceTree = "<group>"; };
+		A24FD4111DB54661001C3C2F /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		D1E5EE1A1DEC6056B2924F09 /* Pods-RxCacheTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCacheTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1089D13F7180F53F7184E5E5 /* Pods_RxCache.framework in Frameworks */,
+				D65F045476140050319A0BC3 /* Pods_RxCache.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,41 +154,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5732E4BA1C9C64F3005513E0 /* RxCache.framework in Frameworks */,
-				630ACC1F809371F8CC11C72D /* Pods_RxCacheTests.framework in Frameworks */,
+				9FC07DBE4D6B122C3EB653ED /* Pods_RxCacheTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		450E28ABA9C9468419667BAD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				665FBF6FA3A9A120DC1FD941 /* Pods-RxCache.debug.xcconfig */,
-				8790F8997C0231E860B740B7 /* Pods-RxCache.release.xcconfig */,
-				57E9A6EF7642B8541EB431E0 /* Pods-RxCacheTests.debug.xcconfig */,
-				500B428AF10CDF85D526E2A4 /* Pods-RxCacheTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		51338AAF1838F5C937817AE9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0CBC741DAAF0AFB0D7180006 /* Pods_RxCache.framework */,
-				67967B07F19DB3D5509F0598 /* Pods_RxCacheTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		5732E4A51C9C64F3005513E0 = {
 			isa = PBXGroup;
 			children = (
 				5732E4B11C9C64F3005513E0 /* RxCache */,
 				5732E4BD1C9C64F3005513E0 /* RxCacheTests */,
 				5732E4B01C9C64F3005513E0 /* Products */,
-				450E28ABA9C9468419667BAD /* Pods */,
-				51338AAF1838F5C937817AE9 /* Frameworks */,
+				9D287B9F688B79055B5A5F77 /* Pods */,
+				E696E104971D4CFDD9201CB1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,19 +184,8 @@
 		5732E4B11C9C64F3005513E0 /* RxCache */ = {
 			isa = PBXGroup;
 			children = (
-				5732E4C91C9C6576005513E0 /* DynamicKey.swift */,
-				5732E4CA1C9C6576005513E0 /* DynamicKeyGroup.swift */,
-				5732E4CB1C9C6576005513E0 /* EvictDynamicKey.swift */,
-				5732E4CC1C9C6576005513E0 /* EvictDynamicKeyGroup.swift */,
-				5732E4CD1C9C6576005513E0 /* EvictProvider.swift */,
-				5732E4CE1C9C6576005513E0 /* GlossCacheable.swift */,
-				5732E4CF1C9C6576005513E0 /* internal */,
-				5732E4E11C9C6576005513E0 /* LifeCache.swift */,
-				5732E4E21C9C6576005513E0 /* OMCacheable.swift */,
-				5732E4E31C9C6576005513E0 /* Provider.swift */,
-				5732E4E41C9C6576005513E0 /* Reply.swift */,
-				5732E4E51C9C6576005513E0 /* RxCache.swift */,
-				5732E4E61C9C6576005513E0 /* Source.swift */,
+				A24FD3EC1DB54661001C3C2F /* Cacheables */,
+				A24FD3F11DB54661001C3C2F /* Core */,
 				5732E4B21C9C64F3005513E0 /* RxCache.h */,
 				5732E4B41C9C64F3005513E0 /* Info.plist */,
 			);
@@ -230,45 +207,6 @@
 				5732E4C01C9C64F3005513E0 /* Info.plist */,
 			);
 			path = RxCacheTests;
-			sourceTree = "<group>";
-		};
-		5732E4CF1C9C6576005513E0 /* internal */ = {
-			isa = PBXGroup;
-			children = (
-				5732E4D01C9C6576005513E0 /* cache */,
-				5732E4D91C9C6576005513E0 /* Locale.swift */,
-				5732E4DA1C9C6576005513E0 /* Memory.swift */,
-				5732E4DB1C9C6576005513E0 /* MemoryNsCache.swift */,
-				5732E4DC1C9C6576005513E0 /* persistence */,
-				5732E4E01C9C6576005513E0 /* RxCacheInternal.swift */,
-			);
-			name = internal;
-			path = ../../Sources/internal;
-			sourceTree = "<group>";
-		};
-		5732E4D01C9C6576005513E0 /* cache */ = {
-			isa = PBXGroup;
-			children = (
-				5732E4D11C9C6576005513E0 /* Action.swift */,
-				5732E4D21C9C6576005513E0 /* EvictExpirableRecordsPersistence.swift */,
-				5732E4D31C9C6576005513E0 /* EvictExpiredRecordsPersistence.swift */,
-				5732E4D41C9C6576005513E0 /* EvictRecord.swift */,
-				5732E4D51C9C6576005513E0 /* HasRecordExpired.swift */,
-				5732E4D61C9C6576005513E0 /* RetrieveRecord.swift */,
-				5732E4D71C9C6576005513E0 /* SaveRecord.swift */,
-				5732E4D81C9C6576005513E0 /* TwoLayersCache.swift */,
-			);
-			path = cache;
-			sourceTree = "<group>";
-		};
-		5732E4DC1C9C6576005513E0 /* persistence */ = {
-			isa = PBXGroup;
-			children = (
-				5732E4DD1C9C6576005513E0 /* Disk.swift */,
-				5732E4DE1C9C6576005513E0 /* Persistence.swift */,
-				5732E4DF1C9C6576005513E0 /* Record.swift */,
-			);
-			path = persistence;
 			sourceTree = "<group>";
 		};
 		5732E5021C9C6598005513E0 /* entities */ = {
@@ -317,6 +255,113 @@
 			path = persistence;
 			sourceTree = "<group>";
 		};
+		9D287B9F688B79055B5A5F77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08A3CA7F5ECD06D7F593D4C0 /* Pods-RxCache.debug.xcconfig */,
+				79D89BFCA0FDF96681EAF09B /* Pods-RxCache.release.xcconfig */,
+				D1E5EE1A1DEC6056B2924F09 /* Pods-RxCacheTests.debug.xcconfig */,
+				9BD4F2653C9155103EC12560 /* Pods-RxCacheTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A24FD3EC1DB54661001C3C2F /* Cacheables */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD3ED1DB54661001C3C2F /* Gloss */,
+				A24FD3EF1DB54661001C3C2F /* ObjectMapper */,
+			);
+			name = Cacheables;
+			path = ../../Sources/Cacheables;
+			sourceTree = "<group>";
+		};
+		A24FD3ED1DB54661001C3C2F /* Gloss */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD3EE1DB54661001C3C2F /* GlossCacheable.swift */,
+			);
+			path = Gloss;
+			sourceTree = "<group>";
+		};
+		A24FD3EF1DB54661001C3C2F /* ObjectMapper */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD3F01DB54661001C3C2F /* OMCacheable.swift */,
+			);
+			path = ObjectMapper;
+			sourceTree = "<group>";
+		};
+		A24FD3F11DB54661001C3C2F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD3F21DB54661001C3C2F /* Actions.swift */,
+				A24FD3F31DB54661001C3C2F /* Cacheable.swift */,
+				A24FD3F41DB54661001C3C2F /* DynamicKey.swift */,
+				A24FD3F51DB54661001C3C2F /* DynamicKeyGroup.swift */,
+				A24FD3F61DB54661001C3C2F /* EvictDynamicKey.swift */,
+				A24FD3F71DB54661001C3C2F /* EvictDynamicKeyGroup.swift */,
+				A24FD3F81DB54661001C3C2F /* EvictProvider.swift */,
+				A24FD3F91DB54661001C3C2F /* internal */,
+				A24FD40D1DB54661001C3C2F /* LifeCache.swift */,
+				A24FD40E1DB54661001C3C2F /* Provider.swift */,
+				A24FD40F1DB54661001C3C2F /* Reply.swift */,
+				A24FD4101DB54661001C3C2F /* RxCache.swift */,
+				A24FD4111DB54661001C3C2F /* Source.swift */,
+			);
+			name = Core;
+			path = ../../Sources/Core;
+			sourceTree = "<group>";
+		};
+		A24FD3F91DB54661001C3C2F /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD3FA1DB54661001C3C2F /* cache */,
+				A24FD4041DB54661001C3C2F /* Locale.swift */,
+				A24FD4051DB54661001C3C2F /* Memory.swift */,
+				A24FD4061DB54661001C3C2F /* MemoryNsCache.swift */,
+				A24FD4071DB54661001C3C2F /* persistence */,
+				A24FD40B1DB54661001C3C2F /* PlaceholderProvider.swift */,
+				A24FD40C1DB54661001C3C2F /* RxCacheInternal.swift */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		A24FD3FA1DB54661001C3C2F /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD3FB1DB54661001C3C2F /* Action.swift */,
+				A24FD3FC1DB54661001C3C2F /* EvictExpirableRecordsPersistence.swift */,
+				A24FD3FD1DB54661001C3C2F /* EvictExpiredRecordsPersistence.swift */,
+				A24FD3FE1DB54661001C3C2F /* EvictRecord.swift */,
+				A24FD3FF1DB54661001C3C2F /* GetDeepCopy.swift */,
+				A24FD4001DB54661001C3C2F /* HasRecordExpired.swift */,
+				A24FD4011DB54661001C3C2F /* RetrieveRecord.swift */,
+				A24FD4021DB54661001C3C2F /* SaveRecord.swift */,
+				A24FD4031DB54661001C3C2F /* TwoLayersCache.swift */,
+			);
+			path = cache;
+			sourceTree = "<group>";
+		};
+		A24FD4071DB54661001C3C2F /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A24FD4081DB54661001C3C2F /* Disk.swift */,
+				A24FD4091DB54661001C3C2F /* Persistence.swift */,
+				A24FD40A1DB54661001C3C2F /* Record.swift */,
+			);
+			path = persistence;
+			sourceTree = "<group>";
+		};
+		E696E104971D4CFDD9201CB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				556C28336344205D0F654756 /* Pods_RxCache.framework */,
+				1A853139A4FB71F4DCA296EE /* Pods_RxCacheTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -335,12 +380,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5732E4C31C9C64F3005513E0 /* Build configuration list for PBXNativeTarget "RxCache" */;
 			buildPhases = (
-				D93859AA4452F451652CF69C /* Check Pods Manifest.lock */,
+				AD2D2B5BD2938431D3F856F0 /* [CP] Check Pods Manifest.lock */,
 				5732E4AA1C9C64F3005513E0 /* Sources */,
 				5732E4AB1C9C64F3005513E0 /* Frameworks */,
 				5732E4AC1C9C64F3005513E0 /* Headers */,
 				5732E4AD1C9C64F3005513E0 /* Resources */,
-				B7D2DB28CC01250B75A4299C /* Copy Pods Resources */,
+				3172F2472150453F9B388861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -355,12 +400,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5732E4C61C9C64F3005513E0 /* Build configuration list for PBXNativeTarget "RxCacheTests" */;
 			buildPhases = (
-				CD8AC2EF79ABA0AAC8FB3811 /* Check Pods Manifest.lock */,
+				13DB7E05E206990277EF9FBA /* [CP] Check Pods Manifest.lock */,
 				5732E4B51C9C64F3005513E0 /* Sources */,
 				5732E4B61C9C64F3005513E0 /* Frameworks */,
 				5732E4B71C9C64F3005513E0 /* Resources */,
-				03A6F7A75AD61E4FFF8AD003 /* Embed Pods Frameworks */,
-				1F01D8B4741B9F01E7354BD8 /* Copy Pods Resources */,
+				152812628DC8B87F910DF622 /* [CP] Embed Pods Frameworks */,
+				2B058001B32FAEB3125CA409 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -384,9 +429,11 @@
 				TargetAttributes = {
 					5732E4AE1C9C64F3005513E0 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 					5732E4B81C9C64F3005513E0 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -426,14 +473,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03A6F7A75AD61E4FFF8AD003 /* Embed Pods Frameworks */ = {
+		13DB7E05E206990277EF9FBA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		152812628DC8B87F910DF622 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,14 +503,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1F01D8B4741B9F01E7354BD8 /* Copy Pods Resources */ = {
+		2B058001B32FAEB3125CA409 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,14 +518,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B7D2DB28CC01250B75A4299C /* Copy Pods Resources */ = {
+		3172F2472150453F9B388861 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,34 +533,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCache/Pods-RxCache-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CD8AC2EF79ABA0AAC8FB3811 /* Check Pods Manifest.lock */ = {
+		AD2D2B5BD2938431D3F856F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D93859AA4452F451652CF69C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -508,33 +555,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5732E4F61C9C6576005513E0 /* Memory.swift in Sources */,
-				5732E4F21C9C6576005513E0 /* RetrieveRecord.swift in Sources */,
-				5732E4FA1C9C6576005513E0 /* Record.swift in Sources */,
-				5732E4F01C9C6576005513E0 /* EvictRecord.swift in Sources */,
-				5732E4FE1C9C6576005513E0 /* Provider.swift in Sources */,
-				5732E4F71C9C6576005513E0 /* MemoryNsCache.swift in Sources */,
-				5732E4E71C9C6576005513E0 /* DynamicKey.swift in Sources */,
-				5732E4EC1C9C6576005513E0 /* GlossCacheable.swift in Sources */,
-				5732E4F81C9C6576005513E0 /* Disk.swift in Sources */,
-				5732E4F31C9C6576005513E0 /* SaveRecord.swift in Sources */,
-				5732E4FB1C9C6576005513E0 /* RxCacheInternal.swift in Sources */,
-				5732E4FF1C9C6576005513E0 /* Reply.swift in Sources */,
-				5732E4F91C9C6576005513E0 /* Persistence.swift in Sources */,
-				5732E4F51C9C6576005513E0 /* Locale.swift in Sources */,
-				5732E5011C9C6576005513E0 /* Source.swift in Sources */,
-				5732E4FC1C9C6576005513E0 /* LifeCache.swift in Sources */,
-				5732E4E91C9C6576005513E0 /* EvictDynamicKey.swift in Sources */,
-				5732E5001C9C6576005513E0 /* RxCache.swift in Sources */,
-				5732E4F11C9C6576005513E0 /* HasRecordExpired.swift in Sources */,
-				5732E4E81C9C6576005513E0 /* DynamicKeyGroup.swift in Sources */,
-				5732E4ED1C9C6576005513E0 /* Action.swift in Sources */,
-				5732E4EA1C9C6576005513E0 /* EvictDynamicKeyGroup.swift in Sources */,
-				5732E4EB1C9C6576005513E0 /* EvictProvider.swift in Sources */,
-				5732E4EF1C9C6576005513E0 /* EvictExpiredRecordsPersistence.swift in Sources */,
-				5732E4EE1C9C6576005513E0 /* EvictExpirableRecordsPersistence.swift in Sources */,
-				5732E4F41C9C6576005513E0 /* TwoLayersCache.swift in Sources */,
-				5732E4FD1C9C6576005513E0 /* OMCacheable.swift in Sources */,
+				A24FD4241DB54661001C3C2F /* Locale.swift in Sources */,
+				A24FD4141DB54661001C3C2F /* Actions.swift in Sources */,
+				A24FD4131DB54661001C3C2F /* OMCacheable.swift in Sources */,
+				A24FD4161DB54661001C3C2F /* DynamicKey.swift in Sources */,
+				A24FD42E1DB54661001C3C2F /* Reply.swift in Sources */,
+				A24FD4301DB54661001C3C2F /* Source.swift in Sources */,
+				A24FD41F1DB54661001C3C2F /* GetDeepCopy.swift in Sources */,
+				A24FD4211DB54661001C3C2F /* RetrieveRecord.swift in Sources */,
+				A24FD4221DB54661001C3C2F /* SaveRecord.swift in Sources */,
+				A24FD4201DB54661001C3C2F /* HasRecordExpired.swift in Sources */,
+				A24FD42A1DB54661001C3C2F /* PlaceholderProvider.swift in Sources */,
+				A24FD42B1DB54661001C3C2F /* RxCacheInternal.swift in Sources */,
+				A24FD4261DB54661001C3C2F /* MemoryNsCache.swift in Sources */,
+				A24FD4251DB54661001C3C2F /* Memory.swift in Sources */,
+				A24FD41C1DB54661001C3C2F /* EvictExpirableRecordsPersistence.swift in Sources */,
+				A24FD41B1DB54661001C3C2F /* Action.swift in Sources */,
+				A24FD41A1DB54661001C3C2F /* EvictProvider.swift in Sources */,
+				A24FD42C1DB54661001C3C2F /* LifeCache.swift in Sources */,
+				A24FD42D1DB54661001C3C2F /* Provider.swift in Sources */,
+				A24FD4191DB54661001C3C2F /* EvictDynamicKeyGroup.swift in Sources */,
+				A24FD4291DB54661001C3C2F /* Record.swift in Sources */,
+				A24FD4231DB54661001C3C2F /* TwoLayersCache.swift in Sources */,
+				A24FD4281DB54661001C3C2F /* Persistence.swift in Sources */,
+				A24FD41E1DB54661001C3C2F /* EvictRecord.swift in Sources */,
+				A24FD4271DB54661001C3C2F /* Disk.swift in Sources */,
+				A24FD42F1DB54661001C3C2F /* RxCache.swift in Sources */,
+				A24FD4151DB54661001C3C2F /* Cacheable.swift in Sources */,
+				A24FD4121DB54661001C3C2F /* GlossCacheable.swift in Sources */,
+				A24FD4181DB54661001C3C2F /* EvictDynamicKey.swift in Sources */,
+				A24FD41D1DB54661001C3C2F /* EvictExpiredRecordsPersistence.swift in Sources */,
+				A24FD4171DB54661001C3C2F /* DynamicKeyGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,7 +715,7 @@
 		};
 		5732E4C41C9C64F3005513E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 665FBF6FA3A9A120DC1FD941 /* Pods-RxCache.debug.xcconfig */;
+			baseConfigurationReference = 08A3CA7F5ECD06D7F593D4C0 /* Pods-RxCache.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -680,12 +731,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5732E4C51C9C64F3005513E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8790F8997C0231E860B740B7 /* Pods-RxCache.release.xcconfig */;
+			baseConfigurationReference = 79D89BFCA0FDF96681EAF09B /* Pods-RxCache.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -700,30 +752,35 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.victoralbertos.RxCache;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		5732E4C71C9C64F3005513E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57E9A6EF7642B8541EB431E0 /* Pods-RxCacheTests.debug.xcconfig */;
+			baseConfigurationReference = D1E5EE1A1DEC6056B2924F09 /* Pods-RxCacheTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RxCacheTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.victoralbertos.RxCacheTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5732E4C81C9C64F3005513E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 500B428AF10CDF85D526E2A4 /* Pods-RxCacheTests.release.xcconfig */;
+			baseConfigurationReference = 9BD4F2653C9155103EC12560 /* Pods-RxCacheTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RxCacheTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.victoralbertos.RxCacheTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

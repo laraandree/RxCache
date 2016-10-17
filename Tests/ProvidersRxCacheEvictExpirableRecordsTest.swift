@@ -29,7 +29,7 @@ import Nimble
 
 class ProvidersRxCacheEvictExpirableRecordsTest : XCTestCase {
     var providers : RxCache!
-    private let maxMBPersistenceCache = 7
+    fileprivate let maxMBPersistenceCache = 7
     
     override func setUp() {
         super.setUp()
@@ -44,13 +44,15 @@ class ProvidersRxCacheEvictExpirableRecordsTest : XCTestCase {
     }
     
     func testWhenExpirableRecordsEvict() {
-        expect(persistence.storedMB()).to(beCloseTo(0, within: 1.5))
+        let _ = beCloseTo(0, within: 0)
+        let storedMB = Double(persistence.storedMB()!)
+        expect(storedMB).to(beCloseTo(0, within: 1.5))
         
         for i in 1...50 {
-            NSThread.sleepForTimeInterval(0.05)
+            Thread.sleep(forTimeInterval: 0.05)
             
             var finish = false
-            providers.cache(createObservableMocks(), provider: RxProvidersMock.GetEphemeralMocksPaginate(page: String(i))).subscribeNext { mocks in
+            providers.cache(createObservableMocks(), provider: RxProvidersMock.getEphemeralMocksPaginate(page: String(i))).subscribeNext { mocks in
                 finish = true
                 }.addDisposableTo(DisposeBag())
             
@@ -62,13 +64,14 @@ class ProvidersRxCacheEvictExpirableRecordsTest : XCTestCase {
     }
     
     func testWhenNoExpirableRecordsDoNotEvict() {
-        expect(persistence.storedMB()).to(beCloseTo(0, within: 1.5))
+        let storedMB = Double(persistence.storedMB()!)
+        expect(storedMB).to(beCloseTo(0, within: 1.5))
         
         for i in 1...50 {
-            NSThread.sleepForTimeInterval(0.05)
+            Thread.sleep(forTimeInterval: 0.05)
             
             var finish = false
-            providers.cache(createObservableMocks(), provider: RxProvidersMock.GetMocksPaginateNotExpirable(page: i)).subscribeNext { mocks in
+            providers.cache(createObservableMocks(), provider: RxProvidersMock.getMocksPaginateNotExpirable(page: i)).subscribeNext { mocks in
                 finish = true
                 }.addDisposableTo(DisposeBag())
             

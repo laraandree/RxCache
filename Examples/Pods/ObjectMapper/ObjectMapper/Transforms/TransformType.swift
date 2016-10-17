@@ -27,9 +27,9 @@
 //  THE SOFTWARE.
 
 public protocol TransformType {
-	typealias Object
-	typealias JSON
+	associatedtype Object
+	associatedtype JSON
 
-	func transformFromJSON(value: AnyObject?) -> Object?
-	func transformToJSON(value: Object?) -> JSON?
+	func transformFromJSON(_ value: Any?) -> Object?
+	func transformToJSON(_ value: Object?) -> JSON?
 }

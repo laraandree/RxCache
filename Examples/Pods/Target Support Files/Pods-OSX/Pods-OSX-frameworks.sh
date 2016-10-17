@@ -16,7 +16,7 @@ install_framework()
     local source="$1"
   fi
 
-  local destination="${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+  local destination="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 
   if [ -L "${source}" ]; then
       echo "Symlinked..."
@@ -59,8 +59,8 @@ code_sign_if_enabled() {
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY}" -a "${CODE_SIGNING_REQUIRED}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
     # Use the current code_sign_identitiy
     echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
-    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements \"$1\""
-    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements "$1"
+    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements \"$1\""
+    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements "$1"
   fi
 }
 
@@ -84,20 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-OSX/Alamofire.framework"
-  install_framework "Pods-OSX/Gloss.framework"
-  install_framework "Pods-OSX/Moya.framework"
-  install_framework "Pods-OSX/ObjectMapper.framework"
-  install_framework "Pods-OSX/Result.framework"
-  install_framework "Pods-OSX/RxCache.framework"
-  install_framework "Pods-OSX/RxSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gloss-OSX/Gloss.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjectMapper-OSX/ObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RxSwift-OSX/RxSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-OSX/Alamofire.framework"
-  install_framework "Pods-OSX/Gloss.framework"
-  install_framework "Pods-OSX/Moya.framework"
-  install_framework "Pods-OSX/ObjectMapper.framework"
-  install_framework "Pods-OSX/Result.framework"
-  install_framework "Pods-OSX/RxCache.framework"
-  install_framework "Pods-OSX/RxSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gloss-OSX/Gloss.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ObjectMapper-OSX/ObjectMapper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RxSwift-OSX/RxSwift.framework"
 fi

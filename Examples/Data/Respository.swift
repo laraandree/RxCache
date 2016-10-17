@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Repository {
+open class Repository {
 
 
 }

@@ -1,13 +1,17 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
+def shared_pods
+    pod 'ObjectMapper', '~> 2.0'
+    pod 'RxSwift', '>= 3.0.0-beta.1'
+    pod 'Gloss', '~> 1.0'
+end
+
 target 'RxCache' do
-    pod 'RxSwift', '~> 2.0'
+    shared_pods
 end
 
 target 'RxCacheTests' do
-    pod 'RxSwift', '~> 2.0'
-    pod 'Nimble', '~> 4.0.0'
-    pod 'ObjectMapper', '~> 1.1'
-    pod 'Gloss', '~> 0.7'
+    shared_pods
+    pod 'Nimble', '~> 5.0.0'
 end
