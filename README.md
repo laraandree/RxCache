@@ -29,14 +29,23 @@ So, when supplying an `observable` you get your observable cached back, and next
 RxCache is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+Core:
+
 ```ruby
-pod 'RxCache', '~> 0.1.4'
+pod 'RxCache', '~> 1.0.1'
+```
+
+And also if you use some of the mapping libraries that are in [Cacheables](https://github.com/FuckBoilerplate/RxCache/tree/master/Sources/Cacheables) you would need to add its module:
+
+```ruby
+pod 'RxCache/ObjectMapper', '~> 1.0.1'
+pod 'RxCache/Gloss', '~> 1.0.1'
 ```
 
 RxCache also is available using [Carthage](https://github.com/Carthage/Carthage). To install it add the following dependency to your `Cartfile`:
 
 ```
-github "FuckBoilerplate/RxCache" ~> 0.1.4
+github "FuckBoilerplate/RxCache" ~> 1.0.1
 ```
 
 ## Usage
@@ -76,15 +85,13 @@ import RxCache
 class Person: Mappable, OMCacheable {
     var name: String?
     
-    required init?(JSON: [String : AnyObject]) {
-        mapping(Map(mappingType: .FromJSON, JSONDictionary: JSON))
-    }
-    
     func mapping(map: Map) {
-        name    <- map["name"]
+        name <- map["name"]
     }
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) {
+        
+    }
 }
 ```
 
@@ -213,16 +220,16 @@ Following use cases illustrate some common scenarios which will help to understa
 ```swift
 enum CacheProviders : Provider {
     // Mock List
-    case GetMocks() // Mock List without evicting
-    case GetMocksEvictProvider(evictProvider : EvictProvider) // Mock List evicting
+    case getMocks() // Mock List without evicting
+    case getMocksEvictProvider(evictProvider : EvictProvider) // Mock List evicting
     
     // Mock List Filtering
-    case GetMocksFiltered(filter: String) // Mock List filtering without evicting
-    case GetMocksFilteredEvict(filter: String, evictProvider : EvictProvider) // Mock List filtering evicting
+    case getMocksFiltered(filter: String) // Mock List filtering without evicting
+    case getMocksFilteredEvict(filter: String, evictProvider : EvictProvider) // Mock List filtering evicting
     
     // Mock List Paginated with filters
-    case GetMocksFilteredPaginate(filterAndPage: String) // Mock List paginated with filters without evicting
-    case GetMocksFilteredPaginateEvict(filter: String, page: Int, evictProvider : EvictProvider) // Mock List paginated with filters evicting
+    case getMocksFilteredPaginate(filterAndPage: String) // Mock List paginated with filters without evicting
+    case getMocksFilteredPaginateEvict(filter: String, page: Int, evictProvider : EvictProvider) // Mock List paginated with filters evicting
 
     var lifeCache: LifeCache? {
         return nil
@@ -230,11 +237,11 @@ enum CacheProviders : Provider {
     
     var dynamicKey: DynamicKey? {
         switch self {
-        case let GetMocksFiltered(filter):
+        case let .getMocksFiltered(filter):
             return DynamicKey(dynamicKey: filter)
-        case let GetMocksFilteredEvict(filter, _):
+        case let .getMocksFilteredEvict(filter, _):
             return DynamicKey(dynamicKey: filter)
-        case let GetMocksFilteredPaginate(filterAndPage):
+        case let .getMocksFilteredPaginate(filterAndPage):
             return DynamicKey(dynamicKey: filterAndPage)
         default:
             return nil
@@ -243,7 +250,7 @@ enum CacheProviders : Provider {
     
     var dynamicKeyGroup: DynamicKeyGroup? {
         switch self {
-        case let GetMocksFilteredPaginateEvict(filter, page, _):
+        case let .getMocksFilteredPaginateEvict(filter, page, _):
             return DynamicKeyGroup(dynamicKey: filter, group: String(page))
         default:
             return nil
@@ -252,9 +259,9 @@ enum CacheProviders : Provider {
     
     var evict: EvictProvider? {
         switch self {
-        case let GetMocksFilteredEvict(_, evictProvider):
+        case let .getMocksFilteredEvict(_, evictProvider):
             return evictProvider
-        case let GetMocksFilteredPaginateEvict(_, _, evictProvider):
+        case let .getMocksFilteredPaginateEvict(_, _, evictProvider):
             return evictProvider
         default:
             return nil
@@ -268,11 +275,11 @@ enum CacheProviders : Provider {
 
 ```swift
 //Hit observable evicting all mocks 
-let provider : Provider = CacheProviders.GetMocksEvictProvider(evictProvider: EvictProvider(evict: true))
+let provider : Provider = CacheProviders.getMocksEvictProvider(evictProvider: EvictProvider(evict: true))
 providers.cache(getExpensiveMocks(), provider: provider)
 
 //This lines return an error observable: "EvictDynamicKey was provided but not was provided any DynamicKey"
-let provider : Provider = CacheProviders.GetMocksEvictProvider(evictProvider: EvictDynamicKey(evict: true))
+let provider : Provider = CacheProviders.getMocksEvictProvider(evictProvider: EvictDynamicKey(evict: true))
 providers.cache(getExpensiveMocks(), provider: provider)
 ```
 
@@ -280,18 +287,18 @@ providers.cache(getExpensiveMocks(), provider: provider)
 
 ```swift
 //Hit observable evicting all mocks using EvictProvider
-let provider : Provider = CacheProviders.GetMocksFilteredEvict(filter: "actives", evictProvider: EvictProvider(evict: true))
+let provider : Provider = CacheProviders.getMocksFilteredEvict(filter: "actives", evictProvider: EvictProvider(evict: true))
 providers.cache(getExpensiveMocks(), provider: provider)
 
 //Hit observable evicting mocks of one filter using EvictDynamicKey
-let provider : Provider = CacheProviders.GetMocksFilteredEvict(filter: "actives", evictProvider: EvictDynamicKey(evict: true))
+let provider : Provider = CacheProviders.getMocksFilteredEvict(filter: "actives", evictProvider: EvictDynamicKey(evict: true))
 providers.cache(getExpensiveMocks(), provider: provider)
 
 //This lines return an error observable: "EvictDynamicKeyGroup was provided but not was provided any Group"
 let provider : Provider = CacheProviders.GetMocksFilteredEvict(filter: "actives", evictProvider: EvictDynamicKeyGroup(evict: true))
 providers.cache(getExpensiveMocks(), provider: provider)
-```		
-		
+```     
+        
 #### List Paginated with filters
 
 ```swift
@@ -306,7 +313,7 @@ providers.cache(getExpensiveMocks(), provider: provider)
 //Hit observable evicting one page mocks of one filter using EvictDynamicKeyGroup
 let provider : Provider = CacheProviders.GetMocksFilteredPaginateEvict(filter: "actives", page: 1, evictProvider: EvictDynamicKeyGroup(evict: true))
 providers.cache(getExpensiveMocks(), provider: provider)
-```		
+```     
 
 As you may already notice, the whole point of using `DynamicKey` or `DynamicKeyGroup` along with `Evict` classes is to play with several scopes when evicting objects.
 
@@ -324,36 +331,36 @@ Some actions examples:
 ```swift
 let provider = RxProvidersMock.GetMocksEvictCache(evict: false)
 Actions<Mock>.with(provider)
-	.addFirst(Mock())
-	.addLast(Mock())
-	// Add a new mock at 5th position
-	.add({ (position, count) -> Bool in position == 5 }, candidate: Mock())
-	
-	.evictFirst()
-	//Evict first element if the cache has already 300 records
-	.evictFirst { (count) -> Bool in count > 300 }
-	.evictLast()
-	//Evict last element if the cache has already 300 records
-	.evictLast { (count) -> Bool in count > 300 }
-	//Evict all inactive elements
-	.evictIterable { (position, count, mock) -> Bool in mock.active == false }
-	.evictAll()
+    .addFirst(Mock())
+    .addLast(Mock())
+    // Add a new mock at 5th position
+    .add({ (position, count) -> Bool in position == 5 }, candidate: Mock())
+    
+    .evictFirst()
+    //Evict first element if the cache has already 300 records
+    .evictFirst { (count) -> Bool in count > 300 }
+    .evictLast()
+    //Evict last element if the cache has already 300 records
+    .evictLast { (count) -> Bool in count > 300 }
+    //Evict all inactive elements
+    .evictIterable { (position, count, mock) -> Bool in mock.active == false }
+    .evictAll()
         
-	//Update the mock with id 5
-	.update({ mock -> Bool in mock.id == 5 },
-	replace: { mock in
-		mock.active = true
-		return mock
-	})
+    //Update the mock with id 5
+    .update({ mock -> Bool in mock.id == 5 },
+    replace: { mock in
+        mock.active = true
+        return mock
+    })
         
-	//Update all inactive mocks
-	.update({ mock -> Bool in mock.active == false },
-	replace: { mock in
-		mock.active = true
-		return mock
-	})
-	.toObservable()
-	.subscribe()
+    //Update all inactive mocks
+    .update({ mock -> Bool in mock.active == false },
+    replace: { mock in
+        mock.active = true
+        return mock
+    })
+    .toObservable()
+    .subscribe()
 ```
 Every one of the previous actions will be execute only after the composed observable receives a subscription. This way, the underliyng provider cache will be modified its elements without effort at all.
 
