@@ -31,7 +31,7 @@ public protocol OMCacheable: Cacheable, Mappable {
     
 }
 
-extension OMCacheable {
+public extension OMCacheable {
     
     init?(json: JSON) {
         if let obj: Self = Mapper().map(JSON: json) {
