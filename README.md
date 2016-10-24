@@ -32,20 +32,20 @@ it, simply add the following line to your Podfile:
 Core:
 
 ```ruby
-pod 'RxCache', '~> 1.0.1'
+pod 'RxCache', '~> 1.0.2'
 ```
 
 And also if you use some of the mapping libraries that are in [Cacheables](https://github.com/FuckBoilerplate/RxCache/tree/master/Sources/Cacheables) you would need to add its module:
 
 ```ruby
-pod 'RxCache/ObjectMapper', '~> 1.0.1'
-pod 'RxCache/Gloss', '~> 1.0.1'
+pod 'RxCache/ObjectMapper', '~> 1.0.2'
+pod 'RxCache/Gloss', '~> 1.0.2'
 ```
 
 RxCache also is available using [Carthage](https://github.com/Carthage/Carthage). To install it add the following dependency to your `Cartfile`:
 
 ```
-github "FuckBoilerplate/RxCache" ~> 1.0.1
+github "FuckBoilerplate/RxCache" ~> 1.0.2
 ```
 
 ## Usage
