@@ -18,19 +18,19 @@ Pod::Spec.new do |s|
 
   s.subspec "Core" do |ss|
     ss.source_files = 'Sources/Core/**/*'
-    ss.dependency "RxSwift", ">= 3.0.0-beta.1"
+    ss.dependency "RxSwift", "~> 4.0"
   end
 
   s.subspec "ObjectMapper" do |ss|
     ss.source_files = 'Sources/Cacheables/ObjectMapper/*.swift'
     ss.dependency "RxCache/Core"
-    ss.dependency "ObjectMapper", "~> 2.0"
+    ss.dependency "ObjectMapper", "~> 3.1"
   end
 
   s.subspec "Gloss" do |ss|
     ss.source_files = 'Sources/Cacheables/Gloss/*.swift'
     ss.dependency "RxCache/Core"
-    ss.dependency "Gloss", "~> 1.0"
+    ss.dependency "Gloss", "~> 2.0"
   end
 
 end
