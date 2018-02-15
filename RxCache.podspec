@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.subspec "ObjectMapper" do |ss|
     ss.source_files = 'Sources/Cacheables/ObjectMapper/*.swift'
     ss.dependency "RxCache/Core"
-    ss.dependency "ObjectMapper", "~> 3.1"
+    ss.dependency "ObjectMapper", "~> 3.0"
   end
 
   s.subspec "Gloss" do |ss|
