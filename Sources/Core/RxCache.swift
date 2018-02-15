@@ -64,7 +64,7 @@ open class RxCache {
         evictExpiredRecordsPersistence.startEvictingExpiredRecords()
             //.subscribeOn(scheduler)
             .subscribe()
-            .addDisposableTo(DisposeBag())
+            .disposed(by: DisposeBag())
     }
     
     open func cacheWithReply<T>(_ observable : Observable<T>,  provider : Provider) -> Observable<Reply<T>> {

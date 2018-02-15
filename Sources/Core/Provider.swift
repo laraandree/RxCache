@@ -53,8 +53,8 @@ public extension Provider {
     
     internal func nameStripingInitArguments() -> String {
         let target: String = String(describing: self)
-        if let idx = target.characters.index(of: "(") {
-            return target.substring(to: idx)
+        if let idx = target.index(of: "(") {
+            return String(target[...idx])
         }
         return target
     }

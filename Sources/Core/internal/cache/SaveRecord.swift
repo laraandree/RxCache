@@ -44,7 +44,7 @@ class SaveRecord : Action {
         if let storedMB = persistence.storedMB() , storedMB >= maxMBPersistenceCache {
             print(Locale.DataCanNotBePersistedBecauseWouldExceedThresholdLimit)
         } else {
-            persistence.saveRecord(composedKey, record: record)
+            _ = persistence.saveRecord(composedKey, record: record)
         }
         
         evictExpirableRecordsPersistence.maxMgPersistenceCache = maxMBPersistenceCache

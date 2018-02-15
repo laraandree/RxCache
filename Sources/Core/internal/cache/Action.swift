@@ -90,10 +90,10 @@ extension Action {
         if let range = composedKeyMemory.range(of: target, options: .backwards) {
             
             let indexPrefixDynamicKey = composedKeyMemory.distance(from: composedKeyMemory.startIndex, to: range.lowerBound)
-            let endPositionKey = composedKeyMemory.characters.count - indexPrefixDynamicKey
+            let endPositionKey = composedKeyMemory.count - indexPrefixDynamicKey
             let finalIndex = composedKeyMemory.index(composedKeyMemory.endIndex, offsetBy: -endPositionKey)
             
-            return composedKeyMemory.substring(with: Range<String.Index>(composedKeyMemory.startIndex..<finalIndex))
+            return String(composedKeyMemory[..<finalIndex])
         } else {
             return nil
         }
