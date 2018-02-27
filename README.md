@@ -2,7 +2,7 @@
 [![License](https://img.shields.io/cocoapods/l/RxCache.svg?style=flat)](http://cocoapods.org/pods/RxCache)
 [![Platform](https://img.shields.io/cocoapods/p/RxCache.svg?style=flat)](http://cocoapods.org/pods/RxCache)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://travis-ci.org/VictorAlbertos/RxCache.svg?branch=master)](https://travis-ci.org/VictorAlbertos/RxCache)
+[![Build Status](https://travis-ci.org/FuckBoilerplate/RxCache.svg?branch=master)](https://travis-ci.org/VictorAlbertos/RxCache)
 # RxCache
 
 _Swift adaptation from the original [RxCache Java version](https://github.com/VictorAlbertos/RxCache)_.
