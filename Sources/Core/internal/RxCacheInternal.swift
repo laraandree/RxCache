@@ -59,7 +59,6 @@ extension RxCache {
                 return Reply(source: Source.Cloud, cacheables: cacheables)
             
             }.catchError({ (errorType) -> Observable<Reply<[T]>> in
-                self.clearKeyIfNeeded(provider)
                 
                 if (record != nil && self.useExpiredDataIfLoaderNotAvailable) {
                     return Observable.just(Reply(source: record!.source, cacheables: record!.cacheables))
