@@ -40,8 +40,8 @@ public extension OMCacheable {
             return nil
         }
     }
-    
-    func toJSON() -> JSON? {
-        return Mapper().toJSON(self)
-    }
+//    
+//    func toJSON() -> JSON? {
+//        return Mapper().toJSON(self)
+//    }
 }
