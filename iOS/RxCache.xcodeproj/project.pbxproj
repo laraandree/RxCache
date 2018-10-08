@@ -392,7 +392,6 @@
 				577304281C9C424F008349BE /* Frameworks */,
 				577304291C9C424F008349BE /* Headers */,
 				5773042A1C9C424F008349BE /* Resources */,
-				B21AEFE174F6F7181B277C99 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -412,7 +411,6 @@
 				577304331C9C424F008349BE /* Frameworks */,
 				577304341C9C424F008349BE /* Resources */,
 				C65ED173C06C5E9F03C18E4F /* [CP] Embed Pods Frameworks */,
-				D320F578AD56A568DA3E329C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -516,21 +514,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B21AEFE174F6F7181B277C99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCache/Pods-RxCache-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C65ED173C06C5E9F03C18E4F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,21 +536,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D320F578AD56A568DA3E329C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

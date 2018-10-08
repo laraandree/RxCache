@@ -385,7 +385,6 @@
 				5732E4AB1C9C64F3005513E0 /* Frameworks */,
 				5732E4AC1C9C64F3005513E0 /* Headers */,
 				5732E4AD1C9C64F3005513E0 /* Resources */,
-				3172F2472150453F9B388861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -405,7 +404,6 @@
 				5732E4B61C9C64F3005513E0 /* Frameworks */,
 				5732E4B71C9C64F3005513E0 /* Resources */,
 				152812628DC8B87F910DF622 /* [CP] Embed Pods Frameworks */,
-				2B058001B32FAEB3125CA409 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -513,36 +511,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2B058001B32FAEB3125CA409 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCacheTests/Pods-RxCacheTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3172F2472150453F9B388861 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxCache/Pods-RxCache-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD2D2B5BD2938431D3F856F0 /* [CP] Check Pods Manifest.lock */ = {

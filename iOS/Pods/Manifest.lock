@@ -1,21 +1,28 @@
 PODS:
   - Gloss (2.0.0)
   - Nimble (6.0.1)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.3.0)
   - RxSwift (4.1.2)
 
 DEPENDENCIES:
   - Gloss (~> 2.0)
   - Nimble (~> 6.0.0)
-  - ObjectMapper (~> 3.1)
+  - ObjectMapper (~> 3.3)
   - RxSwift (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Gloss
+    - Nimble
+    - ObjectMapper
+    - RxSwift
 
 SPEC CHECKSUMS:
   Gloss: b67617f327406adfd47adf20172d00680a3a31bd
   Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   RxSwift: e49536837d9901277638493ea537394d4b55f570
 
-PODFILE CHECKSUM: 9c76246fe16d87ab91560efc98b246085e1e653f
+PODFILE CHECKSUM: 7f775016d517fd50e99f8778ac1f966107913a44
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

@@ -4,7 +4,7 @@ use_frameworks!
 def shared_pods
     pod 'RxSwift', '~> 4.0'
     pod 'Gloss', '~> 2.0'
-    pod 'ObjectMapper', '~> 3.1'
+    pod 'ObjectMapper', '~> 3.3.0'
 end
 
 target 'RxCache' do
